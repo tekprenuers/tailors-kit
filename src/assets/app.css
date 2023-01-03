@@ -17,7 +17,7 @@ body {
 }
 div#root {
     height: auto !important;
-    min-height: 100%;
+    min-height: calc(100% - 3.25rem);
 }
 
 .font-montaga {
@@ -35,31 +35,15 @@ div#root {
     color: var(--primary-dark);
 }
 
-/*
-
-body.dark .navbar .navbar-menu{
-    background-color: inherit;
-    color:#fff ;
+label.checkbox{
+    user-select: none !important;
 }
-body.dark .navbar .navbar-item, .navbar-link, .navbar-burger{
-    color:#fff;
+.has-shadow{
+    box-shadow:  20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
 }
-body.dark .bg-color{
-    background-color:rgb(27, 29, 30) !important;
-}
-body.dark .form-control {
-    background-color: #0c0c10;
-    border: 2px solid #1c1c1c;
-    color: rgb(198, 193, 185);
-}
-*/
-body.light {
-    color: #000;
-    background-color: #fff;
-}
-
 .form-section {
-    max-width: 400px;
+    padding: 20px;
+    max-width: 450px;
     margin: auto;
 }
 
@@ -91,7 +75,7 @@ body.light {
     height: 0;
 }
 
-.hero {
+.hero:not(.dash-hero) {
     height: 100vh;
     background: rgb(0, 0, 0);
     /* background: linear-gradient(140deg, rgba(29, 17, 218, 1) 31%, rgba(120, 0, 184, 1) 100%); */
@@ -144,7 +128,7 @@ body.light {
 .select select:focus,
 .textarea:active,
 .textarea:focus {
-    border-color: #1d1e91 !important;
+    border-color: var(--primary) !important;
     box-shadow: 0 0 0 .125em #dadbff !important;
 }
 
@@ -160,36 +144,7 @@ body.light {
     border-radius: 20px;
 }
 
-.theme-switch * {
-    cursor: pointer;
-    user-select: none;
-}
 
-.theme-switch {
-    position: fixed;
-    top: 80%;
-    right: 3%;
-    box-shadow: 0px 0px 8px var(--primary);
-    border-radius: 50%;
-    z-index: 7777777;
-}
-
-.theme-switch button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 0;
-    color: #fff;
-    background-color: var(--primary);
-}
-
-body.dark .blog-last article {
-    background-color: #1e1e1e !important;
-}
-
-.single-post-divider {
-    border-top: 1px dashed;
-}
 
 .radius-0 {
     border-radius: 0 !important
@@ -210,8 +165,9 @@ body.dark .blog-last article {
 
 .should-be-centered {
     position: relative;
-    transform: translate(-50%, 50%);
+    top: 50%;
     left: 50%;
+    transform: translate(-50%, 50%);
 }
 
 @media screen and (max-width: 600px) {

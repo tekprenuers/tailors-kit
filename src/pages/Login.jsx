@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { octaValidate } from "octavalidate-reactjs";
+import Typed from "typed.js";
 
 export default function Login() {
   const navigate = useNavigate()
+  // Create Ref element.
+  const el = useRef(null);
+
+  useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: ["Save your client's data", "Access your client's data", "Update your client's data",], // Strings to display
+      // Speed settings, try diffrent values untill you get good results
+      startDelay: 300,
+      typeSpeed: 100,
+      backSpeed: 100,
+      backDelay: 100,
+      smartBackspace: true,
+      loop: true,
+      showCursor: true,
+    });
+
+    // Destropying
+    return () => {
+      typed.destroy();
+    };
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target
@@ -12,7 +35,6 @@ export default function Login() {
     const myForm = new octaValidate(form.id)
     //validate form
     if(myForm.validate()){
-      console.log(btn);
       btn.classList.toggle('is-loading');
       fetch(import.meta.env.VITE_BACKEND_URL+'login.php', {
         method: "post",
@@ -31,9 +53,11 @@ export default function Login() {
           btn.classList.remove('is-loading')
         }else{
           toast.success(res.data.message)
-          // setTimeout( () => {
-          //   navigate("/dashboard")
-          // }, 3000)
+          btn.classList.remove('is-loading')
+          btn.setAttribute("disabled", "disabled")
+          setTimeout( () => {
+            navigate("/dashboard")
+          }, 3000)
         }
       })
       .catch(err => {
@@ -52,11 +76,16 @@ export default function Login() {
           <img src="/mannequin-with-tape-measure.png" />
         </div>
         <div className="column is-half is-align-self-center">
-          <h4 className="title is-4 has-text-centered mb-5">
-            Login To Access Your Client's Data
-          </h4>
-          <section className="form-section">
-            <form id="form_login" onSubmit={handleSubmit}>
+          <div className="has-text-centered mb-5">
+            <h4 className="title is-3 has-text-app-primary mb-3">
+            Login 
+            </h4>
+            <div>
+              <span ref={el} className="title is-5  m-0" style={{height: "25px", textTransform: "uppercase"}}></span>
+            </div>
+          </div>
+          <section className="form-section has-shadow" style={{maxWidth : "calc(100% - 100px)"}}>
+            <form id="form_login" onSubmit={handleSubmit} noValidate>
               <div className="field">
                 <label className="label">
                   Enter your email <span className="has-text-danger">*</span>
