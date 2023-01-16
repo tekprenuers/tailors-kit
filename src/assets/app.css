@@ -6,8 +6,17 @@ body {
     /*font-family: 'Poppins', sans-serif;*/
     /*font-family: 'Montaga', serif;*/
     height: 100%;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif !important;
     color: #000; 
+}
+.notification.is-info{
+    border-left:.3em solid #1d72aa;
+}
+.notification.is-danger{
+    border-left:.3em solid #cc0f35;
+}
+.notification.is-primary{
+    border-left:.3em solid #00d1b2;
 }
 .title{
     color: #000; 
@@ -39,12 +48,41 @@ label.checkbox{
     user-select: none !important;
 }
 .has-shadow{
-    box-shadow:  20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+    box-shadow:  20px 20px 60px #bebebe, -20px -20px 60px #ffffff !important;
+}
+.settings-card{
+    box-shadow: -3px 3px 0 #ff950080 !important;
+    border-radius: 0 !important;
 }
 .form-section {
     padding: 20px;
     max-width: 450px;
     margin: auto;
+}
+form:has(.search-form){
+    max-width: 400px;
+    margin: auto;
+    height: 44px;
+}
+.search-form{
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.search-form button svg{
+    color: #fff;
+    fill: currentColor;
+    /* width: 24px; */
+    height: 40px;
+    padding: 10px;
+}
+
+.measure-field{
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 8px #ddd;
 }
 
 ::-webkit-scrollbar {
@@ -69,12 +107,18 @@ label.checkbox{
 .d-none {
     display: none !important;
 }
+.d-block{
+    display: block !important;
+}
 
 .d-hidden {
     opacity: 0;
     height: 0;
 }
 
+.tr-last{
+    background-color: #ddd !important;
+}
 .hero:not(.dash-hero) {
     height: 100vh;
     background: rgb(0, 0, 0);
@@ -84,7 +128,7 @@ label.checkbox{
 }
 
 .is-app-primary {
-    border-color: var(--primary);
+    border-color: var(--primary) !important;
     background-color: var(--primary) !important;
     color: #000!important;
 }
@@ -144,8 +188,6 @@ label.checkbox{
     border-radius: 20px;
 }
 
-
-
 .radius-0 {
     border-radius: 0 !important
 }
@@ -162,7 +204,13 @@ label.checkbox{
 .m-auto {
     margin: auto;
 }
+.mw-300{
+    max-width: 300px !important;
+}
 
+.mw-500{
+    max-width: 500px !important;
+}
 .should-be-centered {
     position: relative;
     top: 50%;
@@ -174,42 +222,12 @@ label.checkbox{
     .center-on-mobile {
         text-align: center !important;
     }
-
-    .home-posts-card.card {
-        margin: auto;
-    }
-
-    .single-post {
-        display: block !important;
-    }
-
-    .single-post-last {
-        width: 100%;
-        margin-left: 0 !important;
-        margin-top: 10px;
-    }
-
-    .blog-third {
-        display: block !important;
-        padding: 10px;
-    }
-
-    .blog-third h4.blog-user {
-        margin-bottom: 10px;
-    }
-
-    .blog-third .button-section {
-        justify-content: center;
-    }
 }
 
 button.button {
     line-height: 0 !important;
 }
 
-button.button.delete-comment {
-    font-size: .8rem;
-}
 
 button.is-cta:hover {
     position: relative;
@@ -219,12 +237,6 @@ button.is-cta:hover {
 .has-text-app-primary {
     color: var(--primary) !important;
 }
-
-.user-meta-card .card-img {
-    background-color: #9dbdd740;
-    padding: 10px;
-}
-
 
 .centered-elem {
     max-width: 800px;
@@ -265,6 +277,42 @@ section.section-app-primary{
 }
 .p-100{
     padding: 100px;
+}
+.feature-denied-section{
+    height: 200px;   
+    position: relative;
+    border: 2px solid #ff9500;
+    border-radius: 5px;
+}
+.feature-denied-section .overlay{
+    filter: blur(1px);
+    background: url('/tailor-premium-banner.jpg');
+    height: 100%;
+    border-radius: inherit;
+}
+.feature-denied-section div.denied-content{
+    position: absolute;
+    /* top: calc(100% - 50%); */
+    width: 100%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.feature-denied-section div.denied-content .button{
+    max-width: 30%;
+    margin: 0 auto 0 auto;
+}
+.single-customer img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    /* border: 1px solid var(--primary); */
+    box-shadow: 0px 0px 50px #9f9f9f;
 }
 :root {
     --primary: #ff9500;

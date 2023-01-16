@@ -1,6 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
+import Core from "../../Hooks/Core";
 
 export default function Nav() {
+    const {getUserData, doLogOut} = Core()
+
+    const userData = getUserData();
+
     return (
         <>
             <nav id="navbar-main" className="navbar is-fixed-top">
@@ -9,7 +14,7 @@ export default function Nav() {
                         <span className="icon"><i className="mdi mdi-forwardburger mdi-24px"></i></span>
                     </a>
                     <div className="navbar-item has-control">
-                        <div className="control"><input placeholder="Search everywhere..." className="input" /></div>
+                        <div className="control"><img src="/navbar-icon.png" /></div>
                     </div>
                 </div>
                 <div className="navbar-brand is-right">
@@ -19,7 +24,7 @@ export default function Nav() {
                 </div>
                 <div className="navbar-menu fadeIn animated faster" id="navbar-menu">
                     <div className="navbar-end">
-                        <div className="navbar-item has-dropdown has-dropdown-with-icons has-divider is-hoverable">
+                        <div className="d-none navbar-item has-dropdown has-dropdown-with-icons has-divider is-hoverable">
                             <a className="navbar-link is-arrowless">
                                 <span className="icon"><i className="mdi mdi-menu"></i></span>
                                 <span>Sample Menu</span>
@@ -27,8 +32,8 @@ export default function Nav() {
                                     <i className="mdi mdi-chevron-down"></i>
                                 </span>
                             </a>
-                            <div className="navbar-dropdown">
-                                <a href="profile.html" className="navbar-item">
+                            <div className="navbar-dropdown d-none">
+                                <a href={import.meta.env.VITE_DASHBOARD_URL+'/update-profile'} className="navbar-item">
                                     <span className="icon"><i className="mdi mdi-account"></i></span>
                                     <span>My Profile</span>
                                 </a>
@@ -50,26 +55,18 @@ export default function Nav() {
                         <div className="navbar-item has-dropdown has-dropdown-with-icons has-divider has-user-avatar is-hoverable">
                             <a className="navbar-link is-arrowless">
                                 <div className="is-user-avatar">
-                                    <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe" />
+                                    <img src={ (userData?.image) ? userData?.image : "https://avatars.dicebear.com/v2/initials/john-doe.svg"} alt={userData?.fname} />
                                 </div>
-                                <div className="is-user-name"><span>John Doe</span></div>
+                                <div className="is-user-name"><span>{userData?.fname}</span></div>
                                 <span className="icon"><i className="mdi mdi-chevron-down"></i></span>
                             </a>
                             <div className="navbar-dropdown">
-                                <a href="profile.html" className="navbar-item">
-                                    <span className="icon"><i className="mdi mdi-account"></i></span>
-                                    <span>My Profile</span>
-                                </a>
-                                <a className="navbar-item">
-                                    <span className="icon"><i className="mdi mdi-settings"></i></span>
+                                <a href={import.meta.env.VITE_DASHBOARD_URL+'/settings'} className="navbar-item">
+                                    <span className="icon"><i className="mdi mdi-account-settings"></i></span>
                                     <span>Settings</span>
                                 </a>
-                                <a className="navbar-item">
-                                    <span className="icon"><i className="mdi mdi-email"></i></span>
-                                    <span>Messages</span>
-                                </a>
                                 <hr className="navbar-divider" />
-                                    <a className="navbar-item">
+                                    <a onClick={(e) => doLogOut()} className="navbar-item">
                                         <span className="icon"><i className="mdi mdi-logout"></i></span>
                                         <span>Log Out</span>
                                     </a>
@@ -79,7 +76,7 @@ export default function Nav() {
                             <span className="icon"><i className="mdi mdi-help-circle-outline"></i></span>
                             <span>About</span>
                         </a>
-                        <a title="Log out" className="navbar-item is-desktop-icon-only">
+                        <a onClick={(e) => doLogOut()} title="Log out" className="navbar-item is-desktop-icon-only">
                             <span className="icon"><i className="mdi mdi-logout"></i></span>
                             <span>Log out</span>
                         </a>

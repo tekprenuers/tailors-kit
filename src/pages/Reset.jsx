@@ -126,6 +126,7 @@ export default function Reset() {
             toast.success(res.data.message);
             btn.classList.remove("is-loading");
             btn.setAttribute("disabled", "disabled");
+            //redirect to login
             setTimeout( () => {
               navigate("/login")
             }, 3000)
@@ -133,6 +134,7 @@ export default function Reset() {
         })
         .catch((err) => {
           console.log(err);
+          toast.error("Network Error!");
           btn.classList.remove("is-loading");
         });
     } else {

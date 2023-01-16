@@ -2,8 +2,13 @@ import { Outlet, Link,  useLocation } from "react-router-dom";
 import React from 'react'
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Core from "../Hooks/Core";
+
 export default function Navbar() {
     const location = useLocation()
+    const {loadExternalStyle} = Core()
+    
+    loadExternalStyle('/bulma.min.css')
 
     const toggleMobileNav = function (e) {
         // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
@@ -17,7 +22,6 @@ export default function Navbar() {
     //check for changes in the variable
     React.useEffect(() => {
         if (location) {
-            console.log("loaded")
             if (document.querySelector('a')) {
                 //remove any active class present in any element
                 document.querySelectorAll('a').forEach(elem => {
@@ -40,6 +44,13 @@ export default function Navbar() {
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     }, []);
     
+
+    //check and redirect user to update profile incase of dashboard
+    const handleLogin = () => {
+    
+    }
+
+
     return (
         <>
             <ToastContainer

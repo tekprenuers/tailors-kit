@@ -64,3 +64,13 @@ Array.from(document.getElementsByClassName('jb-notification-dismiss')).forEach(e
     e.currentTarget.closest('.notification').classList.add('is-hidden')
   })
 })
+
+//add active class
+  // console.log("loaded")
+  document.querySelectorAll('a[href]').forEach(el => {
+      if(el.classList.contains('has-icon') && el.href.match(new RegExp(location.pathname, 'i')) && el.href.match(new RegExp(location.pathname, 'i')).length){
+          el.classList.toggle("is-active");
+      }else{
+          el.classList.remove("is-active");
+      }
+  })

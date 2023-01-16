@@ -61,6 +61,7 @@ export default function Register() {
       })
       .catch(err => {
         console.log(err)
+        toast.error("Network Error!");
         btn.classList.remove('is-loading')
       })
     }else{
@@ -83,7 +84,7 @@ export default function Register() {
               <span ref={el} className="title is-5  m-0" style={{height: "25px", textTransform: "uppercase"}}></span>
             </div>
           </div>
-          <section className="form-section has-shadow"  style={{maxWidth : "calc(100% - 100px)"}}>
+          <section className="form-section has-shadow">
             <form id="form_register" method="post" onSubmit={handleSubmit}>
               <div className="field">
                 <label className="label">
