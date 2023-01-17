@@ -6,9 +6,11 @@ import Core from "../../Hooks/Core";
 
 export default function AddRequest() {
     const cus_id = useParams().cusId;
+    //save customer data
     const [cusData, setCusData] = useState({})
-
-    const { getToken } = Core();
+    const { getToken, Preloader } = Core();
+    //track fetch request
+    const [status, setStatus] = useState("loading")
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -73,6 +75,8 @@ export default function AddRequest() {
     //check if customer exists
     useEffect(() => {
         getCustomerData().then(res => {
+            //track initial fetch request
+            setStatus("loaded")
             if (!res.success) {
                 toast.error(res.message);
             } else {
@@ -106,7 +110,10 @@ export default function AddRequest() {
     }
 
     return (
-        (getToken()) ?
+        (status !== "loaded") ?
+            <>
+                {Preloader()}
+            </> :
             <>
                 <section className="dash-hero hero is-hero-bar">
                     <div className="hero-body">
@@ -199,7 +206,6 @@ export default function AddRequest() {
                     </div>
                 </section>
             </>
-            : <AccessDenied />
     )
 
 }

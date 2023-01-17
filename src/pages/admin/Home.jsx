@@ -3,7 +3,7 @@ import Core from "../Hooks/Core";
 import { toast } from 'react-toastify';
 
 export default function DashHome() {
-    const { getToken } = Core();
+    const { getToken, Preloader } = Core();
 
     const [dashStats, setDashStats] = useState({
         total_customers: 0, total_requests: 0, total_measurements : 0
@@ -11,6 +11,8 @@ export default function DashHome() {
 
     const [clientsData, setClientsData] = useState({})
 
+    //keep track of whether the page has loaded
+    const [status, setStatus] = useState("loading")
     //get user data
     useEffect(() => {
         fetch(import.meta.env.VITE_BACKEND_URL + 'api/app/dash_stats.php?token=' + getToken(), {
@@ -36,6 +38,8 @@ export default function DashHome() {
                         if (newRes) {
                             //set state
                             setClientsData(newRes)
+                            //change state
+                            setStatus("loaded")
                             //PAGINATION
                             setNumOfPages(Math.ceil(newRes.length / recordsPerPage))
                             setPageNumbers([...Array(numOfPages + 1).keys()].slice(1))
@@ -128,6 +132,11 @@ export default function DashHome() {
 
     return (
         <>
+        {
+            (status !== "loaded") ? 
+            <>
+            {Preloader()}
+            </> : <>
             <section className="dash-hero hero is-hero-bar">
                 <div className="hero-body">
                     <div className="level">
@@ -294,6 +303,8 @@ export default function DashHome() {
                     </div>
                 </div>
             </section>
+            </>
+        }
         </>
     )
 }

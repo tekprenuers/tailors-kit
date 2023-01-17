@@ -3,24 +3,24 @@ import { toast } from "react-toastify";
 import Core from "../../Hooks/Core";
 import { octaValidate } from "octavalidate-reactjs";
 
-const ExtraFields = ({ numOfFields, extraFields, gender}) => {
+const ExtraFields = ({ numOfFields, extraFields, gender }) => {
 
     const { getToken } = Core();
-    
+
     let num = numOfFields;
 
     let i = 1;
 
     let extraFieldsIndex = 0;
     const res = [];
-    
+
     //handle delete
     const handleDelete = (e) => {
         e.preventDefault();
         const btn = e.target;
         const dataToDel = btn.getAttribute("data");
         //proceed if data exists
-        if(dataToDel){
+        if (dataToDel) {
             //new search params
             const search = new URLSearchParams();
             search.append('token', getToken())
@@ -32,9 +32,9 @@ const ExtraFields = ({ numOfFields, extraFields, gender}) => {
             fetch(import.meta.env.VITE_BACKEND_URL + 'api/config/delete_measurement.php', {
                 method: "post",
                 mode: "cors",
-                body:  search.toString(),
-                headers : {
-                    "Content-Type" : "application/x-www-form-urlencoded"
+                body: search.toString(),
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
                 }
             })
                 .then(res => res.json())
@@ -51,8 +51,8 @@ const ExtraFields = ({ numOfFields, extraFields, gender}) => {
                         toast.success(res.data.message)
                         btn.classList.remove('is-loading')
                         //reload page
-                        setTimeout( () => {
-                        window.location.reload()
+                        setTimeout(() => {
+                            window.location.reload()
                         }, 500);
                     }
                 })
@@ -69,19 +69,19 @@ const ExtraFields = ({ numOfFields, extraFields, gender}) => {
         res.push(
             //set key on input change so that it updates on state change properly
             //Thanks stack overflow!
-                <div className="field measure-field">
-                    <label className="label"><span className="has-text-app-primary">{i}</span> Measurement Name</label>
-                    <p className="control is-expanded">
-                        <input id={"inp_"+gender+"_tape_" + i} autoComplete={"off"} spellCheck={false} className="input tape-inp" octavalidate="ALPHA_SPACES" type="text" placeholder="Waist" defaultValue={extraFields?.[extraFieldsIndex] || ""} key={extraFields?.[extraFieldsIndex]} />
-                    </p>
-                    {
-                        //enable the delete button when there's data stored in this index
-                        (extraFields?.[extraFieldsIndex]) ? 
+            <div className="field measure-field">
+                <label className="label"><span className="has-text-app-primary">{i}</span> Measurement Name</label>
+                <p className="control is-expanded">
+                    <input id={"inp_" + gender + "_tape_" + i} autoComplete={"off"} spellCheck={false} className="input tape-inp" octavalidate="ALPHA_SPACES" type="text" placeholder="Waist" defaultValue={extraFields?.[extraFieldsIndex] || ""} key={extraFields?.[extraFieldsIndex]} />
+                </p>
+                {
+                    //enable the delete button when there's data stored in this index
+                    (extraFields?.[extraFieldsIndex]) ?
                         <p className="has-text-right mt-2">
-                            <button type="button" onClick={handleDelete} id={"btn_del_tape_"+i} data={extraFields?.[extraFieldsIndex]} className="button is-small is-danger">Delete</button>
+                            <button type="button" onClick={handleDelete} id={"btn_del_tape_" + i} data={extraFields?.[extraFieldsIndex]} className="button is-small is-danger">Delete</button>
                         </p> : null
-                    }
-                </div>
+                }
+            </div>
         )
         i++;
         extraFieldsIndex++;
@@ -90,11 +90,11 @@ const ExtraFields = ({ numOfFields, extraFields, gender}) => {
     return (
         res.map((el, ind) => {
             // fieldBody++;
-                return (
-                        <React.Fragment key={ind}>
-                            {el}
-                        </React.Fragment >
-                )
+            return (
+                <React.Fragment key={ind}>
+                    {el}
+                </React.Fragment >
+            )
         })
     )
 }
@@ -103,11 +103,15 @@ export default function Settings_UpdateMeasurement() {
     const [tapeData, setTapeData] = useState({})
     const [gender, setGender] = useState("")
     let [numOfFields, setNumOfFields] = useState(1);
-    const { getToken } = Core();
+    const { getToken, Preloader } = Core();
+
+    //track fetch request
+    const [status, setStatus] = useState("loading");
 
     //fetch data on component load
     useEffect(() => {
         getConfig().then(res => {
+            setStatus("loaded")
             if (!res.success) {
                 toast.error(res.message);
             } else {
@@ -162,12 +166,12 @@ export default function Settings_UpdateMeasurement() {
             const tapeUniq = [... new Set([...tape])]
 
             //check gender
-            if(gender.toLowerCase() == "male"){
+            if (gender.toLowerCase() == "male") {
                 formData.append('tape_male', tapeUniq);
-            }else if(gender.toLowerCase() == "female"){
+            } else if (gender.toLowerCase() == "female") {
                 formData.append('tape_female', tapeUniq);
             }
-            
+
             fetch(import.meta.env.VITE_BACKEND_URL + 'api/config/update_measurement.php', {
                 method: "post",
                 body: formData,
@@ -207,12 +211,12 @@ export default function Settings_UpdateMeasurement() {
         "female": ["bust", "waist", "hips", "half length", "shoulder", "shoulder to underburst", "gown full length", "shoulder to knee", "bust point", "round sleeve", "sleeve length", "round armhole", "neck", "arm length"]
     }
 
-    const handleGenderChange = (e) =>{
+    const handleGenderChange = (e) => {
         //store gender
         const gender = e.target.value.toLowerCase();
         setGender(gender);
-        if(tapeData?.["tape_"+gender]){
-            setNumOfFields(tapeData["tape_"+gender].length);
+        if (tapeData?.["tape_" + gender]) {
+            setNumOfFields(tapeData["tape_" + gender].length);
         }
     }
 
@@ -221,77 +225,80 @@ export default function Settings_UpdateMeasurement() {
         document.documentElement.classList.remove('is-clipped')
     }
     return (
-        <>
-            <section className="dash-hero hero is-hero-bar">
-                <div className="hero-body">
-                    <div className="level">
-                        <div className="level-left">
-                            <div className="level-item"><h1 className="title">
-                                Update Measurement Data
-                            </h1></div>
-                        </div>
-                        <div className="level-right" style={{ display: "none" }}>
-                            <div className="level-item"></div>
+        (status !== "loaded") ?
+            <>
+                {Preloader()}
+            </> : <>
+                <section className="dash-hero hero is-hero-bar">
+                    <div className="hero-body">
+                        <div className="level">
+                            <div className="level-left">
+                                <div className="level-item"><h1 className="title">
+                                    Update Measurement Data
+                                </h1></div>
+                            </div>
+                            <div className="level-right" style={{ display: "none" }}>
+                                <div className="level-item"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section className="section is-main-section">
-                <div className="card">
-                    <header className="card-header">
-                        <p className="card-header-title">
-                            <span className="icon"><i className="mdi mdi-ruler-square"></i></span>
-                            <span>My measurement data</span>
-                        </p>
-                    </header>
-                    <div className="card-content">
+                <section className="section is-main-section">
+                    <div className="card">
+                        <header className="card-header">
+                            <p className="card-header-title">
+                                <span className="icon"><i className="mdi mdi-ruler-square"></i></span>
+                                <span>My measurement data</span>
+                            </p>
+                        </header>
+                        <div className="card-content">
 
-                        <form method="post" id="form_upd_tape" onSubmit={handleSubmit}>
-                            <div className="field mb-4">
-                                <label className="label">Gender <span className="has-text-danger">*</span></label>
-                                <div className="control">
-                                    <div className="select is-fullwidth">
-                                        <select onChange={handleGenderChange} id="inp_gender" name="gender" octavalidate="R,ALPHA_ONLY">
-                                            <option value="">Select One</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                        </select>
+                            <form method="post" id="form_upd_tape" onSubmit={handleSubmit}>
+                                <div className="field mb-4">
+                                    <label className="label">Gender <span className="has-text-danger">*</span></label>
+                                    <div className="control">
+                                        <div className="select is-fullwidth">
+                                            <select onChange={handleGenderChange} id="inp_gender" name="gender" octavalidate="R,ALPHA_ONLY">
+                                                <option value="">Select One</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div className="columns mb-4">
+                                    <div className="column is-half"></div>
+                                    <div className="column is-half has-text-right">
+                                        <button type="button" onClick={(e) => setNumOfFields(++numOfFields)} className="button is-app-primary"><i className="mdi mdi-plus"></i>&nbsp;Add more</button>
                                     </div>
                                 </div>
-
-                            </div>
-                            <div className="columns mb-4">
-                                <div className="column is-half"></div>
-                                <div className="column is-half has-text-right">
-                                    <button type="button" onClick={(e) => setNumOfFields(++numOfFields)} className="button is-app-primary"><i className="mdi mdi-plus"></i>&nbsp;Add more</button>
+                                <ExtraFields numOfFields={numOfFields} extraFields={tapeData?.["tape_" + gender]} gender={gender} />
+                                <div className="field mt-5">
+                                    <button type="button" data-target="modal_save_tape" className="button is-app-primary is-fullwidth jb-modal" form="form_upd_tape">Save Measurements</button>
                                 </div>
-                            </div>
-                            <ExtraFields numOfFields={numOfFields} extraFields={tapeData?.["tape_"+gender]} gender={gender} />
-                            <div className="field mt-5">
-                                <button type="button" data-target="modal_save_tape" className="button is-app-primary is-fullwidth jb-modal" form="form_upd_tape">Save Measurements</button>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
+                </section>
+                <div id="modal_save_tape" className="modal">
+                    <div className="modal-background jb-modal-close" onClick={closeModal}></div>
+                    <div className="modal-card">
+                        <header className="modal-card-head">
+                            <p className="modal-card-title">Confirm Action</p>
+                            <button className="delete jb-modal-close" aria-label="close" onClick={closeModal}></button>
+                        </header>
+                        <section className="modal-card-body">
+                            <p className="has-text-centered">Are you sure that you want to save this measurement data for the <b>{gender}</b> gender?</p>
+                        </section>
+                        <footer className="modal-card-foot is-justify-content-end">
+                            <button className="button jb-modal-close" onClick={closeModal}>Cancel</button>
+                            <button form="form_upd_tape" type="submit" className="button is-app-primary jb-modal-close">Save</button>
+                        </footer>
+                    </div>
+                    <button onClick={closeModal} className="modal-close is-large jb-modal-close" aria-label="close"></button>
                 </div>
-            </section>
-            <div id="modal_save_tape" className="modal">
-                <div className="modal-background jb-modal-close" onClick={closeModal}></div>
-                <div className="modal-card">
-                    <header className="modal-card-head">
-                        <p className="modal-card-title">Confirm Action</p>
-                        <button className="delete jb-modal-close" aria-label="close" onClick={closeModal}></button>
-                    </header>
-                    <section className="modal-card-body">
-                        <p className="has-text-centered">Are you sure that you want to save this measurement data for the <b>{gender}</b> gender?</p>
-                    </section>
-                    <footer className="modal-card-foot is-justify-content-end">
-                        <button className="button jb-modal-close" onClick={closeModal}>Cancel</button>
-                        <button form="form_upd_tape" type="submit" className="button is-app-primary jb-modal-close">Save</button>
-                    </footer>
-                </div>
-                <button onClick={closeModal} className="modal-close is-large jb-modal-close" aria-label="close"></button>
-            </div>
-        </>
+            </>
     )
 }

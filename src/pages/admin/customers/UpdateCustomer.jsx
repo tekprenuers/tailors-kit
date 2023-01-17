@@ -5,15 +5,18 @@ import { octaValidate } from 'octavalidate-reactjs'
 import Core from "../../Hooks/Core";
 
 export default function AddCustomer() {
-    const { getToken } = Core();
+    const { getToken, Preloader } = Core();
     // get customer id from URL
     const cus_id = useParams().cusId;
-
+    //customer data
     const [cusData, setCusData] = useState({});
-
+    //track fetch request
+    const [status, setStatus] = useState("loading")
     //check if customer exists
     useEffect(() => {
         getCustomerData().then(res => {
+            //track fetch
+            setStatus("loaded")
             if (!res.success) {
                 toast.error(res.message);
             } else {
@@ -23,14 +26,14 @@ export default function AddCustomer() {
         })
     }, [])
 
-            //SET GENDER
-            document.querySelectorAll('input[type="radio"]').forEach(el =>{
-                if(el.value == cusData?.gender){
-                    el.checked = true;
-                }else{
-                    el.checked = false;
-                }
-            })
+    //SET GENDER
+    document.querySelectorAll('input[type="radio"]').forEach(el => {
+        if (el.value == cusData?.gender) {
+            el.checked = true;
+        } else {
+            el.checked = false;
+        }
+    })
 
     //get customer data
     const getCustomerData = async () => {
@@ -113,37 +116,40 @@ export default function AddCustomer() {
         //remove all white spaces and convert to array
         const valAry = val.replaceAll(' ', '').split('');
         //because i dont know if the number will have +234 anywhere, check for it manually
-        ( !allowed.includes(Number(valAry[0])) ) ? valAry.splice(0, 1) : null;
+        (!allowed.includes(Number(valAry[0]))) ? valAry.splice(0, 1) : null;
 
         //replace value
         e.target.value = valAry.join('')
     }
     return (
-        (getToken()) ?
+        (status !== "loaded") ?
             <>
-            <section className="section is-title-bar">
-                <div className="level">
-                    <div className="level-left">
-                        &nbsp;
-                    </div>
-                    <div className="level-right">
-                        <div className="level-item">
-                            <div className="buttons is-right">
-                                <a
-                                    href={import.meta.env.VITE_DASHBOARD_URL + '/customers/'+cus_id}
-                                    target="_self"
-                                    className="button is-app-primary"
-                                >
-                                    <span className="icon">
-                                        <i className="mdi mdi-eye"></i>
-                                    </span>
-                                    <span>View data</span>
-                                </a>
+                {Preloader()}
+            </> :
+            <>
+                <section className="section is-title-bar">
+                    <div className="level">
+                        <div className="level-left">
+                            &nbsp;
+                        </div>
+                        <div className="level-right">
+                            <div className="level-item">
+                                <div className="buttons is-right">
+                                    <a
+                                        href={import.meta.env.VITE_DASHBOARD_URL + '/customers/' + cus_id}
+                                        target="_self"
+                                        className="button is-app-primary"
+                                    >
+                                        <span className="icon">
+                                            <i className="mdi mdi-eye"></i>
+                                        </span>
+                                        <span>View data</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
                 <section className="dash-hero hero is-hero-bar">
                     <div className="hero-body">
                         <div className="level">
@@ -240,7 +246,7 @@ export default function AddCustomer() {
                                                     </a>
                                                 </div>
                                                 <div className="control is-expanded">
-                                                    <input defaultValue={cusData?.phone?.replace('+234','')} id="inp_phone" ov-required-msg="Customer's Primary Phone number is required" onChange={formatPhone} className="input" length="11" octavalidate="R,DIGITS" type="tel" name="phone" placeholder="Primary Phone Number" />
+                                                    <input defaultValue={cusData?.phone?.replace('+234', '')} id="inp_phone" ov-required-msg="Customer's Primary Phone number is required" onChange={formatPhone} className="input" length="11" octavalidate="R,DIGITS" type="tel" name="phone" placeholder="Primary Phone Number" />
                                                 </div>
                                             </div>
                                             <small>Do not enter <span className="has-text-danger">the first zero</span> or <span className="has-text-danger">+234</span></small>
@@ -253,7 +259,7 @@ export default function AddCustomer() {
                                                     </a>
                                                 </div>
                                                 <div className="control is-expanded">
-                                                    <input defaultValue={cusData?.alt_phone?.replace('+234','')} id="inp_alt_phone" octavalidate="DIGITS" maxLength="10" onChange={formatPhone} className="input" type="tel" placeholder="Alternate Phone Number" name="alt_phone" />
+                                                    <input defaultValue={cusData?.alt_phone?.replace('+234', '')} id="inp_alt_phone" octavalidate="DIGITS" maxLength="10" onChange={formatPhone} className="input" type="tel" placeholder="Alternate Phone Number" name="alt_phone" />
                                                 </div>
                                             </div>
                                         </div>
@@ -274,7 +280,6 @@ export default function AddCustomer() {
                     </div>
                 </section>
             </>
-            : <AccessDenied />
     )
 
 }

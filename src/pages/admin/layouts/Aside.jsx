@@ -58,6 +58,12 @@ export default function Aside() {
                         </li>
                         <li>
                             <a href={import.meta.env.VITE_FRONTEND_URL + '/contact-us'} className="router-link-active has-icon">
+                                <span className="icon"><i className="mdi mdi-clock"></i></span>
+                                <span className="menu-item-label">My Subscription</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href={import.meta.env.VITE_FRONTEND_URL + '/contact-us'} className="router-link-active has-icon">
                                 <span className="icon"><i className="mdi mdi-email"></i></span>
                                 <span className="menu-item-label">Contact us</span>
                             </a>

@@ -6,9 +6,12 @@ import Core from "../../Hooks/Core";
 
 export default function AddRequest() {
     const req_id = useParams().reqId;
+    //set request data
     const [reqData, setReqData] = useState({})
 
-    const { getToken } = Core();
+    const { getToken, Preloader } = Core();
+    //track fetch request
+    const [status, setStatus] = useState("loading")
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -77,6 +80,7 @@ export default function AddRequest() {
     //check if customer exists
     useEffect(() => {
         getRequestData().then(res => {
+            setStatus("loaded")
             if (!res.success) {
                 toast.error(res.message);
             } else {
@@ -85,7 +89,7 @@ export default function AddRequest() {
             }
         })
     }, [])
-    
+
     // document.querySelector('#inp_completed')?.value = reqData?.is_completed;
 
     //get customer data
@@ -112,7 +116,10 @@ export default function AddRequest() {
     }
 
     return (
-        (getToken()) ?
+        (status !== "loaded") ?
+            <>
+                {Preloader()}
+            </> :
             <>
                 <section className="dash-hero hero is-hero-bar">
                     <div className="hero-body">
@@ -195,14 +202,14 @@ export default function AddRequest() {
                                         <div className="select is-fullwidth">
                                             <select name="completed" octavalidate="ALPHA_ONLY" id="inp_completed" defaultValue={reqData?.is_completed?.toString()}>
                                                 {
-                                                    (reqData?.is_completed == "Yes") ? 
-                                                    <option value={"Yes"} selected>Yes</option>
-                                                    : <option value={"Yes"}>Yes</option>
+                                                    (reqData?.is_completed == "Yes") ?
+                                                        <option value={"Yes"} selected>Yes</option>
+                                                        : <option value={"Yes"}>Yes</option>
                                                 }
                                                 {
-                                                    (reqData?.is_completed == "No") ? 
-                                                    <option value={"No"} selected>No</option>
-                                                    : <option value={"No"}>No</option>
+                                                    (reqData?.is_completed == "No") ?
+                                                        <option value={"No"} selected>No</option>
+                                                        : <option value={"No"}>No</option>
                                                 }
                                             </select>
                                         </div>
@@ -224,7 +231,5 @@ export default function AddRequest() {
                     </div>
                 </section>
             </>
-            : <AccessDenied />
     )
-
 }

@@ -84,7 +84,21 @@ form:has(.search-form){
     border-radius: 5px;
     box-shadow: 0px 0px 8px #ddd;
 }
-
+.preloader {
+    align-items: center;
+    background: #FFF;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transition: opacity 0.2s linear;
+    width: 100%;
+    z-index: 9999;
+    opacity: 1;
+    transform: opacity 1s linear;
+  }
 ::-webkit-scrollbar {
     width: 0px;
     height: 8px;

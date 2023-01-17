@@ -8,13 +8,25 @@ Subfolder or directory that shows a clean way for a customer to subscribe to a p
 
 Do general contact us page and show them their queue in error wahala --- >  Attach screenshots too incase of error
 
+Use react-helmet to add meta tags
+
+unsubscribe table to hold emails of users not interested in our mails again
+//////////
+
+Ability to print customer's data
+
 add validation for json and double radio element such as gender selection for male or female and check if empty .... debug mode should only show field name cannot be found ... length validation should not work if value is not required ... try to work on onchange
 
 viewing customer's measurement should show last updated (eg last updated 6 months ago, 1 year ago, 2 months ago) so that you can be able to see when last u updated the customer's measurement ****
 
-Ability to print customer's data
+send user weekly or monthly email about requests completed and customers added and expected revenue
+
+///////
 
 
-//////////
+https://clients.tailorskit.com/subscriptions/renew/GibberishID
 
-Use react-helmet to add meta tags
+https://clients.tailorskit.com/subscriptions/view/{UID}
+
+https://tailorskit.com/newsletters/unsubscribe/GibberishID
+

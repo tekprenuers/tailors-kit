@@ -123,7 +123,14 @@ export default function Core() {
         window.location.href = import.meta.env.VITE_FRONTEND_URL+'/login'
     }
     
+    const Preloader = () => {
+        return(
+            <div className="preloader">
+                <img src="/loading.webp" width={"200px"} />
+            </div>
+        )
+    }
     return {
-        LoadExternalScript, loadExternalStyle, isAuthenticated, getToken, getUserData, updateUserData, doLogOut
+        LoadExternalScript, loadExternalStyle, isAuthenticated, getToken, getUserData, updateUserData, doLogOut, Preloader
     }
 }

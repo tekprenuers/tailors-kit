@@ -74,14 +74,16 @@ export default function SingleCustomer() {
     //customer data from fetch request
     const [cusData, setCusData] = useState({})
     //retrieve token
-    const { getToken } = Core();
-
+    const { getToken, Preloader } = Core();
     //set gender
-    const [gender, setGender] = useState("male")
-
+    const [gender, setGender] = useState("male");
+    //track fetch request
+    const [status, setStatus] = useState("loading")
     //check if customer exists
     useEffect(() => {
         getCustomerData().then(res => {
+            //track initial fetch request
+            setStatus("loaded")
             if (!res.success) {
                 toast.error(res.message);
             } else {
@@ -163,196 +165,203 @@ export default function SingleCustomer() {
 
     return (
         <>
-            <section className="section is-title-bar">
-                <div className="level">
-                    <div className="level-left">
-                        &nbsp;
-                    </div>
-                    <div className="level-right">
-                        <div className="level-item">
-                            <div className="buttons is-right">
-                                <a
-                                    href={import.meta.env.VITE_DASHBOARD_URL + '/update-measurement/' + cus_id}
-                                    target="_self"
-                                    className="button is-app-primary"
-                                >
-                                    <span>Update measurement</span>
-                                </a>
-                                <a
-                                    href={import.meta.env.VITE_DASHBOARD_URL + '/update-customer/' + cus_id}
-                                    target="_self"
-                                    className="button is-info"
-                                >
-                                    <span className="icon">
-                                        <i className="mdi mdi-account"></i>
-                                    </span>
-                                    <span>Update data</span>
-                                </a>
-                                <a className="button is-danger" onClick={(e) => window.location.reload()}>
-                                    <span className="icon"><i className="mdi mdi-reload"></i></span> <span>Reload</span></a>
+            {
+                (status !== "loaded") ?
+                    <>
+                        {Preloader()}
+                    </> :
+                    <>
+                        <section className="section is-title-bar">
+                            <div className="level">
+                                <div className="level-left">
+                                    &nbsp;
+                                </div>
+                                <div className="level-right">
+                                    <div className="level-item">
+                                        <div className="buttons is-right">
+                                            <a
+                                                href={import.meta.env.VITE_DASHBOARD_URL + '/update-measurement/' + cus_id}
+                                                target="_self"
+                                                className="button is-app-primary"
+                                            >
+                                                <span>Update measurement</span>
+                                            </a>
+                                            <a
+                                                href={import.meta.env.VITE_DASHBOARD_URL + '/update-customer/' + cus_id}
+                                                target="_self"
+                                                className="button is-info"
+                                            >
+                                                <span className="icon">
+                                                    <i className="mdi mdi-account"></i>
+                                                </span>
+                                                <span>Update data</span>
+                                            </a>
+                                            <a className="button is-danger" onClick={(e) => window.location.reload()}>
+                                                <span className="icon"><i className="mdi mdi-reload"></i></span> <span>Reload</span></a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </section>
+                        <section className="card">
+                            <header className="card-header">
+                                <h4 className="card-header-title has-text-info"><span className="icon"><i className="mdi mdi-account"></i></span>&nbsp;Profile Data</h4>
+                                <div className="card-header-icon">
+                                    <button type="button" className="button jb-modal is-app-primary" data-target="modal_view_profile">View profile</button>
+                                </div>
+                            </header>
+                            <table className="table is-fullwidth is-striped is-hoverable">
+                                <tbody>
+                                    {
+                                        (cusData?.name) ?
+                                            <tr>
+                                                <th className="w-50">
+                                                    <span className="mdi mdi-account"></span>&nbsp;Name
+                                                </th>
+                                                <td>{cusData?.name}</td>
+                                            </tr>
+                                            : null
+                                    }
+                                    {
+                                        (cusData?.gender) ?
+                                            <tr>
+                                                <th className="w-50">
+                                                    <span className="mdi mdi-gender-male-female"></span>&nbsp;Gender
+                                                </th>
+                                                <td>{cusData.gender}</td>
+                                            </tr>
+                                            : null
+                                    }
+                                    {
+                                        (cusData?.email) ?
+                                            <tr>
+                                                <th className="w-50">
+                                                    <span className="mdi mdi-email"></span>&nbsp;Email
+                                                </th>
+                                                <td>{cusData.email}</td>
+                                            </tr>
+
+                                            : null
+                                    }
+                                    {
+                                        (cusData?.phone) ?
+                                            <tr>
+                                                <th className="w-50">
+                                                    <span className="mdi mdi-phone"></span>&nbsp;Phone 1
+                                                </th>
+                                                <td>{cusData.phone}</td>
+                                            </tr>
+                                            : null
+                                    }
+                                    {
+                                        (cusData?.alt_phone) ?
+                                            <tr>
+                                                <th className="w-50">
+                                                    <span className="mdi mdi-phone"></span>&nbsp;Phone 2
+                                                </th>
+                                                <td>see</td>
+                                            </tr>
+                                            : null
+                                    }
+                                    {
+                                        (cusData?.address) ?
+                                            <tr>
+                                                <th className="w-50">
+                                                    <span className="mdi mdi-map-marker"></span>&nbsp;Address
+                                                </th>
+                                                <td>{cusData.address}</td>
+                                            </tr>
+                                            : null
+                                    }
+                                    <tr className="tr-last">
+                                        <th className="w-50">
+                                            <span className="mdi mdi-calendar"></span>&nbsp;Date Created
+                                        </th>
+                                        <td>{cusData.date_added}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                        {
+                            (cusData?.["tape_" + gender]) ?
+                                <section className="card mt-3">
+                                    <header className="card-header">
+                                        <h4 className="card-header-title has-text-info"><span className="icon"><i className="mdi mdi-ruler-square"></i></span>&nbsp;Measurement</h4>
+                                        <span className="card-header-icon">
+                                            <button type="button" data-target="modal_del_measurement" className="button is-danger jb-modal">Delete</button>
+                                        </span>
+                                    </header>
+                                    <table className="table w-100 is-striped is-hoverable">
+                                        <tbody>
+                                            <ShowMeasurements data={cusData["tape_" + gender]} />
+                                            <tr className="tr-last">
+                                                <th>Last updated</th>
+                                                <td>{cusData?.tape_last_updated}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </section>
+                                : null
+                        }
+                        {
+                            (cusData?.requests) ?
+                                <section className="card mt-3">
+                                    <header className="card-header">
+                                        <h4 className="card-header-title has-text-info"><span className="icon"><i className="mdi mdi-view-grid-outline"></i></span>&nbsp;Requests</h4>
+                                        <span className="card-header-icon">
+                                            <a href={import.meta.env.VITE_DASHBOARD_URL + '/requests/' + cus_id} className="button is-app-primary">View requests</a>
+                                        </span>
+                                    </header>
+                                    <table className="table w-100 is-striped is-hoverable">
+                                        <tbody>
+                                            <ShowRequests data={cusData.requests} />
+                                        </tbody>
+                                    </table>
+                                </section>
+                                : null
+                        }
+                        <div id="modal_del_measurement" className="modal">
+                            <div className="modal-background jb-modal-close" onClick={closeModal}></div>
+                            <div className="modal-card">
+                                <header className="modal-card-head">
+                                    <p className="modal-card-title">Delete measurement</p>
+                                    <button className="delete jb-modal-close" aria-label="close" onClick={closeModal}></button>
+                                </header>
+                                <section className="modal-card-body">
+                                    <p>Are you sure you want to delete measurement data for this customer?</p>
+                                </section>
+                                <footer className="modal-card-foot is-justify-content-end">
+                                    <button className="button jb-modal-close" onClick={closeModal}>Close</button>
+                                    <form method="post" id="form_del_measurement" onSubmit={handleMeasurementDelete}>
+                                        <button form="form_del_measurement" type="submit" className="button is-danger">Delete</button>
+                                    </form>
+                                </footer>
+                            </div>
+                            <button onClick={closeModal} className="modal-close is-large jb-modal-close" aria-label="close"></button>
                         </div>
-                    </div>
-                </div>
-            </section>
-            <section className="card">
-                <header className="card-header">
-                    <h4 className="card-header-title has-text-info"><span className="icon"><i className="mdi mdi-account"></i></span>&nbsp;Profile Data</h4>
-                    <div className="card-header-icon">
-                        <button type="button" className="button jb-modal is-app-primary" data-target="modal_view_profile">View profile</button>
-                    </div>
-                </header>
-                <table className="table is-fullwidth is-striped is-hoverable">
-                    <tbody>
-                        {
-                            (cusData?.name) ?
-                                <tr>
-                                    <th className="w-50">
-                                        <span className="mdi mdi-account"></span>&nbsp;Name
-                                    </th>
-                                    <td>{cusData?.name}</td>
-                                </tr>
-                                : null
-                        }
-                        {
-                            (cusData?.gender) ?
-                                <tr>
-                                    <th className="w-50">
-                                        <span className="mdi mdi-gender-male-female"></span>&nbsp;Gender
-                                    </th>
-                                    <td>{cusData.gender}</td>
-                                </tr>
-                                : null
-                        }
-                        {
-                            (cusData?.email) ?
-                                <tr>
-                                    <th className="w-50">
-                                        <span className="mdi mdi-email"></span>&nbsp;Email
-                                    </th>
-                                    <td>{cusData.email}</td>
-                                </tr>
-
-                                : null
-                        }
-                        {
-                            (cusData?.phone) ?
-                                <tr>
-                                    <th className="w-50">
-                                        <span className="mdi mdi-phone"></span>&nbsp;Phone 1
-                                    </th>
-                                    <td>{cusData.phone}</td>
-                                </tr>
-                                : null
-                        }
-                        {
-                            (cusData?.alt_phone) ?
-                                <tr>
-                                    <th className="w-50">
-                                        <span className="mdi mdi-phone"></span>&nbsp;Phone 2
-                                    </th>
-                                    <td>see</td>
-                                </tr>
-                                : null
-                        }
-                        {
-                            (cusData?.address) ?
-                                <tr>
-                                    <th className="w-50">
-                                        <span className="mdi mdi-map-marker"></span>&nbsp;Address
-                                    </th>
-                                    <td>{cusData.address}</td>
-                                </tr>
-                                : null
-                        }
-                        <tr className="tr-last">
-                            <th className="w-50">
-                                <span className="mdi mdi-calendar"></span>&nbsp;Date Created
-                            </th>
-                            <td>{cusData.date_added}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-            {
-                (cusData?.["tape_" + gender]) ?
-                    <section className="card mt-3">
-                        <header className="card-header">
-                            <h4 className="card-header-title has-text-info"><span className="icon"><i className="mdi mdi-ruler-square"></i></span>&nbsp;Measurement</h4>
-                            <span className="card-header-icon">
-                                <button type="button" data-target="modal_del_measurement" className="button is-danger jb-modal">Delete</button>
-                            </span>
-                        </header>
-                        <table className="table w-100 is-striped is-hoverable">
-                            <tbody>
-                                <ShowMeasurements data={cusData["tape_" + gender]} />
-                                <tr className="tr-last">
-                                    <th>Last updated</th>
-                                    <td>{cusData?.tape_last_updated}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-                    : null
+                        <div id="modal_view_profile" className="modal">
+                            <div className="modal-background jb-modal-close" onClick={closeModal}></div>
+                            <div className="modal-card">
+                                <header className="modal-card-head">
+                                    <p className="modal-card-title">View profile</p>
+                                    <button className="delete jb-modal-close" aria-label="close" onClick={closeModal}></button>
+                                </header>
+                                <section className="modal-card-body">
+                                    {
+                                        (cusData?.image) ?
+                                            <img src={cusData.image} className="img" />
+                                            :
+                                            <p className="notification is-danger is-light m-0">You have not uploaded an image for this customer</p>
+                                    }
+                                </section>
+                                <footer className="modal-card-foot is-justify-content-end">
+                                    <button className="button jb-modal-close" onClick={closeModal}>Close</button>
+                                </footer>
+                            </div>
+                            <button onClick={closeModal} className="modal-close is-large jb-modal-close" aria-label="close"></button>
+                        </div>
+                    </>
             }
-
-            {
-                (cusData?.requests) ?
-                    <section className="card mt-3">
-                        <header className="card-header">
-                            <h4 className="card-header-title has-text-info"><span className="icon"><i className="mdi mdi-view-grid-outline"></i></span>&nbsp;Requests</h4>
-                            <span className="card-header-icon">
-                                <a href={import.meta.env.VITE_DASHBOARD_URL + '/requests/' + cus_id} className="button is-app-primary">View requests</a>
-                            </span>
-                        </header>
-                        <table className="table w-100 is-striped is-hoverable">
-                            <tbody>
-                                <ShowRequests data={cusData.requests} />
-                            </tbody>
-                        </table>
-                    </section>
-                    : null
-            }
-            <div id="modal_del_measurement" className="modal">
-                <div className="modal-background jb-modal-close" onClick={closeModal}></div>
-                <div className="modal-card">
-                    <header className="modal-card-head">
-                        <p className="modal-card-title">Delete measurement</p>
-                        <button className="delete jb-modal-close" aria-label="close" onClick={closeModal}></button>
-                    </header>
-                    <section className="modal-card-body">
-                        <p>Are you sure you want to delete measurement data for this customer?</p>
-                    </section>
-                    <footer className="modal-card-foot is-justify-content-end">
-                        <button className="button jb-modal-close" onClick={closeModal}>Close</button>
-                        <form method="post" id="form_del_measurement" onSubmit={handleMeasurementDelete}>
-                            <button form="form_del_measurement" type="submit" className="button is-danger">Delete</button>
-                        </form>
-                    </footer>
-                </div>
-                <button onClick={closeModal} className="modal-close is-large jb-modal-close" aria-label="close"></button>
-            </div>
-            <div id="modal_view_profile" className="modal">
-                <div className="modal-background jb-modal-close" onClick={closeModal}></div>
-                <div className="modal-card">
-                    <header className="modal-card-head">
-                        <p className="modal-card-title">View profile</p>
-                        <button className="delete jb-modal-close" aria-label="close" onClick={closeModal}></button>
-                    </header>
-                    <section className="modal-card-body">
-                        {
-                            (cusData?.image) ?
-                                <img src={cusData.image} className="img" />
-                                :
-                                <p className="notification is-danger is-light m-0">You have not uploaded an image for this customer</p>
-                        }
-                    </section>
-                    <footer className="modal-card-foot is-justify-content-end">
-                        <button className="button jb-modal-close" onClick={closeModal}>Close</button>
-                    </footer>
-                </div>
-                <button onClick={closeModal} className="modal-close is-large jb-modal-close" aria-label="close"></button>
-            </div>
         </>
     )
 }
