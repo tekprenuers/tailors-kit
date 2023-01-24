@@ -179,7 +179,11 @@ export default function Settings_UpdateMeasurement() {
             })
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res);
+                    // //close modal
+                    document.querySelectorAll('.modal').forEach(el => {
+                        el.classList.remove('is-active')
+                    })
+                    document.documentElement.classList.remove('is-clipped')
                     if (!res.success) {
                         //check if its a form error
                         if (res?.formError) {
@@ -216,13 +220,20 @@ export default function Settings_UpdateMeasurement() {
         const gender = e.target.value.toLowerCase();
         setGender(gender);
         if (tapeData?.["tape_" + gender]) {
-            setNumOfFields(tapeData["tape_" + gender].length);
+            //set the length to 1 if it is 0, so that the add more button will be of use 🌝
+            setNumOfFields(tapeData["tape_" + gender].length || 1);
         }
     }
 
     const closeModal = (e) => {
         e.currentTarget.closest('.modal').classList.remove('is-active')
         document.documentElement.classList.remove('is-clipped')
+    }
+    const showModal = (e) => {
+        const modalTarget = e.currentTarget.getAttribute('data-target')
+
+        document.getElementById(modalTarget).classList.add('is-active')
+        document.documentElement.classList.add('is-clipped')
     }
     return (
         (status !== "loaded") ?
@@ -276,7 +287,7 @@ export default function Settings_UpdateMeasurement() {
                                 </div>
                                 <ExtraFields numOfFields={numOfFields} extraFields={tapeData?.["tape_" + gender]} gender={gender} />
                                 <div className="field mt-5">
-                                    <button type="button" data-target="modal_save_tape" className="button is-app-primary is-fullwidth jb-modal" form="form_upd_tape">Save Measurements</button>
+                                    <button type="button" data-target="modal_save_tape" className="button is-app-primary is-fullwidth jb-modal" onClick={showModal} form="form_upd_tape">Save Measurements</button>
                                 </div>
                             </form>
                         </div>

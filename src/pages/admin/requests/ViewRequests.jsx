@@ -325,7 +325,7 @@ export default function ViewRequests() {
                                                                         </a>
                                                                         <a href={import.meta.env.VITE_DASHBOARD_URL + '/update-request/' + el?.req_id} className="button is-small is-info" type="button">Update
                                                                         </a>
-                                                                        <button data-name={el?.name} data-id={el?.id} onClick={handleDeleteModal} className="button is-danger jb-modal is-small" data-target="modal_del_request" type="button">Delete
+                                                                        <button data-name={el?.name} data-id={el?.req_id} onClick={handleDeleteModal} className="button is-danger jb-modal is-small" data-target="modal_del_request" type="button">Delete
                                                                         </button>
                                                                     </div>
                                                                 </td>

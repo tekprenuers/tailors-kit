@@ -6,11 +6,27 @@ export default function Nav() {
 
     const userData = getUserData();
 
+    const asideMobileToggle = (e) => {
+        const dropdownIcon = e.currentTarget.querySelector('.mdi')
+        document.documentElement.classList.toggle('has-aside-mobile-expanded')
+        dropdownIcon.classList.toggle('mdi-forwardburger')
+        dropdownIcon.classList.toggle('mdi-backburger')
+    }
+
+    const navbarMobileToggle = (e) => {
+        const dropdownIcon = e.currentTarget.querySelector('.mdi')
+
+        document.getElementById(e.currentTarget.getAttribute('data-target')).classList.toggle('is-active')
+        dropdownIcon.classList.toggle('mdi-dots-vertical')
+        dropdownIcon.classList.toggle('mdi-close')
+    }
+
+
     return (
         <>
             <nav id="navbar-main" className="navbar is-fixed-top">
                 <div className="navbar-brand">
-                    <a className="navbar-item is-hidden-desktop jb-aside-mobile-toggle">
+                    <a onClick={asideMobileToggle} className="navbar-item is-hidden-desktop jb-aside-mobile-toggle">
                         <span className="icon"><i className="mdi mdi-forwardburger mdi-24px"></i></span>
                     </a>
                     <div className="navbar-item has-control">
@@ -18,7 +34,7 @@ export default function Nav() {
                     </div>
                 </div>
                 <div className="navbar-brand is-right">
-                    <a className="navbar-item is-hidden-desktop jb-navbar-menu-toggle" data-target="navbar-menu">
+                    <a onClick={navbarMobileToggle} className="navbar-item is-hidden-desktop jb-navbar-menu-toggle" data-target="navbar-menu">
                         <span className="icon"><i className="mdi mdi-dots-vertical"></i></span>
                     </a>
                 </div>

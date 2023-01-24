@@ -174,7 +174,11 @@ export default function AddMeasurement() {
             })
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res);
+                    // //close modal
+                    document.querySelectorAll('.modal').forEach(el => {
+                        el.classList.remove('is-active')
+                    })
+                    document.documentElement.classList.remove('is-clipped')
                     if (!res.success) {
                         //check if its a form error
                         if (res?.data.formError) {
@@ -202,6 +206,12 @@ export default function AddMeasurement() {
         e.currentTarget.closest('.modal').classList.remove('is-active')
         document.documentElement.classList.remove('is-clipped')
     }
+    const showModal = (e) => {
+        const modalTarget = e.currentTarget.getAttribute('data-target')
+
+        document.getElementById(modalTarget).classList.add('is-active')
+        document.documentElement.classList.add('is-clipped')
+    }
     //MALE
     const tape = {
         "male": {
@@ -225,14 +235,14 @@ export default function AddMeasurement() {
                             <div className="level-item">
                                 <div className="buttons is-right">
                                     <a
-                                        href={import.meta.env.VITE_DASHBOARD_URL + '/new-request/' + cus_id}
+                                        href={import.meta.env.VITE_DASHBOARD_URL + '/settings/update-measurement'}
                                         target="_self"
                                         className="button is-app-primary"
                                     >
                                         <span className="icon">
-                                            <i className="mdi mdi-plus"></i>
+                                            <i className="mdi mdi-ruler-square"></i>
                                         </span>
-                                        <span>Add a new request</span>
+                                        <span>My Measurement data</span>
                                     </a>
                                 </div>
                             </div>
@@ -273,7 +283,7 @@ export default function AddMeasurement() {
                             <form method="post" id="form_upd_measurement" onSubmit={handleSubmit} noValidate>
                                 <TapeFields configData={configData} tapeData={(tapeData?.gender == "male") ? tapeData?.tape_male : tapeData?.tape_female} />
                                 <div className="field mt-5">
-                                    <button data-target="modal_save_measurement" className="button is-app-primary is-fullwidth jb-modal" type="button">Confirm Measurement</button>
+                                    <button data-target="modal_save_measurement" className="button is-app-primary is-fullwidth jb-modal" type="button" onClick={showModal}>Confirm Measurement</button>
                                 </div>
                             </form>
                         </div>

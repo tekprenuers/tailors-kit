@@ -11,7 +11,11 @@ Do general contact us page and show them their queue in error wahala --- >  Atta
 Use react-helmet to add meta tags
 
 unsubscribe table to hold emails of users not interested in our mails again
+
+
 //////////
+
+Build customer catalog (a page that shows what the customer has completed)
 
 Ability to print customer's data
 

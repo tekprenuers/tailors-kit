@@ -18,9 +18,8 @@ export default function Core() {
 
             if (!script) {
                 script = document.createElement("script");
-                script.type = "application/javascript";
                 script.src = url;
-                script.async = false;
+                script.defer = true;
                 document.body.appendChild(script);
                 script.addEventListener("load", handleScript);
                 script.addEventListener("error", handleScript);

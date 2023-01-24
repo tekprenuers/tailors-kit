@@ -1,11 +1,28 @@
 import React, { useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { octaValidate } from "octavalidate-reactjs";
 import Typed from "typed.js";
 
 export default function Login() {
-  const navigate = useNavigate()
+  const location = useLocation();
+  //redirect to?
+  let redirect = import.meta.env.VITE_DASHBOARD_URL + '/home';
+  //check if there's search param in the URL
+  if(location.search){
+    //new search params
+    const search = new URLSearchParams(location.search)
+    //check if next is present
+    if(search?.get('next')){
+      //decode it
+      const next = decodeURIComponent(search.get('next'))
+      //check if dashboard is present in the URL
+      if(next.match(new RegExp('/dashboard', 'i'))){
+        redirect = next;
+      }
+    }
+  }
+
   // Create Ref element.
   const el = useRef(null);
 
@@ -59,25 +76,16 @@ export default function Login() {
                 "TK::TOKEN": res.data.token,
                 "TK::USER": res.data.user
               }));
-              //check if user has updated profile
-              if (res.data?.profileUpdated) {
-                //redirect to dashboard
+                //redirect to dashboard or redirect link
                 setTimeout(() => {
-                  window.location.href = import.meta.env.VITE_DASHBOARD_URL + '/home';
+                  window.location.href = redirect;
                 }, 3000)
-              } else {
-                //redirect to dashboard
-                setTimeout(() => {
-                  window.location.href = import.meta.env.VITE_DASHBOARD_URL + '/settings/update-profile';
-                }, 3000)
-              }
-
             }
-            if (res.data?.expired) {
-              setTimeout(() => {
-                window.location.href = import.meta.env.VITE_BACKEND_URL + 'pay';
-              }, 3000)
-            }
+            // if (res.data?.expired) {
+            //   setTimeout(() => {
+            //     window.location.href = import.meta.env.VITE_BACKEND_URL + 'pay';
+            //   }, 3000)
+            // }
             btn.classList.remove('is-loading')
             btn.setAttribute("disabled", "disabled")
           }
@@ -94,14 +102,14 @@ export default function Login() {
 
   return (
     <main className="p-202">
-      <div className="columns">
-        <div className="column is-half">
-          <img src="/mannequin-with-tape-measure.png" />
+      <div className="columns mt-5">
+        <div className="column is-half is-align-self-center hide-on-mobile">
+          <img src="/mannequin-with-tape-measure.png" className="img mh-500" />
         </div>
         <div className="column is-half is-align-self-center">
           <div className="has-text-centered mb-5">
             <h4 className="title is-3 has-text-app-primary mb-3">
-              Login
+              SIGNIN TO YOUR ACCOUNT
             </h4>
             <div>
               <span ref={el} className="title is-5  m-0" style={{ height: "25px", textTransform: "uppercase" }}></span>
@@ -144,7 +152,7 @@ export default function Login() {
                   Don't have an account?  <a href="/register">Click here to Register</a>
                 </p>
                 <p className="mt-3">
-                  <a href="/reset">I Forgot my password</a>
+                  <a href="/reset">I forgot my password</a>
                 </p>
               </div>
             </form>

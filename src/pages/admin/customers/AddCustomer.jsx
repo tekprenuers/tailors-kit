@@ -195,23 +195,6 @@ export default function AddCustomer() {
                                     <span className="icon is-small is-left"><i className="mdi mdi-map-marker"></i></span>
                                 </div>
                             </div>
-                            <hr />
-                            <div className="field">
-                                <label className="label">Customer's Requirement</label>
-                                <div className="control is-expanded has-icons-left">
-                                    <textarea octavalidate="TEXT" placeholder="I want a senator material with ..." name="requirement" id="inp_cus_req" className="input textarea"></textarea>
-                                    <span className="icon is-small is-left"><i className="mdi mdi-check-circle"></i></span>
-                                </div>
-                                <small>Briefly state what the customer wants</small>
-                            </div>
-                            <div className="field">
-                                <label className="label">Date Due</label>
-                                <div className="control is-expanded has-icons-left">
-                                    <input id="inp_date_due" className="input" type="date" name="due_date" placeholder="Date Due" />
-                                    <span className="icon is-small is-left"><i className="mdi mdi-calendar"></i></span>
-                                </div>
-                                <small>When can you be able to deliver this requirement?</small>
-                            </div>
                             <div className="field mt-5">
                                 <button className="button is-app-primary is-fullwidth" form="form_new_customer">Save customer</button>
                             </div>

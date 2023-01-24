@@ -8,18 +8,13 @@ export default function Footer() {
                     <div className="level">
                         <div className="level-left">
                             <div className="level-item">
-                                © 2020, JustBoil.me
-                            </div>
-                            <div className="level-item">
-                                <a href="https://github.com/vikdiesel/admin-one-bulma-dashboard" style={{height: "20px"}}>
-                                    <img src="https://img.shields.io/github/v/release/vikdiesel/admin-one-bulma-dashboard?color=%23999" />
-                                </a>
+                                Copyright © 2023, Tailors Kit
                             </div>
                         </div>
                         <div className="level-right">
                             <div className="level-item">
                                 <div className="logo">
-                                    <a href="https://justboil.me"><img src="img/justboil-logo.svg" alt="JustBoil.me" /></a>
+                                    <a href={import.meta.env.VITE_FRONTEND_URL}><img src="/navbar-icon.png" alt="Tailors Kit" /></a>
                                 </div>
                             </div>
                         </div>

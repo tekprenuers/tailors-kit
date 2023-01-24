@@ -8,26 +8,43 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Aside() {
     const { LoadExternalScript, isAuthenticated, loadExternalStyle } = Core()
     const location = useLocation();
-    // console.log(location);
     //load css file
     loadExternalStyle('/main.min.css')
     //load the chart script
     LoadExternalScript("https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js");
-    LoadExternalScript("/chart.sample.js");
-
-    const navigate = useNavigate()
+    // LoadExternalScript("/chart.sample.js");
 
     //load javascript file
-    LoadExternalScript("/dash.js");
+    // LoadExternalScript("/dash.js");
     //add class to HTML tag
     window.document.querySelector('html').setAttribute("class", "has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded")
 
     //check if user is logged in
     useEffect(() => {
         isAuthenticated().then(res => {
-            if (!res) window.location.href = import.meta.env.VITE_FRONTEND_URL + '/login';
+            if(!res){
+                //the login url
+                const loginUrl = new URL(import.meta.env.VITE_FRONTEND_URL + '/login');
+                //check if user is trying to access dashboard without logging in
+                if(window.location.href.match(new RegExp('/dashboard', 'i'))){
+                    //redirect the user to the url he wanted to visit
+                    const next = window.location.href
+                    //append redirect url
+                    loginUrl.searchParams.append('next', next);
+                }
+                //redirect
+                window.location.href = loginUrl.href.toString()
+            }
         })
     }, [])
+
+    
+    const submenusToggle = (e) => {
+        const dropdownIcon = e.currentTarget.querySelector('.mdi')
+        e.currentTarget.parentNode.classList.toggle('is-active')
+        dropdownIcon.classList.toggle('mdi-plus')
+        dropdownIcon.classList.toggle('mdi-minus')
+    }
     return (
         <>
             <ToastContainer
@@ -72,7 +89,7 @@ export default function Aside() {
                     <p className="menu-label">CUSTOMERS</p>
                     <ul className="menu-list">
                         <li>
-                            <a className="has-icon has-dropdown-icon">
+                            <a className="has-icon has-dropdown-icon" onClick={submenusToggle}>
                                 <span className="icon">
                                     <i className="mdi mdi-account-multiple-outline"></i>
                                 </span>
@@ -95,7 +112,7 @@ export default function Aside() {
                             </ul>
                         </li>
                         <li>
-                            <a className="has-icon has-dropdown-icon">
+                            <a className="has-icon has-dropdown-icon" onClick={submenusToggle}>
                                 <span className="icon">
                                     <i className="mdi mdi-ruler-square"></i>
                                 </span>
@@ -113,7 +130,7 @@ export default function Aside() {
                             </ul>
                         </li>
                         <li>
-                            <a className="has-icon has-dropdown-icon">
+                            <a className="has-icon has-dropdown-icon" onClick={submenusToggle}>
                                 <span className="icon">
                                     <i className="mdi mdi-view-grid-outline"></i>
                                 </span>
@@ -136,7 +153,7 @@ export default function Aside() {
                             </ul>
                         </li>
                         <li>
-                            <a className="has-icon has-dropdown-icon">
+                            <a className="has-icon has-dropdown-icon" onClick={submenusToggle}>
                                 <span className="icon">
                                     <i className="mdi mdi-cogs"></i>
                                 </span>

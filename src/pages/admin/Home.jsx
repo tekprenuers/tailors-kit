@@ -220,7 +220,7 @@ export default function DashHome() {
                         </div>
                     </div>
                 </div>
-                <div className="card">
+                {/* <div className="card">
                     <header className="card-header">
                         <p className="card-header-title">
                             <span className="icon"><i className="mdi mdi-finance"></i></span>
@@ -245,7 +245,7 @@ export default function DashHome() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="card has-table has-mobile-sort-spaced">
                     <header className="card-header">
                         <p className="card-header-title">

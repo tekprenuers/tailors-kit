@@ -90,7 +90,7 @@ export default function SingleCustomer() {
                 //set customer data
                 setCusData(res.data)
                 //set gender
-                setGender(res.data?.gender)
+                setGender(res.data?.gender?.toLowerCase())
             }
         })
     }, [])
@@ -163,6 +163,13 @@ export default function SingleCustomer() {
             })
     }
 
+    const showModal = (e) => {
+        const modalTarget = e.currentTarget.getAttribute('data-target')
+
+        document.getElementById(modalTarget).classList.add('is-active')
+        document.documentElement.classList.add('is-clipped')
+    }
+
     return (
         <>
             {
@@ -183,7 +190,9 @@ export default function SingleCustomer() {
                                                 href={import.meta.env.VITE_DASHBOARD_URL + '/update-measurement/' + cus_id}
                                                 target="_self"
                                                 className="button is-app-primary"
-                                            >
+                                            ><span className="icon">
+                                                    <i className="mdi mdi-ruler-square"></i>
+                                                </span>
                                                 <span>Update measurement</span>
                                             </a>
                                             <a
@@ -196,8 +205,6 @@ export default function SingleCustomer() {
                                                 </span>
                                                 <span>Update data</span>
                                             </a>
-                                            <a className="button is-danger" onClick={(e) => window.location.reload()}>
-                                                <span className="icon"><i className="mdi mdi-reload"></i></span> <span>Reload</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +214,7 @@ export default function SingleCustomer() {
                             <header className="card-header">
                                 <h4 className="card-header-title has-text-info"><span className="icon"><i className="mdi mdi-account"></i></span>&nbsp;Profile Data</h4>
                                 <div className="card-header-icon">
-                                    <button type="button" className="button jb-modal is-app-primary" data-target="modal_view_profile">View profile</button>
+                                    <button type="button" className="button jb-modal is-app-primary" data-target="modal_view_profile" onClick={showModal}>View profile</button>
                                 </div>
                             </header>
                             <table className="table is-fullwidth is-striped is-hoverable">
@@ -288,7 +295,7 @@ export default function SingleCustomer() {
                                     <header className="card-header">
                                         <h4 className="card-header-title has-text-info"><span className="icon"><i className="mdi mdi-ruler-square"></i></span>&nbsp;Measurement</h4>
                                         <span className="card-header-icon">
-                                            <button type="button" data-target="modal_del_measurement" className="button is-danger jb-modal">Delete</button>
+                                            <button type="button" data-target="modal_del_measurement" className="button is-danger jb-modal" onClick={showModal}>Delete</button>
                                         </span>
                                     </header>
                                     <table className="table w-100 is-striped is-hoverable">
@@ -304,7 +311,7 @@ export default function SingleCustomer() {
                                 : null
                         }
                         {
-                            (cusData?.requests) ?
+                            (cusData?.requests?.length) ?
                                 <section className="card mt-3">
                                     <header className="card-header">
                                         <h4 className="card-header-title has-text-info"><span className="icon"><i className="mdi mdi-view-grid-outline"></i></span>&nbsp;Requests</h4>

@@ -71,14 +71,14 @@ export default function Register() {
 
   return (
     <main className="p-202">
-      <div className="columns">
-        <div className="column is-half">
-          <img src="/mannequin-with-tape-measure.png" />
+      <div className="columns mt-5">
+        <div className="column is-half is-align-self-center hide-on-mobile">
+          <img src="/mannequin-with-tape-measure.png" className="img mh-500" />
         </div>
         <div className="column is-half is-align-self-center">
         <div className="has-text-centered mb-5">
             <h4 className="title is-3 has-text-app-primary mb-3">
-            Register
+              CREATE AN ACCOUNT
             </h4>
             <div>
               <span ref={el} className="title is-5  m-0" style={{height: "25px", textTransform: "uppercase"}}></span>

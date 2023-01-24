@@ -138,7 +138,10 @@ export default function ViewCustomers() {
                         toast.success(res.data.message)
                         btn.classList.remove('is-loading');
                         // //close modal
-                        // closeModal(btn);
+                        document.querySelectorAll('.modal').forEach(el => {
+                            el.classList.remove('is-active')
+                        })
+                        document.documentElement.classList.remove('is-clipped')
                         //reload data
                         getCustomerData().then(res => {
                             //if result was returned instead of false

@@ -225,6 +225,9 @@ form:has(.search-form){
 .mw-500{
     max-width: 500px !important;
 }
+.mh-500{
+    max-height: 500px !important
+}
 .should-be-centered {
     position: relative;
     top: 50%;
@@ -232,9 +235,12 @@ form:has(.search-form){
     transform: translate(-50%, 50%);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 770px) {
     .center-on-mobile {
         text-align: center !important;
+    }
+    .hide-on-mobile{
+        display: none !important;
     }
 }
 
