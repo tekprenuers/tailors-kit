@@ -141,7 +141,7 @@ export default function Login() {
               </div>
               <div className="field">
                 <label className="checkbox">
-                  <input type="checkbox" /> Remember me
+                  <input type="checkbox" disabled /> Remember me
                 </label>
               </div>
               <div className="field">

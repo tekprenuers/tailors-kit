@@ -74,15 +74,15 @@ export default function Aside() {
                             </a>
                         </li>
                         <li>
-                            <a href={import.meta.env.VITE_FRONTEND_URL + '/contact-us'} className="router-link-active has-icon">
+                            <a href={import.meta.env.VITE_DASHBOARD_URL + '/license'} className="router-link-active has-icon">
                                 <span className="icon"><i className="mdi mdi-clock"></i></span>
-                                <span className="menu-item-label">My Subscription</span>
+                                <span className="menu-item-label">My License</span>
                             </a>
                         </li>
                         <li>
-                            <a href={import.meta.env.VITE_FRONTEND_URL + '/contact-us'} className="router-link-active has-icon">
-                                <span className="icon"><i className="mdi mdi-email"></i></span>
-                                <span className="menu-item-label">Contact us</span>
+                            <a href={import.meta.env.VITE_DASHBOARD_URL + '/help-desk'} className="router-link-active has-icon">
+                                <span className="icon"><i className="mdi mdi-help-box"></i></span>
+                                <span className="menu-item-label">Help Desk</span>
                             </a>
                         </li>
                     </ul>

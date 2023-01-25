@@ -260,14 +260,14 @@ export default function Settings_UpdateMeasurement() {
                         <header className="card-header">
                             <p className="card-header-title">
                                 <span className="icon"><i className="mdi mdi-ruler-square"></i></span>
-                                <span>My measurement data</span>
+                                <span>My Measurement Data</span>
                             </p>
                         </header>
                         <div className="card-content">
 
                             <form method="post" id="form_upd_tape" onSubmit={handleSubmit}>
                                 <div className="field mb-4">
-                                    <label className="label">Gender <span className="has-text-danger">*</span></label>
+                                    <label className="label">Select Gender <span className="has-text-danger">*</span></label>
                                     <div className="control">
                                         <div className="select is-fullwidth">
                                             <select onChange={handleGenderChange} id="inp_gender" name="gender" octavalidate="R,ALPHA_ONLY">
@@ -277,18 +277,21 @@ export default function Settings_UpdateMeasurement() {
                                             </select>
                                         </div>
                                     </div>
-
                                 </div>
-                                <div className="columns mb-4">
-                                    <div className="column is-half"></div>
-                                    <div className="column is-half has-text-right">
-                                        <button type="button" onClick={(e) => setNumOfFields(++numOfFields)} className="button is-app-primary"><i className="mdi mdi-plus"></i>&nbsp;Add more</button>
-                                    </div>
-                                </div>
-                                <ExtraFields numOfFields={numOfFields} extraFields={tapeData?.["tape_" + gender]} gender={gender} />
-                                <div className="field mt-5">
-                                    <button type="button" data-target="modal_save_tape" className="button is-app-primary is-fullwidth jb-modal" onClick={showModal} form="form_upd_tape">Save Measurements</button>
-                                </div>
+                                {
+                                    (gender) ? <>
+                                        <div className="columns mb-4">
+                                            <div className="column is-half"></div>
+                                            <div className="column is-half has-text-right">
+                                                <button type="button" onClick={(e) => setNumOfFields(++numOfFields)} className="button is-app-primary"><i className="mdi mdi-plus"></i>&nbsp;Add more</button>
+                                            </div>
+                                        </div>
+                                        <ExtraFields numOfFields={numOfFields} extraFields={tapeData?.["tape_" + gender]} gender={gender} />
+                                        <div className="field mt-5">
+                                            <button type="button" data-target="modal_save_tape" className="button is-app-primary is-fullwidth jb-modal" onClick={showModal} form="form_upd_tape">Save Measurements</button>
+                                        </div>
+                                    </> : null
+                                }
                             </form>
                         </div>
                     </div>

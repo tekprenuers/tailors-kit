@@ -274,6 +274,9 @@ export default function AddMeasurement() {
                         </header>
                         <div className="card-content">
                             {
+                                (configData && Object.keys(configData).length) ?
+                                <>
+                                {
                                 (tapeData?.gender) ?
                                     <div className="notification is-info is-light">
                                         <p className="m-0">This customer is a <b>{tapeData?.gender}</b> so we will show you measurement data for {tapeData?.gender + 's'}</p>
@@ -286,6 +289,18 @@ export default function AddMeasurement() {
                                     <button data-target="modal_save_measurement" className="button is-app-primary is-fullwidth jb-modal" type="button" onClick={showModal}>Confirm Measurement</button>
                                 </div>
                             </form>
+                                </> : 
+                                <section>
+                                    <div className="has-text-centered">
+                                        <img alt="caution image" src="/caution.svg" width={"200px"}/>
+                                    </div>
+                                    <div className="notification is-danger is-light">
+                                            <p className="mb-2">Measurement data has not been configured</p>
+                                            <a href={import.meta.env.VITE_DASHBOARD_URL+'/settings/update-measurement'} className="button is-danger">Configure Now</a>
+                                        </div>
+                                </section>
+                            }
+                            
                         </div>
                     </div>
                     <div id="modal_save_measurement" className="modal">

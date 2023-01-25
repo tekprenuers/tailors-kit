@@ -13,6 +13,8 @@ export default function ViewCustomers() {
     })
     //track fetch request
     const [status, setStatus] = useState("loading")
+    //state to check if user has searched for a record
+    const [isSearch, setIsSearch] = useState(false)
     //get customers
     useEffect(() => {
         getCustomerData().then(res => {
@@ -20,7 +22,9 @@ export default function ViewCustomers() {
             //track fetch request
             setStatus("loaded")
             if (res) {
-                
+                //set search query so that error will be
+                //No records found then remove the search bar
+                setIsSearch(false)
                 //set state
                 setClientsData(res)
                 //PAGINATION
@@ -185,6 +189,10 @@ export default function ViewCustomers() {
                 if (!res) {
                     toast.error("An error has occured")
                 } else {
+                    //change the state to true so that error will be
+                    //Your search query returned no results
+                    //and then retain the search box
+                    setIsSearch(true)
                     //set state
                     setClientsData(res)
                     //PAGINATION
@@ -236,23 +244,30 @@ export default function ViewCustomers() {
         document.getElementById(modalTarget).classList.add('is-active')
         document.documentElement.classList.add('is-clipped')
     }
+    const copyData = (data, CopiedElem) => {
+        window.navigator.clipboard.writeText(data).then(() => {
+            toast.info(CopiedElem + " has been copied")
+        }, () => {
+            toast.error("This item cannot be copied")
+        })
+    }
     return (
         (status !== "loaded") ?
             <>
                 {Preloader()}
-            </> : <>
-                <div id="se" className="mb-4 mt-3 p-2">
-                    <form id="form_search" method="get" onSubmit={handleSearch}>
-                        <div id="serch_form_inp_wrapper" className="search-form">
-                            <input maxLength={50} id="inp_search" octavalidate="SEARCH" placeholder="Search for a customer" className="input radius-0" name="search" />
-                            <button form="form_search" className="button is-app-primary radius-0">Search</button>
-                        </div>
+            </> : <section className="section is-main-section">
 
-                    </form>
-                </div>
+
                 {
                     (clientsData && (clientsData).length) ?
-                        <>
+                        <><div className="mb-4 mt-3 p-2">
+                            <form id="form_search" method="get" onSubmit={handleSearch}>
+                                <div id="serch_form_inp_wrapper" className="search-form">
+                                    <input maxLength={50} id="inp_search" octavalidate="SEARCH" placeholder="Search for a customer" className="input radius-0" name="search" />
+                                    <button form="form_search" className="button is-app-primary radius-0">Search</button>
+                                </div>
+                            </form>
+                        </div>
                             <div className="card has-table has-mobile-sort-spaced">
                                 <header className="card-header">
                                     <p className="card-header-title">
@@ -282,7 +297,7 @@ export default function ViewCustomers() {
                                                                 <tr key={ind}>
                                                                     <td data-label="Name">{el?.name}</td>
                                                                     <td data-label="Gender">{el?.gender}</td>
-                                                                    <td data-label="Phone">{el?.phone}</td>
+                                                                    <td className="is-touchable" data-label="Phone" onClick={(e) => copyData(el?.phone, "Phone number")} title="Click to copy">{el?.phone}</td>
                                                                     <td data-label="Created">
                                                                         <small className="has-text-grey is-abbr-like" title="Oct 25, 2020">{el?.date_added}</small>
                                                                     </td>
@@ -352,8 +367,30 @@ export default function ViewCustomers() {
                                 <button onClick={closeModal} className="modal-close is-large jb-modal-close" aria-label="close"></button>
                             </div>
                         </>
-                        : <p>Empty Life</p>
+                        :
+                        <>
+                            {
+                                (isSearch) ?
+                                    <section className="empty-results">
+                                        <div className="has-text-centered">
+                                            <img alt="No results image" src="/caution.svg" width={"150px"} />
+                                        </div>
+                                        <div className="notification is-app is-light">
+                                            <p className="mb-2 has-text-centered">Your search query returned <b>No results</b></p>
+                                        </div>
+                                    </section> :
+                                    <section className="empty-results">
+                                        <div className="has-text-centered">
+                                            <img alt="No results image" src="/times-square.svg" width={"150px"} />
+                                        </div>
+                                        <div className="notification is-app is-light">
+                                            <p className="mb-2">No Customers Found</p>
+                                            <a href={import.meta.env.VITE_DASHBOARD_URL + '/add-customer'} className="button is-app-primary">Add Customer</a>
+                                        </div>
+                                    </section>
+                            }
+                        </>
                 }
-            </>
+            </section>
     )
 }

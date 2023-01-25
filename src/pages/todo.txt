@@ -2,18 +2,18 @@ Make remember me work on login page
 
 Send user email updates on customer requirement approaching its due date then a link attached to it for them to either extend the date or upload finished product
 
-No record found error 
-
-Subfolder or directory that shows a clean way for a customer to subscribe to a plan. ask them to login then store uid in session
-
 Do general contact us page and show them their queue in error wahala --- >  Attach screenshots too incase of error
 
 Use react-helmet to add meta tags
 
 unsubscribe table to hold emails of users not interested in our mails again
 
+handle back button to refresh requests
+
 
 //////////
+
+When you renew your license, the trial plan rolls over if it has not expired to the new plan
 
 Build customer catalog (a page that shows what the customer has completed)
 
@@ -21,16 +21,14 @@ Ability to print customer's data
 
 add validation for json and double radio element such as gender selection for male or female and check if empty .... debug mode should only show field name cannot be found ... length validation should not work if value is not required ... try to work on onchange
 
-viewing customer's measurement should show last updated (eg last updated 6 months ago, 1 year ago, 2 months ago) so that you can be able to see when last u updated the customer's measurement ****
-
 send user weekly or monthly email about requests completed and customers added and expected revenue
 
 ///////
 
 
-https://clients.tailorskit.com/subscriptions/renew/GibberishID
+https://clients.tailorskit.com/subscriptions/renew?token=GibberishToken
 
-https://clients.tailorskit.com/subscriptions/view/{UID}
+https://tailorskit.com/dashboard/license
 
-https://tailorskit.com/newsletters/unsubscribe/GibberishID
+https://clients.tailorskit.com/newsletters?action=unsubscribe&uid=GibberishID
 

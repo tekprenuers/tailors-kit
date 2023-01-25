@@ -61,7 +61,7 @@ const ShowRequests = ({ data }) => {
                 </tr>
                 <tr className="tr-last">
                     <th className="w-50">Total Requests</th>
-                    <td>{completed + uncompleted}</td>
+                    <td><span className="tag is-primary">{completed + uncompleted}</span></td>
                 </tr>
             </>
         )
@@ -74,7 +74,7 @@ export default function SingleCustomer() {
     //customer data from fetch request
     const [cusData, setCusData] = useState({})
     //retrieve token
-    const { getToken, Preloader } = Core();
+    const { getToken, Preloader, findDateDifference } = Core();
     //set gender
     const [gender, setGender] = useState("male");
     //track fetch request
@@ -187,15 +187,6 @@ export default function SingleCustomer() {
                                     <div className="level-item">
                                         <div className="buttons is-right">
                                             <a
-                                                href={import.meta.env.VITE_DASHBOARD_URL + '/update-measurement/' + cus_id}
-                                                target="_self"
-                                                className="button is-app-primary"
-                                            ><span className="icon">
-                                                    <i className="mdi mdi-ruler-square"></i>
-                                                </span>
-                                                <span>Update measurement</span>
-                                            </a>
-                                            <a
                                                 href={import.meta.env.VITE_DASHBOARD_URL + '/update-customer/' + cus_id}
                                                 target="_self"
                                                 className="button is-info"
@@ -295,7 +286,19 @@ export default function SingleCustomer() {
                                     <header className="card-header">
                                         <h4 className="card-header-title has-text-info"><span className="icon"><i className="mdi mdi-ruler-square"></i></span>&nbsp;Measurement</h4>
                                         <span className="card-header-icon">
-                                            <button type="button" data-target="modal_del_measurement" className="button is-danger jb-modal" onClick={showModal}>Delete</button>
+                                            <div className="buttons is-right">
+                                                <a title="Update this measurement" href={import.meta.env.VITE_DASHBOARD_URL + '/update-measurement/' + cus_id}  className="button is-primary">
+                                                    <span>
+                                                    <i className="mdi mdi-pencil"></i>
+                                                </span>
+                                                    <span className="hide-on-mobile">&nbsp;Update</span></a>
+                                                <button title="Delete this measurement" type="button" data-target="modal_del_measurement" className="button is-danger jb-modal" onClick={showModal}>
+                                                    <span>
+                                                        <i className="mdi mdi-trash-can"></i>
+                                                    </span>
+                                                    <span className="hide-on-mobile">&nbsp;Delete</span>
+                                                </button>
+                                            </div>
                                         </span>
                                     </header>
                                     <table className="table w-100 is-striped is-hoverable">
@@ -303,7 +306,7 @@ export default function SingleCustomer() {
                                             <ShowMeasurements data={cusData["tape_" + gender]} />
                                             <tr className="tr-last">
                                                 <th>Last updated</th>
-                                                <td>{cusData?.tape_last_updated}</td>
+                                                <td>{cusData?.tape_last_updated} ({findDateDifference(cusData?.tape_last_updated_jsformatted)})</td>
                                             </tr>
                                         </tbody>
                                     </table>

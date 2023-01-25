@@ -38,6 +38,7 @@ import ViewRequests from "./pages/admin/requests/ViewRequests";
 //settings
 import Settings from "./pages/admin/settings/Settings";
 import Settings_UpdateMeasurement from "./pages/admin/settings/updateMeasurement";
+import License from "./pages/admin/License";
 
 function App() {
   // 👇️ scroll to top on page change
@@ -210,6 +211,14 @@ function App() {
               <BreadCrumb pageName="Update this request" showButton="false" />
               <UpdateRequest />
               <DashFooter />
+            </>
+          } />
+          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/license'} element={
+            <>
+              <Nav />
+              <Aside />
+              <BreadCrumb pageName="My License" showButton="false" />
+              <License />
             </>
           } />
           <Route path={import.meta.env.VITE_DASHBOARD_URL + '/settings'} element={
