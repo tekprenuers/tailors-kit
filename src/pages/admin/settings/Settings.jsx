@@ -1,8 +1,14 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 export default function MeasurementCustomerSearch() {
     return (
         <section className="section is-main-section">
+            <Helmet>
+                <title>Settings Page - TailorsKit</title>
+                <meta property="og:title" content={"Settings Page - TailorsKit"} />
+                <meta name="description" content={"View and configure your TailorsKit account"} />
+            </Helmet>
             <div className="card">
                 <header className="card-header">
                     <p className="card-header-title">
@@ -18,7 +24,7 @@ export default function MeasurementCustomerSearch() {
                                     <h4 className="title is-5 mb-0">My Profile</h4>
                                     <p className="has-text-app-primary"><i className="mdi mdi-account fa-3x"></i></p>
                                     <p>
-                                        <a href={import.meta.env.VITE_DASHBOARD_URL+'/settings/update-profile'} className="button is-app-primary">Update</a>
+                                        <a href={import.meta.env.VITE_DASHBOARD_URL + '/settings/update-profile'} className="button is-app-primary">Update</a>
                                     </p>
                                 </div>
                             </div>
@@ -29,7 +35,7 @@ export default function MeasurementCustomerSearch() {
                                     <h4 className="title is-5 mb-0">My Measurements</h4>
                                     <p className="has-text-app-primary"><i className="mdi mdi-ruler-square fa-3x"></i></p>
                                     <p>
-                                        <a href={import.meta.env.VITE_DASHBOARD_URL+'/settings/update-measurement'} className="button is-app-primary">Update</a>
+                                        <a href={import.meta.env.VITE_DASHBOARD_URL + '/settings/update-measurement'} className="button is-app-primary">Update</a>
                                     </p>
                                 </div>
                             </div>

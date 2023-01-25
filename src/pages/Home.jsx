@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
+import { Helmet } from 'react-helmet'
+
 function Home() {
 
     return (
         <>
+            <Helmet>
+                <title>TailorsKit</title>
+                <meta property="og:title" content={"TailorsKit"} />
+                <meta name="description" content={"Save, access & manage your clients data on your Tailors Kit. Become a member Now!"} />
+            </Helmet>
             <section className="hero is-medium">
                 <div className="hero-body">
                     <div className="container has-text-centered" style={{ top: '30%' }}>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Core from "../Hooks/Core";
 import { toast } from 'react-toastify';
+import { Helmet } from "react-helmet";
 
 export default function DashHome() {
     const { getToken, Preloader } = Core();
@@ -28,7 +29,7 @@ export default function DashHome() {
                     //check if its a form error
                     if (res?.formError) {
                         toast.error("A Validation error has occured")
-                    }else if(res?.data?.expired){
+                    } else if (res?.data?.expired) {
                         setExpiredLicense(res.data.expired)
                     } else {
                         toast.error(res.data.message)
@@ -142,6 +143,11 @@ export default function DashHome() {
     }
     return (
         <>
+            <Helmet>
+                <title>My Dashboard - TailorsKit</title>
+                <meta property="og:title" content={"My Dashboard - TailorsKit"} />
+                <meta name="description" content={"Save, access & manage your clients data on your TailorsKit Dashboard"} />
+            </Helmet>
             {
                 (status !== "loaded") ?
                     <>

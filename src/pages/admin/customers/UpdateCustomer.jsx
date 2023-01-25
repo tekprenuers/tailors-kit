@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { octaValidate } from 'octavalidate-reactjs'
 import Core from "../../Hooks/Core";
+import { Helmet } from "react-helmet";
 
 export default function AddCustomer() {
     const { getToken, Preloader } = Core();
@@ -122,164 +123,173 @@ export default function AddCustomer() {
         e.target.value = valAry.join('')
     }
     return (
-        (status !== "loaded") ?
-            <>
-                {Preloader()}
-            </> :
-            <>
-                <section className="section is-title-bar">
-                    <div className="level">
-                        <div className="level-left">
-                            &nbsp;
-                        </div>
-                        <div className="level-right">
-                            <div className="level-item">
-                                <div className="buttons is-right">
-                                    <a
-                                        href={import.meta.env.VITE_DASHBOARD_URL + '/customers/' + cus_id}
-                                        target="_self"
-                                        className="button is-app-primary"
-                                    >
-                                        <span className="icon">
-                                            <i className="mdi mdi-eye"></i>
-                                        </span>
-                                        <span>View data</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section className="dash-hero hero is-hero-bar">
-                    <div className="hero-body">
+        <>
+            <Helmet>
+                <title>{"Updating " + cusData?.name}</title>
+                <meta property="og:title" content={"Updating - " + cusData?.name} />
+                <meta name="description" content={"Visit this page to update this customer's data"} />
+            </Helmet>
+            {(status !== "loaded") ?
+                <>
+                    {Preloader()}
+                </> :
+                <>
+                    <section className="section is-title-bar">
                         <div className="level">
                             <div className="level-left">
-                                <div className="level-item"><h1 className="title">
-                                    Update Customer
-                                </h1></div>
+                                &nbsp;
                             </div>
-                            <div className="level-right" style={{ display: "none" }}>
-                                <div className="level-item"></div>
+                            <div className="level-right">
+                                <div className="level-item">
+                                    <div className="buttons is-right">
+                                        <a
+                                            href={import.meta.env.VITE_DASHBOARD_URL + '/customers/' + cus_id}
+                                            target="_self"
+                                            className="button is-app-primary"
+                                        >
+                                            <span className="icon">
+                                                <i className="mdi mdi-eye"></i>
+                                            </span>
+                                            <span>View data</span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                    <section className="dash-hero hero is-hero-bar">
+                        <div className="hero-body">
+                            <div className="level">
+                                <div className="level-left">
+                                    <div className="level-item"><h1 className="title">
+                                        Update Customer
+                                    </h1></div>
+                                </div>
+                                <div className="level-right" style={{ display: "none" }}>
+                                    <div className="level-item"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
-                <section className="section is-main-section">
-                    <div className="card">
-                        <header className="card-header">
-                            <p className="card-header-title">
-                                <span className="icon"><i className="mdi mdi-account"></i></span>
-                                Update Customer
-                            </p>
-                        </header>
-                        <div className="card-content">
-                            <div className="notification is-info is-light">
-                                <p className="m-0">Fields with an asterisk(<span className="has-text-danger">*</span>) are required!</p>
+                    <section className="section is-main-section">
+                        <div className="card">
+                            <header className="card-header">
+                                <p className="card-header-title">
+                                    <span className="icon"><i className="mdi mdi-account"></i></span>
+                                    Update Customer
+                                </p>
+                            </header>
+                            <div className="card-content">
+                                <div className="notification is-info is-light">
+                                    <p className="m-0">Fields with an asterisk(<span className="has-text-danger">*</span>) are required!</p>
+                                </div>
+                                <form method="post" id="form_new_customer" onSubmit={handleSubmit}>
+                                    <div className="field">
+                                        <label className="label">Customer Name <span className="has-text-danger">*</span></label>
+                                        <div className="field-body">
+                                            <div className="field">
+                                                <p className="control is-expanded has-icons-left">
+                                                    <input defaultValue={cusData?.fname} id="inp_fname" className="input" octavalidate="R,ALPHA_ONLY" ov-required-msg="Customer's First Name is required" type="text" name="fname" placeholder="First Name" />
+                                                    <span className="icon is-small is-left"><i className="mdi mdi-account"></i></span>
+                                                </p>
+                                            </div>
+                                            <div className="field">
+                                                <p className="control is-expanded has-icons-left has-icons-right">
+                                                    <input defaultValue={cusData?.lname} id="inp_lname" octavalidate="R,ALPHA_ONLY" className="input" ov-required-msg="Customer's Last Name is required" type="text" placeholder="Last Name" name="lname" />
+                                                    <span className="icon is-small is-left"><i className="mdi mdi-account"></i></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="field">
+                                        <label className="label">Gender <span className="has-text-danger">*</span></label>
+                                        <div className="field is-grouped-multiline is-grouped">
+                                            <div className="control"><label className="b-radio radio"><input name="gender" type="radio" value="male" />
+                                                <span className="check"></span>
+                                                <span className="control-label">Male</span>
+                                            </label></div>
+                                            <div className="control"><label className="b-radio radio"><input name="gender" type="radio" value="female" />
+                                                <span className="check"></span>
+                                                <span className="control-label">Female</span>
+                                            </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="field">
+                                        <label className="label">Customer's Image</label>
+                                        <div className="file has-name" id="inp_cus_image_wrapper">
+                                            <label className="file-label">
+                                                <input id="inp_cus_image" accept-mime="image/jpg, image/png, image/jpeg" onChange={setFileName} className="file-input" type="file" name="image" />
+                                                <span className="file-cta">
+                                                    <span className="file-icon">
+                                                        <i className="fas fa-upload"></i>
+                                                    </span>
+                                                    <span className="file-label">
+                                                        Choose a file…
+                                                    </span>
+                                                </span>
+                                                <span className="file-name">
+                                                    No file chosen
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div className="field">
+                                        <label className="label">Customer Email</label>
+                                        <p className="control is-expanded has-icons-left">
+                                            <input defaultValue={cusData?.email} id="inp_email" className="input" octavalidate="EMAIL" type="text" name="email" placeholder="Email Address" />
+                                            <span className="icon is-small is-left"><i className="mdi mdi-email"></i></span>
+                                        </p>
+                                    </div>
+                                    <div className="field">
+                                        <label className="label">Customer Phone <span className="has-text-danger">*</span></label>
+                                        <div className="field-body">
+                                            <div className="field">
+                                                <div className="field has-addons">
+                                                    <div className="control">
+                                                        <a className="button is-static">
+                                                            +234
+                                                        </a>
+                                                    </div>
+                                                    <div className="control is-expanded">
+                                                        <input defaultValue={cusData?.phone?.replace('+234', '')} id="inp_phone" ov-required-msg="Customer's Primary Phone number is required" onChange={formatPhone} className="input" length="11" octavalidate="R,DIGITS" type="tel" name="phone" placeholder="Primary Phone Number" />
+                                                    </div>
+                                                </div>
+                                                <small>Do not enter <span className="has-text-danger">the first zero</span> or <span className="has-text-danger">+234</span></small>
+                                            </div>
+                                            <div className="field">
+                                                <div className="field has-addons">
+                                                    <div className="control">
+                                                        <a className="button is-static">
+                                                            +234
+                                                        </a>
+                                                    </div>
+                                                    <div className="control is-expanded">
+                                                        <input defaultValue={cusData?.alt_phone?.replace('+234', '')} id="inp_alt_phone" octavalidate="DIGITS" maxLength="10" onChange={formatPhone} className="input" type="tel" placeholder="Alternate Phone Number" name="alt_phone" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="field">
+                                        <label className="label">Customer Home Address <span className="has-text-danger">*</span></label>
+                                        <div className="control is-expanded has-icons-left">
+                                            <textarea defaultValue={cusData?.addr} octavalidate="R,TEXT" ov-required-msg="Customer's Home Address is required" placeholder="Customer's home address" name="addr" id="inp_cus_addr" className="input textarea"></textarea>
+                                            <span className="icon is-small is-left"><i className="mdi mdi-map-marker"></i></span>
+                                        </div>
+                                    </div>
+                                    <div className="field mt-5">
+                                        <button className="button is-app-primary is-fullwidth" form="form_new_customer">Update customer</button>
+                                    </div>
+                                </form>
                             </div>
-                            <form method="post" id="form_new_customer" onSubmit={handleSubmit}>
-                                <div className="field">
-                                    <label className="label">Customer Name <span className="has-text-danger">*</span></label>
-                                    <div className="field-body">
-                                        <div className="field">
-                                            <p className="control is-expanded has-icons-left">
-                                                <input defaultValue={cusData?.fname} id="inp_fname" className="input" octavalidate="R,ALPHA_ONLY" ov-required-msg="Customer's First Name is required" type="text" name="fname" placeholder="First Name" />
-                                                <span className="icon is-small is-left"><i className="mdi mdi-account"></i></span>
-                                            </p>
-                                        </div>
-                                        <div className="field">
-                                            <p className="control is-expanded has-icons-left has-icons-right">
-                                                <input defaultValue={cusData?.lname} id="inp_lname" octavalidate="R,ALPHA_ONLY" className="input" ov-required-msg="Customer's Last Name is required" type="text" placeholder="Last Name" name="lname" />
-                                                <span className="icon is-small is-left"><i className="mdi mdi-account"></i></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="field">
-                                    <label className="label">Gender <span className="has-text-danger">*</span></label>
-                                    <div className="field is-grouped-multiline is-grouped">
-                                        <div className="control"><label className="b-radio radio"><input name="gender" type="radio" value="male" />
-                                            <span className="check"></span>
-                                            <span className="control-label">Male</span>
-                                        </label></div>
-                                        <div className="control"><label className="b-radio radio"><input name="gender" type="radio" value="female" />
-                                            <span className="check"></span>
-                                            <span className="control-label">Female</span>
-                                        </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="field">
-                                    <label className="label">Customer's Image</label>
-                                    <div className="file has-name" id="inp_cus_image_wrapper">
-                                        <label className="file-label">
-                                            <input id="inp_cus_image" accept-mime="image/jpg, image/png, image/jpeg" onChange={setFileName} className="file-input" type="file" name="image" />
-                                            <span className="file-cta">
-                                                <span className="file-icon">
-                                                    <i className="fas fa-upload"></i>
-                                                </span>
-                                                <span className="file-label">
-                                                    Choose a file…
-                                                </span>
-                                            </span>
-                                            <span className="file-name">
-                                                No file chosen
-                                            </span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="field">
-                                    <label className="label">Customer Email</label>
-                                    <p className="control is-expanded has-icons-left">
-                                        <input defaultValue={cusData?.email} id="inp_email" className="input" octavalidate="EMAIL" type="text" name="email" placeholder="Email Address" />
-                                        <span className="icon is-small is-left"><i className="mdi mdi-email"></i></span>
-                                    </p>
-                                </div>
-                                <div className="field">
-                                    <label className="label">Customer Phone <span className="has-text-danger">*</span></label>
-                                    <div className="field-body">
-                                        <div className="field">
-                                            <div className="field has-addons">
-                                                <div className="control">
-                                                    <a className="button is-static">
-                                                        +234
-                                                    </a>
-                                                </div>
-                                                <div className="control is-expanded">
-                                                    <input defaultValue={cusData?.phone?.replace('+234', '')} id="inp_phone" ov-required-msg="Customer's Primary Phone number is required" onChange={formatPhone} className="input" length="11" octavalidate="R,DIGITS" type="tel" name="phone" placeholder="Primary Phone Number" />
-                                                </div>
-                                            </div>
-                                            <small>Do not enter <span className="has-text-danger">the first zero</span> or <span className="has-text-danger">+234</span></small>
-                                        </div>
-                                        <div className="field">
-                                            <div className="field has-addons">
-                                                <div className="control">
-                                                    <a className="button is-static">
-                                                        +234
-                                                    </a>
-                                                </div>
-                                                <div className="control is-expanded">
-                                                    <input defaultValue={cusData?.alt_phone?.replace('+234', '')} id="inp_alt_phone" octavalidate="DIGITS" maxLength="10" onChange={formatPhone} className="input" type="tel" placeholder="Alternate Phone Number" name="alt_phone" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="field">
-                                    <label className="label">Customer Home Address <span className="has-text-danger">*</span></label>
-                                    <div className="control is-expanded has-icons-left">
-                                        <textarea defaultValue={cusData?.addr} octavalidate="R,TEXT" ov-required-msg="Customer's Home Address is required" placeholder="Customer's home address" name="addr" id="inp_cus_addr" className="input textarea"></textarea>
-                                        <span className="icon is-small is-left"><i className="mdi mdi-map-marker"></i></span>
-                                    </div>
-                                </div>
-                                <div className="field mt-5">
-                                    <button className="button is-app-primary is-fullwidth" form="form_new_customer">Update customer</button>
-                                </div>
-                            </form>
                         </div>
-                    </div>
-                </section>
-            </>
+                    </section>
+                </>
+            }
+        </>
+
     )
 
 }

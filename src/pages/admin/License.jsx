@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
 import Core from "../Hooks/Core";
 
@@ -52,6 +53,11 @@ export default function License() {
     }
 
     return (<>
+    <Helmet>
+        <title>My License - TailorsKit</title>
+        <meta property="og:title" content={"My License - TailorsKit"} />
+        <meta name="description" content={"View how much time is left until your license expires"} />
+      </Helmet>
         {
             (status !== "loaded") ?
                 <>

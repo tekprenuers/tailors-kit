@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useParams } from 'react-router-dom';
 import { toast } from "react-toastify";
 import Core from "../../Hooks/Core";
@@ -172,6 +173,11 @@ export default function SingleCustomer() {
 
     return (
         <>
+            <Helmet>
+                <title>{cusData?.name+ " - TailorsKit"}</title>
+                <meta property="og:title" content={cusData?.name + " - TailorsKit"} />
+                <meta name="description" content={"Viewing " + cusData?.name} />
+            </Helmet>
             {
                 (status !== "loaded") ?
                     <>
@@ -287,10 +293,10 @@ export default function SingleCustomer() {
                                         <h4 className="card-header-title has-text-info"><span className="icon"><i className="mdi mdi-ruler-square"></i></span>&nbsp;Measurement</h4>
                                         <span className="card-header-icon">
                                             <div className="buttons is-right">
-                                                <a title="Update this measurement" href={import.meta.env.VITE_DASHBOARD_URL + '/update-measurement/' + cus_id}  className="button is-primary">
+                                                <a title="Update this measurement" href={import.meta.env.VITE_DASHBOARD_URL + '/update-measurement/' + cus_id} className="button is-primary">
                                                     <span>
-                                                    <i className="mdi mdi-pencil"></i>
-                                                </span>
+                                                        <i className="mdi mdi-pencil"></i>
+                                                    </span>
                                                     <span className="hide-on-mobile">&nbsp;Update</span></a>
                                                 <button title="Delete this measurement" type="button" data-target="modal_del_measurement" className="button is-danger jb-modal" onClick={showModal}>
                                                     <span>

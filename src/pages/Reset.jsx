@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { octaValidate } from "octavalidate-reactjs";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function Reset() {
   const navigate = useNavigate();
@@ -144,6 +145,11 @@ export default function Reset() {
 
   return (
     <main className="mt-5 p-20">
+      <Helmet>
+        <title>Reset Your Password - TailorsKit</title>
+        <meta property="og:title" content={"Reset Your Password - TailorsKit"} />
+        <meta name="description" content={"Reset your password to restore access to your TailorsKit Account"} />
+      </Helmet>
       {(showResetForm === true) ? (
         <>
           <section className="form-section has-shadow">

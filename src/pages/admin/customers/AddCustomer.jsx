@@ -2,6 +2,7 @@ import React from "react";
 import { toast } from 'react-toastify';
 import { octaValidate } from 'octavalidate-reactjs'
 import Core from "../../Hooks/Core";
+import { Helmet } from "react-helmet";
 
 export default function AddCustomer() {
     const { getToken } = Core();
@@ -73,6 +74,11 @@ export default function AddCustomer() {
     }
     return (
         <>
+            <Helmet>
+                <title>Add A Customer - TailorsKit</title>
+                <meta property="og:title" content={"Add A Customer - TailorsKit"} />
+                <meta name="description" content={"Visit this page to add a new customer"} />
+            </Helmet>
             <section className="dash-hero hero is-hero-bar">
                 <div className="hero-body">
                     <div className="level">

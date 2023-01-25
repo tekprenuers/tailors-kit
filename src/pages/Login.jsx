@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { octaValidate } from "octavalidate-reactjs";
 import Typed from "typed.js";
+import { Helmet } from "react-helmet";
 
 export default function Login() {
   const location = useLocation();
@@ -102,6 +103,11 @@ export default function Login() {
 
   return (
     <main className="p-202">
+      <Helmet>
+        <title>Login - TailorsKit</title>
+        <meta property="og:title" content={"Login - TailorsKit"} />
+        <meta name="description" content={"Quickly Login to your account on TailorsKit to save, access & manage your clients data"} />
+      </Helmet>
       <div className="columns mt-5">
         <div className="column is-half is-align-self-center hide-on-mobile">
           <img src="/mannequin-with-tape-measure.png" className="img mh-500" />

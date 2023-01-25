@@ -1,17 +1,18 @@
-Make remember me work on login page
-
-Send user email updates on customer requirement approaching its due date then a link attached to it for them to either extend the date or upload finished product
-
 Do general contact us page and show them their queue in error wahala --- >  Attach screenshots too incase of error
-
-Use react-helmet to add meta tags
-
-unsubscribe table to hold emails of users not interested in our mails again
 
 handle back button to refresh requests
 
+////////// UPDATES
 
-//////////
+Send user email updates on customer requirement approaching its due date then a link attached to it for them to either extend the date or upload finished product
+
+anything after due date now, deadline, is overdue
+
+if customer has a working email address, any time you mark his request as completed, it will send him a mail for pickup and maybe a link to chip in the payment or he will pay on delivery (our share dey ooo)
+
+mails for request completed, request deleted
+
+Make remember me work on login page
 
 When you renew your license, the trial plan rolls over if it has not expired to the new plan
 
@@ -23,6 +24,8 @@ add validation for json and double radio element such as gender selection for ma
 
 send user weekly or monthly email about requests completed and customers added and expected revenue
 
+do subscribe to newsletters too on footer of homepage
+
 ///////
 
 
@@ -30,5 +33,5 @@ https://clients.tailorskit.com/subscriptions/renew?token=GibberishToken
 
 https://tailorskit.com/dashboard/license
 
-https://clients.tailorskit.com/newsletters?action=unsubscribe&uid=GibberishID
+https://clients.tailorskit.com/newsletters/unsubscribe?uid=GibberishID
 
