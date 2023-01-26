@@ -88,9 +88,9 @@ export default function Nav() {
                                     </a>
                             </div>
                         </div>
-                        <a href="https://justboil.me/bulma-admin-template/free-html-dashboard/" title="About" className="navbar-item has-divider is-desktop-icon-only">
+                        <a href={import.meta.env.VITE_DASHBOARD_URL+'/help-desk'} title="Help Desk" className="navbar-item has-divider is-desktop-icon-only">
                             <span className="icon"><i className="mdi mdi-help-circle-outline"></i></span>
-                            <span>About</span>
+                            <span>Help Desk</span>
                         </a>
                         <a onClick={(e) => doLogOut()} title="Log out" className="navbar-item is-desktop-icon-only">
                             <span className="icon"><i className="mdi mdi-logout"></i></span>

@@ -88,13 +88,15 @@ export default function ViewCustomers() {
 
     const getCustomerData = async (search = null) => {
         const url = new URL(import.meta.env.VITE_BACKEND_URL + 'api/customers/get_customers.php');
-        url.searchParams.append('token', getToken());
         //check if search query was supplied
         url.searchParams.append('search', search || '')
 
         return (await fetch(url.toString(), {
             method: "get",
-            mode: "cors"
+            mode: "cors",
+            headers: {
+                'Authorization': `Bearer ${getToken()}`
+            }
         })
             .then(res => res.json())
             .then(res => {
@@ -120,14 +122,16 @@ export default function ViewCustomers() {
             strictMode: true
         })
         const formData = new FormData(form);
-        formData.append('token', getToken());
         //validate form
         if (myForm.validate()) {
             btn.classList.toggle('is-loading');
             fetch(import.meta.env.VITE_BACKEND_URL + 'api/customers/delete_customer.php', {
                 method: "post",
                 body: formData,
-                mode: "cors"
+                mode: "cors",
+                headers: {
+                    'Authorization': `Bearer ${getToken()}`
+                }
             })
                 .then(res => res.json())
                 .then(res => {

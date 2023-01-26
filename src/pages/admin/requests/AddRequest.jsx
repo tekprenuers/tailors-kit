@@ -24,7 +24,6 @@ export default function AddRequest() {
             }
         })
         const formData = new FormData(form);
-        formData.append('token', getToken());
         formData.append('cus_id', cus_id || '');
         //validate form
         if (myForm.validate()) {
@@ -32,7 +31,10 @@ export default function AddRequest() {
             fetch(import.meta.env.VITE_BACKEND_URL + 'api/requests/add_request.php', {
                 method: "post",
                 body: formData,
-                mode: "cors"
+                mode: "cors",
+                headers: {
+                    'Authorization': `Bearer ${getToken()}`
+                }
             })
                 .then(res => res.json())
                 .then(res => {
@@ -90,13 +92,15 @@ export default function AddRequest() {
     //get customer data
     const getCustomerData = async () => {
         const url = new URL(import.meta.env.VITE_BACKEND_URL + 'api/customers/get_customer.php');
-        url.searchParams.append('token', getToken());
         //check if search query was supplied
         url.searchParams.append('cus_id', cus_id || '')
 
         return (await fetch(url.toString(), {
             method: "get",
-            mode: "cors"
+            mode: "cors",
+            headers: {
+                'Authorization': `Bearer ${getToken()}`
+            }
         })
             .then(res => res.json())
             .then(res => {

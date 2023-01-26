@@ -55,9 +55,12 @@ export default function Core() {
     const isAuthenticated = async () => {
         const token = getToken()
         if (token) {
-            return await fetch(import.meta.env.VITE_BACKEND_URL + `check_token.php?token=${token}`, {
+            return await fetch(import.meta.env.VITE_BACKEND_URL + 'check_token.php', {
                 method: "get",
-                mode: "cors"
+                mode: "cors",
+                headers: {
+                    'Authorization': `Bearer ${getToken()}`
+                }
             })
                 .then(res => res.json())
                 .then(res => {
@@ -85,9 +88,9 @@ export default function Core() {
             if (d['TK::TOKEN']) {
                 return d['TK::TOKEN']
             }
-            return;
+            return '';
         } else {
-            return;
+            return '';
         }
     }
     const getUserData = () => {

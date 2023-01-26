@@ -47,13 +47,15 @@ export default function MeasurementCustomerSearch() {
     //get customer data
     const getCustomerData = async (search = null) => {
         const url = new URL(import.meta.env.VITE_BACKEND_URL + 'api/customers/get_customers.php');
-        url.searchParams.append('token', getToken());
         //check if search query was supplied
         url.searchParams.append('search', search || '')
 
         return (await fetch(url.toString(), {
             method: "get",
-            mode: "cors"
+            mode: "cors",
+            headers: {
+                'Authorization': `Bearer ${getToken()}`
+            }
         })
             .then(res => res.json())
             .then(res => {

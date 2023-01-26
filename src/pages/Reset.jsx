@@ -3,9 +3,15 @@ import { octaValidate } from "octavalidate-reactjs";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import Core from "./Hooks/Core";
 
 export default function Reset() {
   const navigate = useNavigate();
+  const {getToken} = Core()
+  //redirect back to dashboard if user is logged in already
+  if(getToken()){
+    window.location.href = import.meta.env.VITE_DASHBOARD_URL
+  }
   //search params
   const searchParams = new URLSearchParams(useLocation().search);
   //state to show the form

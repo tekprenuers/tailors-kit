@@ -26,19 +26,37 @@ export default function License() {
         //toggle loading state
         btn.classList.toggle('is-loading');
         //the payment url
-        const payUrl = new URL(import.meta.env.VITE_BACKEND_URL + 'subscriptions/pay.php');
-        payUrl.searchParams.append('token', getToken());
-        //send to browser
-        window.location.href = payUrl.href.toString();
+        const payUrl = new URL(import.meta.env.VITE_BACKEND_URL + 'subscriptions/init.php');
+        fetch(payUrl.href.toString(), {
+            method: "get",
+            mode: "cors",
+            headers: {
+                'Authorization': `Bearer ${getToken()}`
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            if(res.success){
+                window.location.href = res.data.url
+            }else{
+                toast.error("An Error has occured")
+            }
+        })
+        .catch(err => {
+            console.log(err)
+            toast.error("Network Error!");
+        })
     }
 
     const getLicense = async () => {
         const url = new URL(import.meta.env.VITE_BACKEND_URL + 'api/license/get_license.php');
-        url.searchParams.append('token', getToken());
 
         return (await fetch(url.toString(), {
             method: "get",
-            mode: "cors"
+            mode: "cors",
+            headers: {
+                'Authorization': `Bearer ${getToken()}`
+            }
         })
             .then(res => res.json())
             .then(res => {
@@ -53,17 +71,17 @@ export default function License() {
     }
 
     return (<>
-    <Helmet>
-        <title>My License - TailorsKit</title>
-        <meta property="og:title" content={"My License - TailorsKit"} />
-        <meta name="description" content={"View how much time is left until your license expires"} />
-      </Helmet>
+        <Helmet>
+            <title>My License - TailorsKit</title>
+            <meta property="og:title" content={"My License - TailorsKit"} />
+            <meta name="description" content={"View how much time is left until your license expires"} />
+        </Helmet>
         {
             (status !== "loaded") ?
                 <>
                     {Preloader()}
                 </> :
-                <section className="section is-main-section">
+                <section className="section is-main-section has-background-white">
                     <div className="has-text-centered mt-3 mb-3">
                         <img alt="stopwatch image" src="/stopwatch-3-second-svgrepo-com.svg" />
                     </div>

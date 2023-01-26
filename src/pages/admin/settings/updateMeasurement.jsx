@@ -24,7 +24,6 @@ const ExtraFields = ({ numOfFields, extraFields, gender }) => {
         if (dataToDel) {
             //new search params
             const search = new URLSearchParams();
-            search.append('token', getToken())
             search.append('data', dataToDel);
             search.append('gender', gender);
 
@@ -35,7 +34,8 @@ const ExtraFields = ({ numOfFields, extraFields, gender }) => {
                 mode: "cors",
                 body: search.toString(),
                 headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    'Authorization': `Bearer ${getToken()}`
                 }
             })
                 .then(res => res.json())
@@ -124,11 +124,13 @@ export default function Settings_UpdateMeasurement() {
     //get measurement data
     const getConfig = async () => {
         const url = new URL(import.meta.env.VITE_BACKEND_URL + 'api/config/get_measurement.php');
-        url.searchParams.append('token', getToken());
 
         return (await fetch(url.toString(), {
             method: "get",
-            mode: "cors"
+            mode: "cors",
+            headers: {
+                'Authorization': `Bearer ${getToken()}`
+            }
         })
             .then(res => res.json())
             .then(res => {
@@ -150,7 +152,6 @@ export default function Settings_UpdateMeasurement() {
             strictMode: true
         })
         const formData = new FormData(form);
-        formData.append('token', getToken());
         //validate form
         if (myForm.validate()) {
             btn.classList.toggle('is-loading');
@@ -176,7 +177,10 @@ export default function Settings_UpdateMeasurement() {
             fetch(import.meta.env.VITE_BACKEND_URL + 'api/config/update_measurement.php', {
                 method: "post",
                 body: formData,
-                mode: "cors"
+                mode: "cors",
+                headers: {
+                    'Authorization': `Bearer ${getToken()}`
+                }
             })
                 .then(res => res.json())
                 .then(res => {

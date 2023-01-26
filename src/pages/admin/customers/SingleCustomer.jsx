@@ -99,13 +99,15 @@ export default function SingleCustomer() {
     //get customer data
     const getCustomerData = async () => {
         const url = new URL(import.meta.env.VITE_BACKEND_URL + 'api/customers/get_customer.php');
-        url.searchParams.append('token', getToken());
         //check if search query was supplied
         url.searchParams.append('cus_id', cus_id || '')
 
         return (await fetch(url.toString(), {
             method: "get",
-            mode: "cors"
+            mode: "cors",
+            headers: {
+                'Authorization': `Bearer ${getToken()}`
+            }
         })
             .then(res => res.json())
             .then(res => {
@@ -129,14 +131,16 @@ export default function SingleCustomer() {
         const btn = form.querySelector(`button[form="${form.id}"]`)
 
         const formData = new FormData(form);
-        formData.append('token', getToken());
         formData.append('cus_id', cus_id);
 
         btn.classList.toggle('is-loading');
         fetch(import.meta.env.VITE_BACKEND_URL + 'api/measurements/delete_measurement.php', {
             method: "post",
             body: formData,
-            mode: "cors"
+            mode: "cors",
+            headers: {
+                'Authorization': `Bearer ${getToken()}`
+            }
         })
             .then(res => res.json())
             .then(res => {

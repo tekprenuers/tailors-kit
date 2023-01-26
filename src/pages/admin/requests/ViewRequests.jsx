@@ -91,14 +91,16 @@ export default function ViewRequests() {
 
     const getRequests = async (search = null) => {
         const url = new URL(import.meta.env.VITE_BACKEND_URL + 'api/requests/get_requests.php');
-        url.searchParams.append('token', getToken());
         //check if customr_id was supplied
         url.searchParams.append('cus_id', cus_id || '')
         //check for search query
         url.searchParams.append('search', search || '')
         return (await fetch(url.toString(), {
             method: "get",
-            mode: "cors"
+            mode: "cors",
+            headers: {
+                'Authorization': `Bearer ${getToken()}`
+            }
         })
             .then(res => res.json())
             .then(res => {
@@ -120,7 +122,6 @@ export default function ViewRequests() {
             strictMode: true
         })
         const formData = new FormData(form);
-        formData.append('token', getToken());
         formData.append('req_id', delData.req_id);
         formData.append('cus_id', cusData.cus_id);
         //validate form
@@ -129,7 +130,10 @@ export default function ViewRequests() {
             fetch(import.meta.env.VITE_BACKEND_URL + 'api/requests/delete_request.php', {
                 method: "post",
                 body: formData,
-                mode: "cors"
+                mode: "cors",
+                headers: {
+                    'Authorization': `Bearer ${getToken()}`
+                }
             })
                 .then(res => res.json())
                 .then(res => {

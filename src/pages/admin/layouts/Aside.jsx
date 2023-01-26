@@ -176,15 +176,6 @@ export default function Aside() {
                             </ul>
                         </li>
                     </ul>
-                    <p className="menu-label">About</p>
-                    <ul className="menu-list">
-                        <li>
-                            <a href="https://justboil.me/bulma-admin-template/free-html-dashboard/" className="has-icon">
-                                <span className="icon"><i className="mdi mdi-help-circle"></i></span>
-                                <span className="menu-item-label">About</span>
-                            </a>
-                        </li>
-                    </ul>
                 </div>
             </aside></>
     )

@@ -4,9 +4,15 @@ import { toast } from 'react-toastify';
 import { octaValidate } from "octavalidate-reactjs";
 import Typed from "typed.js";
 import { Helmet } from "react-helmet";
+import Core from "./Hooks/Core";
 
 export default function Login() {
   const location = useLocation();
+  const {getToken} = Core()
+  //redirect back to dashboard if user is logged in already
+  if(getToken()){
+    window.location.href = import.meta.env.VITE_DASHBOARD_URL
+  }
   //redirect to?
   let redirect = import.meta.env.VITE_DASHBOARD_URL + '/home';
   //check if there's search param in the URL

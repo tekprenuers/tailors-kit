@@ -92,13 +92,15 @@ export default function AddMeasurement() {
     //get customer's measurement data
     const getMeasurementData = async () => {
         const url = new URL(import.meta.env.VITE_BACKEND_URL + 'api/measurements/get_measurement.php');
-        url.searchParams.append('token', getToken());
         //check if search query was supplied
         url.searchParams.append('cus_id', cus_id || '')
 
         return (await fetch(url.toString(), {
             method: "get",
-            mode: "cors"
+            mode: "cors",
+            headers: {
+                'Authorization': `Bearer ${getToken()}`
+            }
         })
             .then(res => res.json())
             .then(res => {
@@ -115,11 +117,13 @@ export default function AddMeasurement() {
     //get measurement configuration
     const getConfigData = async () => {
         const url = new URL(import.meta.env.VITE_BACKEND_URL + 'api/config/get_measurement.php');
-        url.searchParams.append('token', getToken());
 
         return (await fetch(url.toString(), {
             method: "get",
-            mode: "cors"
+            mode: "cors",
+            headers: {
+                'Authorization': `Bearer ${getToken()}`
+            }
         })
             .then(res => res.json())
             .then(res => {
@@ -142,7 +146,6 @@ export default function AddMeasurement() {
             strictMode: true
         })
         const formData = new FormData(form);
-        formData.append('token', getToken());
         formData.append('cus_id', cus_id || '');
         //validate form
         if (myForm.validate() && gender) {
@@ -171,7 +174,10 @@ export default function AddMeasurement() {
             fetch(import.meta.env.VITE_BACKEND_URL + 'api/measurements/update_measurement.php', {
                 method: "post",
                 body: formData,
-                mode: "cors"
+                mode: "cors",
+                headers: {
+                    'Authorization': `Bearer ${getToken()}`
+                }
             })
                 .then(res => res.json())
                 .then(res => {

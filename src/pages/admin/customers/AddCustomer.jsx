@@ -14,18 +14,21 @@ export default function AddCustomer() {
         const myForm = new octaValidate(form.id, {
             strictMode: true,
             errorElem: {
-                "inp_cus_image": "inp_cus_image_wrapper"
+                "inp_cus_image": "inp_cus_image_wrapper",
+                "inp_gender": "inp_gender_wrapper"
             }
         })
         const formData = new FormData(form);
-        formData.append('token', getToken());
         //validate form
         if (myForm.validate()) {
             btn.classList.toggle('is-loading');
             fetch(import.meta.env.VITE_BACKEND_URL + 'api/customers/add_customer.php', {
                 method: "post",
                 body: formData,
-                mode: "cors"
+                mode: "cors",
+                headers: {
+                    'Authorization': `Bearer ${getToken()}`
+                }
             })
                 .then(res => res.json())
                 .then(res => {
@@ -125,16 +128,16 @@ export default function AddCustomer() {
                                 </div>
                             </div>
                             <div className="field">
-                                <label className="label">Gender <span className="has-text-danger">*</span></label>
-                                <div className="field is-grouped-multiline is-grouped">
-                                    <div className="control"><label className="b-radio radio"><input name="gender" type="radio" value="Male" />
-                                        <span className="check"></span>
-                                        <span className="control-label">Male</span>
-                                    </label></div>
-                                    <div className="control"><label className="b-radio radio"><input name="gender" type="radio" value="Female" />
-                                        <span className="check"></span>
-                                        <span className="control-label">Female</span>
-                                    </label>
+                                <div className="field mb-4">
+                                    <label className="label">Select Gender <span className="has-text-danger">*</span></label>
+                                    <div className="control">
+                                        <div id="inp_gender_wrapper" className="select is-fullwidth">
+                                            <select id="inp_gender" name="gender" octavalidate="R,ALPHA_ONLY">
+                                                <option value="">Select One</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

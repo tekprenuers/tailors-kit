@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 export default function UpdateProfile() {
     const { getToken, updateUserData, Preloader } = core()
     const [profileData, setProfileData] = useState({
-        fname: "", lname: "", phone: "", alt_phone: "", addr: "", email: ""
+        fname: "", lname: "", phone: "", alt_phone: "", addr: "", email: "", state: ""
     })
     //track fetch request
     const [status, setStatus] = useState("loading");
@@ -15,11 +15,18 @@ export default function UpdateProfile() {
     const setFileName = (e) => {
         document.querySelector('.file-name').innerText = e.target.files[0].name
     }
+
+    //all states
+    const states = ["Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Kastina", "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara", "F.C.T"];
+
     //get user data
     useEffect(() => {
-        fetch(import.meta.env.VITE_BACKEND_URL + 'api/clients/user_data.php?token=' + getToken(), {
+        fetch(import.meta.env.VITE_BACKEND_URL + 'api/clients/user_data.php', {
             method: "get",
-            mode: "cors"
+            mode: "cors",
+            headers: {
+                'Authorization': `Bearer ${getToken()}`
+            }
         })
             .then(res => res.json())
             .then(res => {
@@ -52,18 +59,21 @@ export default function UpdateProfile() {
         const myForm = new octaValidate(form.id, {
             strictMode: true,
             errorElem: {
-                "inp_image": "inp_image_wrapper"
+                "inp_image": "inp_image_wrapper",
+                "inp_state": "inp_state_wrapper"
             }
         })
         const formData = new FormData(form);
-        formData.append('token', getToken());
         //validate form
         if (myForm.validate()) {
             btn.classList.toggle('is-loading');
             fetch(import.meta.env.VITE_BACKEND_URL + 'api/clients/update_user.php', {
                 method: "post",
                 body: formData,
-                mode: "cors"
+                mode: "cors",
+                headers: {
+                    'Authorization': `Bearer ${getToken()}`
+                }
             })
                 .then(res => res.json())
                 .then(res => {
@@ -180,6 +190,22 @@ export default function UpdateProfile() {
                                         <label className="label">Alternate Phone Number</label>
                                         <div className="control">
                                             <input octavalidate="DIGITS" placeholder="090XXXXXXXX" id="inp_alt_phone" type="tel" autoComplete="on" name="alt_phone" className="input" defaultValue={profileData.alt_phone} />
+                                        </div>
+                                    </div>
+                                    <div className="field">
+                                        <label>State Of Origin <span className="has-text-danger">*</span></label>
+                                        <div className="control">
+                                            <div id="inp_state_wrapper" className="select is-fullwidth">
+                                                <select name="state" octavalidate="R,ALPHA_SPACES" id="inp_state" defaultValue={profileData.state}>
+                                                    {
+                                                        states.map((el, ind) => {
+                                                            return (
+                                                                <option value={el} key={ind}>{el}</option>
+                                                            )
+                                                        })
+                                                    }
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="field">
