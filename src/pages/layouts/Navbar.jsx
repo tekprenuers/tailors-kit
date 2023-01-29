@@ -82,6 +82,9 @@ export default function Navbar() {
                         <Link onClick={unToggleMobileNav} to="/" className="navbar-item">
                             Home
                         </Link>
+                        <Link onClick={unToggleMobileNav} to="/contact" className="navbar-item">
+                            Contact us
+                        </Link>
                         <Link onClick={unToggleMobileNav} to="/register" className="navbar-item">
                             Signup
                         </Link>

@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Reset from "./pages/Reset";
 import Login from "./pages/Login";
+import Contact from "./pages/Contact";
 import PageNotFound from "./pages/PageNotFound";
 
 //Dashboard
@@ -40,6 +41,11 @@ import Settings from "./pages/admin/settings/Settings";
 import Settings_UpdateMeasurement from "./pages/admin/settings/updateMeasurement";
 import License from "./pages/admin/License";
 
+//help desk
+import HelpDesk from "./pages/admin/helpDesk/helpDesk";
+import Support from "./pages/admin/helpDesk/support";
+import KnowledgePanel from "./pages/admin/helpDesk/knowledgePanel";
+
 function App() {
   // 👇️ scroll to top on page change
   React.useEffect(() => {
@@ -54,6 +60,14 @@ function App() {
             element={
               <>
                 <Home /> <Footer />
+              </>
+            }
+          />
+          <Route
+            path="contact"
+            element={
+              <>
+                <Contact /> <Footer />
               </>
             }
           />
@@ -247,12 +261,42 @@ function App() {
               <DashFooter />
             </>
           } />
+          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/help-desk'} element={
+            <>
+              <Nav />
+              <Aside />
+              <BreadCrumb pageName="Help Desk" showButton="false" />
+              <HelpDesk />
+            </>
+          } />
+          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/help-desk/knowledge-panel'} element={
+            <>
+              <Nav />
+              <Aside />
+              <BreadCrumb pageName="Help Desk - Knowledge panel" showButton="false" />
+              <KnowledgePanel />
+            </>
+          } />
+          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/help-desk/support'} element={
+            <>
+              <Nav />
+              <Aside />
+              <BreadCrumb pageName="Help Desk - Support" showButton="false" />
+              <Support />
+            </>
+          } />
           {/* <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />
             <Route path="reset" element={<Reset />} />
             <Route path="/dashboard/" element={<DashHome />} />
             <Route path="/dashboard/home" element={<DashHome />} /> */}
-          <Route path="*" element={<PageNotFound />} />
+          <Route path="*" element={
+            <>
+              <Navbar />
+              <PageNotFound />
+              <Footer />
+            </>
+} />
         </Route>
       </Routes>
     </BrowserRouter>

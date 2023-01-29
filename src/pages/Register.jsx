@@ -20,7 +20,7 @@ export default function Register() {
 
   useEffect(() => {
     const typed = new Typed(el.current, {
-      strings: ["Save your client's data", "Access your client's data", "Update your client's data",], // Strings to display
+      strings: ["Save your client's data", "Manage your client's data", "Access your client's Data"], // Strings to display
       // Speed settings, try diffrent values untill you get good results
       startDelay: 300,
       typeSpeed: 100,
@@ -41,7 +41,10 @@ export default function Register() {
     e.preventDefault();
     const form = e.target
     const btn = form.querySelector(`button[form="${form.id}"]`)
-    const myForm = new octaValidate(form.id)
+    const myForm = new octaValidate(form.id, {
+      strictWords : ["admin", "test"],
+      strictMode : true
+    })
     //validate form
     if (myForm.validate()) {
       btn.classList.toggle('is-loading');
@@ -78,24 +81,19 @@ export default function Register() {
   }
 
   return (
-    <main className="p-202">
+    <main className="">
       <Helmet>
         <title>Register - TailorsKit</title>
         <meta property="og:title" content={"Register - TailorsKit"} />
         <meta name="description" content={"Quickly register on TailorsKit to save, access & manage your clients data"} />
       </Helmet>
-      <div className="columns mt-5">
-        <div className="column is-half is-align-self-center hide-on-mobile">
-          <img src="/mannequin-with-tape-measure.png" className="img mh-500" />
-        </div>
-        <div className="column is-half is-align-self-center">
+      <div className="columns p-20 mt-5">
+      <div className="column is-half is-align-self-center">
           <div className="has-text-centered mb-5">
-            <h4 className="title is-3 has-text-app-primary mb-3">
+            <h4 className="title is-4 col-title">
               CREATE AN ACCOUNT
             </h4>
-            <div>
-              <span ref={el} className="title is-5 m-0" style={{ height: "25px", textTransform: "uppercase" }}></span>
-            </div>
+            <h5 className="subtitle" style={{textTransform: "uppercase" }}><span ref={el}></span></h5>
           </div>
           <section className="form-section has-shadow">
             <form id="form_register" method="post" onSubmit={handleSubmit}>
@@ -135,6 +133,9 @@ export default function Register() {
               </div>
             </form>
           </section>
+        </div>
+        <div className="column is-half has-text-centered is-align-self-center hide-on-mobile">
+          <img src="/mannequin-with-tape-measure.png" className="img mh-500 has-drop-shadow" />
         </div>
       </div>
     </main>

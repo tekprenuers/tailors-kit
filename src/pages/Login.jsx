@@ -108,24 +108,19 @@ export default function Login() {
   }
 
   return (
-    <main className="p-202">
+    <main className="">
       <Helmet>
         <title>Login - TailorsKit</title>
         <meta property="og:title" content={"Login - TailorsKit"} />
         <meta name="description" content={"Quickly Login to your account on TailorsKit to save, access & manage your clients data"} />
       </Helmet>
-      <div className="columns mt-5">
-        <div className="column is-half is-align-self-center hide-on-mobile">
-          <img src="/mannequin-with-tape-measure.png" className="img mh-500" />
-        </div>
-        <div className="column is-half is-align-self-center">
-          <div className="has-text-centered mb-5">
-            <h4 className="title is-3 has-text-app-primary mb-3">
-              SIGNIN TO YOUR ACCOUNT
+      <div className="columns p-20 mt-5">
+      <div className="column is-half is-align-self-center">
+      <div className="has-text-centered mb-5">
+            <h4 className="title is-4 col-title">
+              SIGN IN TO YOUR ACCOUNT
             </h4>
-            <div>
-              <span ref={el} className="title is-5  m-0" style={{ height: "25px", textTransform: "uppercase" }}></span>
-            </div>
+            <h5 className="subtitle" style={{textTransform: "uppercase" }}><span ref={el}></span></h5>
           </div>
           <section className="form-section has-shadow">
             <form id="form_login" onSubmit={handleSubmit} noValidate>
@@ -169,6 +164,9 @@ export default function Login() {
               </div>
             </form>
           </section>
+        </div>
+        <div className="column is-half is-align-self-center has-text-centered hide-on-mobile">
+          <img src="/mannequin-with-tape-measure.png" className="img mh-500 has-drop-shadow" />
         </div>
       </div>
     </main>

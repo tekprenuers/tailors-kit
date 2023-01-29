@@ -13,7 +13,7 @@ export default function Footer() {
               <img className="image" src="/navbar-icon.png" alt="Tailors Kit" />
             </a>
             <p className="has-text-grey-dark mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Tailor's kit is a large database that helps Tailors to save, manage and access Client's Data from anywhere and at anytime with ease.
             </p>
             <div>
               <a className="mr-3 is-inline-block" href="#">

@@ -1,5 +1,3 @@
-Do general contact us page and show them their queue in error wahala --- >  Attach screenshots too incase of error
-
 handle back button to refresh requests
 
 ////////// UPDATES

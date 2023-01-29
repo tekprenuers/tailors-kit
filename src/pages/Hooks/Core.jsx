@@ -75,9 +75,13 @@ export default function Core() {
                 })
                 .catch(err => {
                     console.log(err)
+                    //delete token
+                    localStorage.removeItem('TK::DATA')
                     return false
                 })
         } else {
+            //delete token
+            localStorage.removeItem('TK::DATA')
             return false
         }
     }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
-export default function MeasurementCustomerSearch() {
+export default function Settings() {
     return (
         <section className="section is-main-section">
             <Helmet>
