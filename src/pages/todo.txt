@@ -1,4 +1,4 @@
-handle back button to refresh requests
+
 
 ////////// UPDATES
 
@@ -32,4 +32,10 @@ https://clients.tailorskit.com/subscriptions/renew?token=GibberishToken
 https://tailorskit.com/dashboard/license
 
 https://clients.tailorskit.com/newsletters/unsubscribe?uid=GibberishID
+
+//////
+
+facebook login and google login
+
+ability to book an order and view a tailor's catalogue
 

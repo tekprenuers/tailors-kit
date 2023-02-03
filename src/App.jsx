@@ -9,6 +9,7 @@ import Reset from "./pages/Reset";
 import Login from "./pages/Login";
 import Contact from "./pages/Contact";
 import PageNotFound from "./pages/PageNotFound";
+import Privacy from "./pages/Privacy";
 
 //Dashboard
 // import './pages/admin/assets/main.min.css';
@@ -92,6 +93,14 @@ function App() {
             element={
               <>
                 <Reset /> <Footer />
+              </>
+            }
+          />
+          <Route
+            path="privacy"
+            element={
+              <>
+                <Privacy /> <Footer />
               </>
             }
           />

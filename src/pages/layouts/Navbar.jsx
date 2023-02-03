@@ -1,4 +1,4 @@
-import { Outlet, Link,  useLocation } from "react-router-dom";
+import { Outlet, Link, useLocation } from "react-router-dom";
 import React from 'react'
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -6,8 +6,8 @@ import Core from "../Hooks/Core";
 
 export default function Navbar() {
     const location = useLocation()
-    const {loadExternalStyle} = Core()
-    
+    const { loadExternalStyle } = Core()
+
     loadExternalStyle('/bulma.min.css')
 
     const toggleMobileNav = function (e) {
@@ -41,13 +41,13 @@ export default function Navbar() {
 
     // 👇️ scroll to top on page change
     React.useEffect(() => {
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
-    
+
 
     //check and redirect user to update profile incase of dashboard
     const handleLogin = () => {
-    
+
     }
 
 
@@ -82,6 +82,10 @@ export default function Navbar() {
                         <Link onClick={unToggleMobileNav} to="/" className="navbar-item">
                             Home
                         </Link>
+                        <a onClick={unToggleMobileNav} href="https://forms.gle/K9Fd5yzo7m9hJW2D8" className="navbar-item" target={"_blank"}>
+                            Join the waitlist
+                        </a>
+                        {/* 
                         <Link onClick={unToggleMobileNav} to="/contact" className="navbar-item">
                             Contact us
                         </Link>
@@ -90,7 +94,7 @@ export default function Navbar() {
                         </Link>
                         <Link onClick={unToggleMobileNav} to="/login" className="navbar-item">
                             Login
-                        </Link>
+                        </Link> */}
                     </div>
                 </div>
             </nav>

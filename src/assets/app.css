@@ -171,9 +171,19 @@ form:has(.search-form) {
     height: 100vh;
     background: rgb(0, 0, 0);
     /* background: linear-gradient(140deg, rgba(29, 17, 218, 1) 31%, rgba(120, 0, 184, 1) 100%); */
-    /* background-image: url('/banner.jpg'); */
-    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/banner.jpg') no-repeat !important;;
+    background-image: url('/Tailor-4-banner.jpg');
+    /* background-position: 100%, 100%; */
+    background-repeat: no-repeat;
+    /* background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/banner.jpg') no-repeat !important; */
     object-fit: cover;
+}
+
+/*change on mobile view*/
+@media screen and (max-width: 660px) {
+    .hero:not(.dash-hero) {
+        background-image: url('/Tailor-4-banner-mobile.jpg') !important;
+        background-position: center !important;
+    }
 }
 
 .is-app-primary {
@@ -321,7 +331,7 @@ button.is-cta:hover {
 }
 
 .hero-subtitle{
-    color: #d7d7d7 !important;
+    color:#4c4c4c !important;
 }
 
 .centered-elem {
@@ -446,12 +456,16 @@ section.is-section {
 .has-bg-grey{
     background-color: var(--grey) !important;
 }
+.has-bg-app-light{
+    background-color: var(--primary-light) !important;
+}
 .has-drop-shadow{
     filter: drop-shadow(2px 4px 6px #000);
 }
 :root {
     --primary: #ff9500;
     --primary-dark: #e78906;
+    --primary-light: #f5d2a021;
     --col-title:#ff4f32;
     --grey: #efefef;
     /*#00029d; /*#8107c6;*/

@@ -13,15 +13,15 @@ export default function Footer() {
               <img className="image" src="/navbar-icon.png" alt="Tailors Kit" />
             </a>
             <p className="has-text-grey-dark mb-6">
-            Tailor's kit is a large database that helps Tailors to save, manage and access Client's Data from anywhere and at anytime with ease.
+            Tailor's kit is a large database & productivity software that helps Tailors to save, manage, access client's data, and track client's requests from anywhere and at anytime with ease.
             </p>
             <div>
               <a className="mr-3 is-inline-block" href="#">
                 <i className="mx-auto image is-fullwidth fab fa-facebook-f"></i>
               </a>
-              <a className="mr-3 is-inline-block" href="#">
+              {/* <a className="mr-3 is-inline-block" href="#">
                 <i className="mx-auto image is-fullwidth fab fa-twitter"></i>
-              </a>
+              </a> */}
               <a className="mr-3 is-inline-block" href="#">
                 <i className="mx-auto image is-fullwidth fab fa-instagram"></i>
               </a>
@@ -32,12 +32,11 @@ export default function Footer() {
               <div className="column is-6 is-6-desktop mb-5">
                 <h4 className="is-size-4 has-text-weight-bold mb-4">Quick Links</h4>
                 <ul>
-                  <li className="mb-2">
+                  {/* <li className="mb-2">
                     <a className="" href="#">
                       About Us
                     </a>
-                  </li>
-                  <li className="mb-2">
+                  </li>                   <li className="mb-2">
                     <a className="" href="#">
                       Terms
                     </a>
@@ -46,15 +45,15 @@ export default function Footer() {
                     <a className="" href="#">
                       Team
                     </a>
-                  </li>
+                  </li>*/}
                   <li>
-                    <a className="" href="#">
+                    <a className="" href="/privacy">
                       Privacy
                     </a>
                   </li>
                 </ul>
               </div>
-              <div className="column is-6 is-6-desktop mb-5">
+              {/* <div className="column is-6 is-6-desktop mb-5">
                 <h4 className="is-size-4 has-text-weight-bold mb-4">Pages</h4>
                 <ul>
                   <li className="mb-2">
@@ -78,7 +77,7 @@ export default function Footer() {
                     </a>
                   </li>
                 </ul>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

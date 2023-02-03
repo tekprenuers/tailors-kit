@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Helmet } from 'react-helmet'
 
 function Home() {
@@ -8,14 +8,15 @@ function Home() {
             <Helmet>
                 <title>TailorsKit</title>
                 <meta property="og:title" content={"TailorsKit"} />
-                <meta name="description" content={"Save, access & manage your clients data on your Tailors Kit. Become a member Now!"} />
+                <meta property="author" content={"The Tekprenuers"} />
+                <meta name="description" content={"The Largest Database & Best Productivity Software For Tailors In Nigeria"} />
             </Helmet>
             <section className="hero is-medium">
                 <div className="hero-body">
-                    <div className="container has-text-centered" style={{ top: '30%' }}>
-                        <h1 className="title is-1 has-text-white">Welcome To Tailors Kit</h1>
-                        <p className="subtitle fonts-pacifico mb-3 hero-subtitle">The Largest Database & Best Productivity Software For Tailors In Nigeria</p>
-                        <a href={import.meta.env.VITE_FRONTEND_URL+'/login'} className='button is-app-primary fw-normal'>Join the waitlist</a>
+                    <div className="container m-0" style={{ top: '30%' }}>
+                        <h1 className="title is-1 has-text-dark">Welcome To Tailors Kit</h1>
+                        <p className="subtitle fonts-pacifico mb-3 has-text-white">The Largest Database & Best Productivity Software For Tailors In Nigeria</p>
+                        <a href={'https://forms.gle/K9Fd5yzo7m9hJW2D8'}  target={"_blank"} className='button is-dark has-text-app-primary is-medium fw-normal'>Join the waitlist</a>
                     </div>
                 </div>
             </section>
@@ -26,7 +27,7 @@ function Home() {
                     </div>
                     <div className='column is-half'>
                         <article>
-                            <p className='m-0 is-bold'>Tailor's kit is a large database that helps Tailors to save, manage and access Client's Data from anywhere and at anytime with ease.</p>
+                            <p className='m-0 is-bold'>Tailor's kit is a large database & productivity software that helps Tailors to save, manage, access client's data, and track client's orders from anywhere and at anytime with ease.</p>
                         </article>
                     </div>
                 </div>
@@ -45,7 +46,7 @@ function Home() {
                         </article>
                     </div>
                 </div>
-                <div className='columns mb-5 has-bg-grey'>
+                <div className='columns mb-5 has-bg-app-light'>
                     <div className='column is-half has-text-centered is-align-self-centered'>
                         <img src="/measure-amico.svg" width="400px" />
                     </div>
@@ -63,12 +64,12 @@ function Home() {
                         <img src="/people-collaborating.svg" width="400px" />
                     </div>
                     <div className='column is-half is-align-self-center'>
-                        <h3 className='title is-4 col-title'>CLIENT REQUESTS</h3>
-                        <h5 className='subtitle mb-3'>Keep track of client's requests & build your own catalogue!</h5>
+                        <h3 className='title is-4 col-title'>CLIENT ORDERS</h3>
+                        <h5 className='subtitle mb-3'>Keep track of client's orders & build your own catalogue!</h5>
                         <article className='is-bold'>
                         <p className='mb-2'>What does the client want you to sew for him?</p>
-                            <p className='mb-2'>With TailorsKit, you can manage all client requests and in order to make you efficient, each request has its deadline.</p>
-                            <p>So don't you worry, you will be able to deliver on time!</p>
+                            <p className='mb-2'>With TailorsKit, you can manage & keep track of all client orders and in order to make you efficient, each order has its deadline. When an order is completed, it is ready to show up on your personal catalogue.</p>
+                            <p>Let your works speak for itself!</p>
                         </article>
                     </div>
                 </div>
@@ -79,18 +80,17 @@ function Home() {
                     <img src='/high-five.svg' width={"300px"} />
                     </div>
                     <div className='column is-half is-align-self-center'>
-                        <h3 className='title is-3 col-title'>READY TO GET STARTED?</h3>
+                        <h3 className='title is-3'>READY TO GET STARTED?</h3>
                         <h5 className='subtitle mb-3'>Become a member today!</h5>
                         <article className='is-bold'>
                             {/* <p className='mb-3'>Signup on TailorsKit and get access to all features starting with a 14 days free trial.</p> */}
-                            <p className='mb-3'>Joing the waiting list today and get access to all features starting with a 21 days free trial.</p>
-                            <a href={import.meta.env.VITE_FRONTEND_URL+'/login'} className='button is-app-primary fw-normal'>Join the waitlist</a>
+                            <p className='mb-3'>Joing the waiting list today and get access to all features starting with a <span className='col-title'>21 days free trial.</span></p>
+                            <a  target={"_blank"} href={'https://forms.gle/K9Fd5yzo7m9hJW2D8'} className='button is-app-primary fw-normal'>Join the waitlist</a>
                         </article>
                     </div>
                 </div>
             </section>
         </>
-
     )
 }
 
