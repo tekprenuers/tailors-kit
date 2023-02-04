@@ -1,5 +1,3 @@
-
-
 ////////// UPDATES
 
 Send user email updates on customer requirement approaching its due date then a link attached to it for them to either extend the date or upload finished product
@@ -38,4 +36,3 @@ https://clients.tailorskit.com/newsletters/unsubscribe?uid=GibberishID
 facebook login and google login
 
 ability to book an order and view a tailor's catalogue
-

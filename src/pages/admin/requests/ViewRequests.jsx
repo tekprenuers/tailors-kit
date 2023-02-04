@@ -10,6 +10,8 @@ export default function ViewRequests() {
     const cus_id = useParams().cusId
     const [requestsData, setrequestsData] = useState([])
     const [cusData, setCusData] = useState();
+    //state to track search request
+    const [isSearch, setIsSearch] = useState(false)
 
     const [delData, setDelData] = useState({
         name: "", req_id: ""
@@ -26,6 +28,7 @@ export default function ViewRequests() {
     useEffect(() => {
         getRequests().then(res => {
             setStatus("loaded")
+            setIsSearch(false)
             //if result was returned instead of false
             if (res.success) {
                 //set state
@@ -181,6 +184,7 @@ export default function ViewRequests() {
             btn.classList.toggle('is-loading');
             //get customer data with search query included
             getRequests(formData.get("search")).then(res => {
+                setIsSearch(true)
                 if (!res) {
                     toast.error("An error has occured")
                 } else {
@@ -199,6 +203,7 @@ export default function ViewRequests() {
 
     const handleReload = () => {
         getRequests(null).then(res => {
+            setIsSearch(false)
             if (!res) {
                 toast.error("An error has occured")
             } else {
@@ -460,7 +465,28 @@ export default function ViewRequests() {
                                 <button onClick={closeModal} className="modal-close is-large jb-modal-close" aria-label="close"></button>
                             </div>
                         </>
-                            : <p>Empty Life</p>
+                            :<>
+                                {
+                                    (isSearch) ?
+                                        <section className="empty-results">
+                                            <div className="has-text-centered">
+                                                <img alt="No results image" src="/caution.svg" width={"150px"} />
+                                            </div>
+                                            <div className="notification is-app is-light">
+                                                <p className="mb-2 has-text-centered fw-bold">Your search query returned <b>No results</b></p>
+                                            </div>
+                                        </section> :
+                                        <section className="empty-results">
+                                            <div className="has-text-centered">
+                                                <img alt="No results image" src="/times-square.svg" width={"150px"} />
+                                            </div>
+                                            <div className="notification is-app is-light">
+                                                <p className="mb-2 fw-bold">No Requests Found For This Customer</p>
+                                                <a href={import.meta.env.VITE_DASHBOARD_URL + '/new-request/' + cus_id} className="button is-app-primary">Create a request</a>
+                                            </div>
+                                        </section>
+                                }
+                            </>
                     }
 
                 </>

@@ -69,7 +69,7 @@ export default function Support() {
                     <label className="label">Attach Image</label>
                     <div className="file has-name" id="inp_image_wrapper">
                         <label className="file-label">
-                            <input id="inp_image" accept-mime="image/jpg, image/png, image/jpeg" onChange={setFileName} className="file-input" type="file" name="image" />
+                            <input id="inp_image" accept-mime="image/jpg, image/png, image/jpeg" onChange={setFileName} className="file-input" type="file" maxsize="5mb" name="image" />
                             <span className="file-cta">
                                 <span className="file-icon">
                                     <i className="fas fa-upload"></i>

@@ -171,7 +171,7 @@ export default function AddRequest() {
                                         <label className="label">Image</label>
                                         <div className="file has-name" id="inp_req_image_wrapper">
                                             <label className="file-label">
-                                                <input id="inp_req_image" accept-mime="image/jpg, image/png, image/jpeg" onChange={setFileName} className="file-input" type="file" name="image" />
+                                                <input id="inp_req_image" accept-mime="image/jpg, image/png, image/jpeg" onChange={setFileName} className="file-input" type="file" maxsize="5mb" name="image" />
                                                 <span className="file-cta">
                                                     <span className="file-icon">
                                                         <i className="fas fa-upload"></i>
@@ -227,9 +227,9 @@ export default function AddRequest() {
                                         </div>
                                     </div>
                                     <div className="field">
-                                        <label className="label">Date Due <span className="has-text-danger">*</span></label>
+                                        <label className="label">Deadline <span className="has-text-danger">*</span></label>
                                         <div className="control is-expanded has-icons-left">
-                                            <input defaultValue={reqData?.deadline} id="inp_date_due" className="input" type="date" name="deadline" placeholder="Date Due" />
+                                            <input defaultValue={reqData?.deadline} id="inp_date_due" className="input" type="date" name="deadline" placeholder="When will you be able to deliver?" />
                                             <span className="icon is-small is-left"><i className="mdi mdi-calendar"></i></span>
                                         </div>
                                         <small>When will you be able to deliver this request?</small>

@@ -166,7 +166,9 @@ form:has(.search-form) {
 .tr-last {
     background-color: #ddd !important;
 }
-
+.fw-bold{
+    font-weight: bold !important;
+}
 .hero:not(.dash-hero) {
     height: 100vh;
     background: rgb(0, 0, 0);
