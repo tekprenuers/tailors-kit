@@ -85,6 +85,12 @@ export default function Aside() {
                                 <span className="menu-item-label">Help Desk</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVHMXjkB9YsFUbS0yVj8YSBGmNfUk1Oy8KpIqlQfepmFqI0g/viewform?usp=pp_url" className="router-link-active has-icon">
+                                <span className="icon"><i className="mdi mdi-star"></i></span>
+                                <span className="menu-item-label">Leave feedback</span>
+                            </a>
+                        </li>
                     </ul>
                     <p className="menu-label">CUSTOMERS</p>
                     <ul className="menu-list">
