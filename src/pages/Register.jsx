@@ -101,13 +101,10 @@ export default function Register() {
                 <label className="label">
                   Enter your email <span className="has-text-danger">*</span>
                 </label>
-                <p className="control has-icons-left has-icons-right">
+                <p className="control has-icons-left">
                   <input id="inp_email" name="email" octavalidate="R,EMAIL" className="input" type="email" placeholder="Email" />
                   <span className="icon is-small is-left">
                     <i className="fas fa-envelope"></i>
-                  </span>
-                  <span className="icon is-small is-right">
-                    <i className="fas fa-check"></i>
                   </span>
                 </p>
               </div>

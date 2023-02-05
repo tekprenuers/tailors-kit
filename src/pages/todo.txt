@@ -1,3 +1,7 @@
+I have already made a payment, share with us the reference id and we will look into it 
+
+"/dashboard/license?success=true&ref=$reference";
+
 ////////// UPDATES
 
 Send user email updates on customer requirement approaching its due date then a link attached to it for them to either extend the date or upload finished product
