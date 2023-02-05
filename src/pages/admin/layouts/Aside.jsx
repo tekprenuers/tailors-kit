@@ -86,9 +86,9 @@ export default function Aside() {
                             </a>
                         </li>
                         <li>
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVHMXjkB9YsFUbS0yVj8YSBGmNfUk1Oy8KpIqlQfepmFqI0g/viewform?usp=pp_url" className="router-link-active has-icon">
+                            <a target={"_blank"} href="https://docs.google.com/forms/d/e/1FAIpQLSdVHMXjkB9YsFUbS0yVj8YSBGmNfUk1Oy8KpIqlQfepmFqI0g/viewform?usp=pp_url" className="router-link-active has-icon">
                                 <span className="icon"><i className="mdi mdi-star"></i></span>
-                                <span className="menu-item-label">Leave feedback</span>
+                                <span className="menu-item-label">Send Feedback</span>
                             </a>
                         </li>
                     </ul>

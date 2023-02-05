@@ -16,8 +16,7 @@ function Home() {
                 <meta name="revisit-after" content="7 days" />
                 <meta name="author" content="The Tekprenuers"></meta>
                 <meta property="og:title" content={"TailorsKit"} />
-                <meta property="author" content={"The Tekprenuers"} />
-                <meta name="description" content={"The Largest Database & Best Productivity Software For Tailors In Nigeria"} />
+                <meta property="og:description" content={"The Largest Database & Best Productivity Software For Tailors In Nigeria"} />
             </Helmet>
             <section className="hero is-medium">
                 <div className="hero-body">
