@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { octaValidate } from "octavalidate-reactjs";
 import Typed from "typed.js";
@@ -7,7 +6,6 @@ import { Helmet } from "react-helmet";
 import Core from "./Hooks/Core";
 
 export default function Register() {
-  const navigate = useNavigate()
   const {getToken} = Core();
 
   //redirect back to dashboard if user is logged in already
@@ -55,6 +53,7 @@ export default function Register() {
       })
         .then(res => res.json())
         .then(res => {
+          btn.classList.remove('is-loading')
           if (!res.success) {
             //check if its a form error
             if (res?.formError) {
@@ -62,12 +61,11 @@ export default function Register() {
             } else {
               toast.error(res.data.message)
             }
-            btn.classList.remove('is-loading')
           } else {
             toast.success(res.data.message)
             setTimeout(() => {
-              navigate("/login")
-            }, 3000)
+              window.location.href=import.meta.env.VITE_FRONTEND_URL +"/login"
+            }, 2000)
           }
         })
         .catch(err => {
@@ -85,6 +83,8 @@ export default function Register() {
       <Helmet>
         <title>Register - TailorsKit</title>
         <meta property="og:title" content={"Register - TailorsKit"} />
+        <meta name="title" content={"Register - TailorsKit"} />
+        <meta property="og:description" content={"Quickly register on TailorsKit to save, access & manage your clients data"} />
         <meta name="description" content={"Quickly register on TailorsKit to save, access & manage your clients data"} />
       </Helmet>
       <div className="columns p-20 mt-5">

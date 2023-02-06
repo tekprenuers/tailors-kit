@@ -16,13 +16,13 @@ export default function Footer() {
             Tailor's kit is a large database & productivity software that helps Tailors to save, manage, access client's data, and track client's requests from anywhere and at anytime with ease.
             </p>
             <div>
-              <a className="mr-3 is-inline-block" href="#">
+              <a className="mr-3 is-inline-block" target={"_blank"} href="https://facebook.com/tailorskitsoftware">
                 <i className="mx-auto image is-fullwidth fab fa-facebook-f"></i>
               </a>
               {/* <a className="mr-3 is-inline-block" href="#">
                 <i className="mx-auto image is-fullwidth fab fa-twitter"></i>
               </a> */}
-              <a className="mr-3 is-inline-block" href="#">
+              <a className="mr-3 is-inline-block" target={"_blank"} href="https://instagram.com/tailors_kit">
                 <i className="mx-auto image is-fullwidth fab fa-instagram"></i>
               </a>
             </div>

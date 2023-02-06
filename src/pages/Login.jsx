@@ -112,6 +112,8 @@ export default function Login() {
       <Helmet>
         <title>Login - TailorsKit</title>
         <meta property="og:title" content={"Login - TailorsKit"} />
+        <meta name="title" content={"Login - TailorsKit"} />
+        <meta property="og:description" content={"Quickly Login to your account on TailorsKit to save, access & manage your clients data"} />
         <meta name="description" content={"Quickly Login to your account on TailorsKit to save, access & manage your clients data"} />
       </Helmet>
       <div className="columns p-20 mt-5">
