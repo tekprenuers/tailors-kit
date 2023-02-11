@@ -42,7 +42,7 @@ const ExtraFields = ({ numOfFields, extraFields, gender }) => {
                 .then(res => {
                     if (!res.success) {
                         //check if its a form error
-                        if (res?.formError) {
+                        if (res?.data?.formError) {
                             toast.error("A Validation error has occured")
                         } else {
                             toast.error(res.data.message)
@@ -191,7 +191,7 @@ export default function Settings_UpdateMeasurement() {
                     document.documentElement.classList.remove('is-clipped')
                     if (!res.success) {
                         //check if its a form error
-                        if (res?.formError) {
+                        if (res?.data?.formError) {
                             toast.error("A Validation error has occured")
                         } else {
                             toast.error(res.data.message)
@@ -243,8 +243,8 @@ export default function Settings_UpdateMeasurement() {
     return (
         <>
             <Helmet>
-                <title>Update Your Measurement Data - TailorsKit</title>
-                <meta property="og:title" content={"Update your measurement Data - TailorsKit"} />
+                <title>Configure Measurements - TailorsKit</title>
+                <meta property="og:title" content={"Configure your measurements - TailorsKit"} />
                 <meta name="description" content={"Set different measurement data for both males and females"} />
             </Helmet>
             {(status !== "loaded") ?
@@ -255,8 +255,8 @@ export default function Settings_UpdateMeasurement() {
                         <div className="hero-body">
                             <div className="level">
                                 <div className="level-left">
-                                    <div className="level-item"><h1 className="title">
-                                        Update Measurement Data
+                                    <div className="level-item"><h1 className="title is-4">
+                                        Configure measurements
                                     </h1></div>
                                 </div>
                                 <div className="level-right" style={{ display: "none" }}>
@@ -270,12 +270,15 @@ export default function Settings_UpdateMeasurement() {
                         <div className="card">
                             <header className="card-header">
                                 <p className="card-header-title">
-                                    <span className="icon"><i className="mdi mdi-ruler-square"></i></span>
-                                    <span>My Measurement Data</span>
+                                    <span>Configure measurements</span>
                                 </p>
                             </header>
                             <div className="card-content">
-
+                                <div className="notification is-info is-light">
+                                    <p className="mb-2"><span className="tag is-info"><b>YouTube video available</b></span></p>
+                                    <p className="mb-1">Select the gender, then add the measurements that you will need for that gender.</p>
+                                    <p> <a href="https://youtu.be/HpAbs8InH20" target={"_blank"}>Learn how you can add a measurement</a></p>
+                                </div>
                                 <form method="post" id="form_upd_tape" onSubmit={handleSubmit}>
                                     <div className="field mb-4">
                                         <label className="label">Select Gender <span className="has-text-danger">*</span></label>

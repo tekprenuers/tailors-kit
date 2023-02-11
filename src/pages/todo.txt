@@ -1,6 +1,4 @@
-I have already made a payment, share with us the reference id and we will look into it 
-
-"/dashboard/license?success=true&ref=$reference";
+delete customer.php was modified
 
 ////////// UPDATES
 

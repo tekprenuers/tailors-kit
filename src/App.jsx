@@ -28,7 +28,7 @@ import SingleCustomer from "./pages/admin/customers/SingleCustomer";
 
 //measurement
 import MeasurementCustomerSearch from "./pages/admin/measurements/CustomerSearch";
-import UpdateMeasurement from "./pages/admin/measurements/UpdateMeasurement";
+import AddMeasurement from "./pages/admin/measurements/AddMeasurement";
 
 //requests
 import RequestCustomerSearch from "./pages/admin/requests/CustomerSearch";
@@ -39,7 +39,7 @@ import ViewRequests from "./pages/admin/requests/ViewRequests";
 
 //settings
 import Settings from "./pages/admin/settings/Settings";
-import Settings_UpdateMeasurement from "./pages/admin/settings/updateMeasurement";
+import ConfigureMeasurement from "./pages/admin/settings/ConfigureMeasurement";
 import License from "./pages/admin/License";
 
 //help desk
@@ -171,7 +171,7 @@ function App() {
               <DashFooter />
             </>
           } />
-          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/update-measurement'} element={
+          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/add-measurement'} element={
             <>
               <Nav />
               <Aside />
@@ -180,25 +180,25 @@ function App() {
               <DashFooter />
             </>
           } />
-          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/update-measurement/:cusId'} element={
+          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/add-measurement/:cusId'} element={
             <>
               <Nav />
               <Aside />
-              <BreadCrumb pageName="Update measurement" showButton="false" />
-              <UpdateMeasurement />
+              <BreadCrumb pageName="Add measurement" showButton="false" />
+              <AddMeasurement />
               <DashFooter />
             </>
           } />
-          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/new-request'} element={
+          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/new-order'} element={
             <>
               <Nav />
               <Aside />
-              <BreadCrumb pageName="Search for a customer" showButton="false" buttonProp={{ buttonClass: "button is-primary", iconClass: "mdi mdi-eye", buttonText: "View requests", buttonLink: import.meta.env.VITE_DASHBOARD_URL + '/view-requests/' }} />
+              <BreadCrumb pageName="Search for a customer" showButton="false" buttonProp={{ buttonClass: "button is-primary", iconClass: "mdi mdi-eye", buttonText: "View requests", buttonLink: import.meta.env.VITE_DASHBOARD_URL + '/view-orders/' }} />
               <RequestCustomerSearch />
               <DashFooter />
             </>
           } />
-          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/new-request/:cusId'} element={
+          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/new-order/:cusId'} element={
             <>
               <Nav />
               <Aside />
@@ -207,31 +207,31 @@ function App() {
               <DashFooter />
             </>
           } />
-          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/view-requests'} element={
+          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/view-orders'} element={
             <>
               <Nav />
               <Aside />
-              <BreadCrumb pageName="Search for a customer" showButton="false" buttonProp={{ buttonClass: "button is-primary", iconClass: "mdi mdi-plus", buttonText: "New request", buttonLink: import.meta.env.VITE_DASHBOARD_URL + '/new-request/' }} />
+              <BreadCrumb pageName="Search for a customer" showButton="false" buttonProp={{ buttonClass: "button is-primary", iconClass: "mdi mdi-plus", buttonText: "New request", buttonLink: import.meta.env.VITE_DASHBOARD_URL + '/new-order/' }} />
               <ViewRequestCustomerSearch />
               <DashFooter />
             </>
           } />
 
-          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/requests/:cusId'} element={
+          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/orders/:cusId'} element={
             <>
               <Nav />
               <Aside />
-              <BreadCrumb pageName="View Request" showButton="false" />
+              <BreadCrumb pageName="View Order" showButton="false" />
               <ViewRequests />
               <DashFooter />
             </>
           } />
 
-          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/update-request/:reqId'} element={
+          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/update-order/:reqId'} element={
             <>
               <Nav />
               <Aside />
-              <BreadCrumb pageName="Update this request" showButton="false" />
+              <BreadCrumb pageName="Update this order" showButton="false" />
               <UpdateRequest />
               <DashFooter />
             </>
@@ -261,12 +261,12 @@ function App() {
               <DashFooter />
             </>
           } />
-          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/settings/update-measurement'} element={
+          <Route path={import.meta.env.VITE_DASHBOARD_URL + '/settings/configure-measurements'} element={
             <>
               <Nav />
               <Aside />
-              <BreadCrumb pageName="Update Measurement Data" showButton="false" />
-              <Settings_UpdateMeasurement />
+              <BreadCrumb pageName="Configure measurements" showButton="false" />
+              <ConfigureMeasurement />
               <DashFooter />
             </>
           } />

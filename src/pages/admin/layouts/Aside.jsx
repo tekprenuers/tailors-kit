@@ -40,7 +40,8 @@ export default function Aside() {
 
     
     const submenusToggle = (e) => {
-        const dropdownIcon = e.currentTarget.querySelector('.mdi')
+        //select the second icon
+        const dropdownIcon = e.currentTarget.querySelectorAll('.mdi')[1]
         e.currentTarget.parentNode.classList.toggle('is-active')
         dropdownIcon.classList.toggle('mdi-plus')
         dropdownIcon.classList.toggle('mdi-minus')
@@ -75,8 +76,8 @@ export default function Aside() {
                         </li>
                         <li>
                             <a href={import.meta.env.VITE_DASHBOARD_URL + '/license'} className="router-link-active has-icon">
-                                <span className="icon"><i className="mdi mdi-clock"></i></span>
-                                <span className="menu-item-label">My License</span>
+                                <span className="icon"><i className="mdi mdi-clock has-text-success"></i></span>
+                                <span className="menu-item-label has-text-success">License</span>
                             </a>
                         </li>
                         <li>
@@ -111,8 +112,13 @@ export default function Aside() {
                                     </a>
                                 </li>
                                 <li>
+                                    <a href={import.meta.env.VITE_DASHBOARD_URL+'/add-measurement'}>
+                                        <span>Add measurement</span>
+                                    </a>
+                                </li>
+                                <li>
                                     <a href={import.meta.env.VITE_DASHBOARD_URL + '/view-customers'}>
-                                        <span>View Customers</span>
+                                        <span>View all customers</span>
                                     </a>
                                 </li>
                             </ul>
@@ -120,40 +126,22 @@ export default function Aside() {
                         <li>
                             <a className="has-icon has-dropdown-icon" onClick={submenusToggle}>
                                 <span className="icon">
-                                    <i className="mdi mdi-ruler-square"></i>
+                                    <i className="mdi mdi-cart"></i>
                                 </span>
-                                <span className="menu-item-label">Measurements</span>
+                                <span className="menu-item-label">Orders</span>
                                 <div className="dropdown-icon">
                                     <span className="icon"><i className="mdi mdi-plus"></i></span>
                                 </div>
                             </a>
                             <ul>
                                 <li>
-                                    <a href={import.meta.env.VITE_DASHBOARD_URL+'/update-measurement'}>
-                                        <span>Update Measurement</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a className="has-icon has-dropdown-icon" onClick={submenusToggle}>
-                                <span className="icon">
-                                    <i className="mdi mdi-view-grid-outline"></i>
-                                </span>
-                                <span className="menu-item-label">Requests</span>
-                                <div className="dropdown-icon">
-                                    <span className="icon"><i className="mdi mdi-plus"></i></span>
-                                </div>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href={import.meta.env.VITE_DASHBOARD_URL+'/new-request'}>
-                                        <span>New Request</span>
+                                    <a href={import.meta.env.VITE_DASHBOARD_URL+'/new-order'}>
+                                        <span>Create Order</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href={import.meta.env.VITE_DASHBOARD_URL+'/view-requests'}>
-                                        <span>View Requests</span>
+                                    <a href={import.meta.env.VITE_DASHBOARD_URL+'/view-orders'}>
+                                        <span>View all Orders</span>
                                     </a>
                                 </li>
                             </ul>
@@ -171,12 +159,12 @@ export default function Aside() {
                             <ul>
                                 <li>
                                     <a href={import.meta.env.VITE_DASHBOARD_URL+'/settings/update-profile'}>
-                                        <span>My Profile</span>
+                                        <span>Update profile</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href={import.meta.env.VITE_DASHBOARD_URL+'/settings/update-measurement'}>
-                                        <span>My Measurements</span>
+                                    <a href={import.meta.env.VITE_DASHBOARD_URL+'/settings/configure-measurements'}>
+                                        <span>Configure measurements</span>
                                     </a>
                                 </li>
                             </ul>

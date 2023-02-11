@@ -142,7 +142,7 @@ export default function ViewRequests() {
                 .then(res => {
                     if (!res.success) {
                         //check if its a form error
-                        if (res?.formError) {
+                        if (res?.data?.formError) {
                             toast.error("A Validation error has occured")
                         } else {
                             toast.error(res.data.message)
@@ -288,9 +288,9 @@ export default function ViewRequests() {
                             <div className="level-right">
                                 <div className="level-item">
                                     <div className="buttons is-right">
-                                        <a href={import.meta.env.VITE_DASHBOARD_URL + '/new-request/' + cus_id} type="button"
+                                        <a href={import.meta.env.VITE_DASHBOARD_URL + '/new-order/' + cus_id} type="button"
                                             className="button is-app-primary"
-                                        ><i className="mdi mdi-plus"></i> Add a new request
+                                        ><i className="mdi mdi-plus"></i> Create order
                                         </a>
                                     </div>
                                 </div></div></div></section>
@@ -465,24 +465,20 @@ export default function ViewRequests() {
                                 <button onClick={closeModal} className="modal-close is-large jb-modal-close" aria-label="close"></button>
                             </div>
                         </>
-                            :<>
+                            : <>
                                 {
                                     (isSearch) ?
                                         <section className="empty-results">
-                                            <div className="has-text-centered">
-                                                <img alt="No results image" src="/caution.svg" width={"150px"} />
-                                            </div>
-                                            <div className="notification is-app is-light">
-                                                <p className="mb-2 has-text-centered fw-bold">Your search query returned <b>No results</b></p>
+                                            <div className="notification is-app is-light has-text-centered">
+                                                <img alt="No results image" src="/caution.svg" width={"100px"} />
+                                                <p className="mb-2 has-text-centered fw-bold">Your search query returned no results</p>
                                             </div>
                                         </section> :
                                         <section className="empty-results">
-                                            <div className="has-text-centered">
-                                                <img alt="No results image" src="/times-square.svg" width={"150px"} />
-                                            </div>
-                                            <div className="notification is-app is-light">
-                                                <p className="mb-2 fw-bold">No Requests Found For This Customer</p>
-                                                <a href={import.meta.env.VITE_DASHBOARD_URL + '/new-request/' + cus_id} className="button is-app-primary">Create a request</a>
+                                            <div className="notification is-app is-light has-text-centered">
+                                                <img alt="No results image" src="/times-square.svg" width={"100px"} className="mb-2" />
+                                                <p className="mb-2 fw-bold">No Orders Were Found For This Customer</p>
+                                                <a href={import.meta.env.VITE_DASHBOARD_URL + '/new-order/' + cus_id} className="button is-app-primary">Create a new order</a>
                                             </div>
                                         </section>
                                 }

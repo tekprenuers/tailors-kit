@@ -12,7 +12,7 @@ export default function KnowledgePanel() {
                         <a href="https://youtu.be/U6xuvUtkhpI" target={"_blank"}>How to update your profile</a>
                     </li>
                     <li className="kp-li">
-                        <a href="https://youtu.be/HpAbs8InH20" target={"_blank"}>How to configure your measurements</a>
+                        <a href="https://youtu.be/HpAbs8InH20" target={"_blank"}>How to add your measurements</a>
                     </li>
                 </ul>
             </div>
@@ -40,19 +40,19 @@ export default function KnowledgePanel() {
                 </ul>
             </div>
             <div className="kp-divider">
-                <h4 className="title is-5">Requests/Orders</h4>
+                <h4 className="title is-5">Orders</h4>
                 <ul>
                     <li className="kp-li">
-                        <a href="https://youtu.be/SDBbnNrwTIU" target={"_blank"}>How to add a request for a customer</a>
+                        <a href="https://youtu.be/SDBbnNrwTIU" target={"_blank"}>How to create an order</a>
                     </li>
                     <li className="kp-li">
-                        <a href="https://youtu.be/1KdYobMBSeg" target={"_blank"}>How to update a customer's request</a>
+                        <a href="https://youtu.be/1KdYobMBSeg" target={"_blank"}>How to update an order</a>
                     </li>
                     <li className="kp-li">
-                        <a href="https://youtu.be/n3ffksAhBFQ" target={"_blank"}>How to delete a customer's request</a>
+                        <a href="https://youtu.be/n3ffksAhBFQ" target={"_blank"}>How to delete an order</a>
                     </li>
                     <li className="kp-li">
-                        <a href="https://youtu.be/n3ffksAhBFQ" target={"_blank"}>How to view a customer's request</a>
+                        <a href="https://youtu.be/n3ffksAhBFQ" target={"_blank"}>How to view an order</a>
                     </li>
                 </ul>
             </div>

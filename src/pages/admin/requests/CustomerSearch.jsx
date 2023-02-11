@@ -163,7 +163,7 @@ export default function RequestCustomerSearch() {
                                                                     </td>
                                                                     <td className="is-actions-cell">
                                                                         <div className="buttons is-centered">
-                                                                            <a href={import.meta.env.VITE_DASHBOARD_URL + '/new-request/' + el?.cus_id} className="button is-small is-app-primary" type="button">
+                                                                            <a href={import.meta.env.VITE_DASHBOARD_URL + '/new-order/' + el?.cus_id} className="button is-small is-app-primary" type="button">
                                                                                 <span className="icon"><i className="mdi mdi-plus"></i></span>&nbsp;New Request
                                                                             </a>
                                                                         </div>
@@ -182,22 +182,18 @@ export default function RequestCustomerSearch() {
                             {
                                 (isSearch) ?
                                     <section className="empty-results">
-                                        <div className="has-text-centered">
-                                            <img alt="No results image" src="/caution.svg" width={"150px"} />
-                                        </div>
-                                        <div className="notification is-app is-light">
-                                            <p className="mb-2 has-text-centered fw-bold">Your search query returned <b>No results</b></p>
+                                        <div className="notification is-app is-light has-text-centered">
+                                            <img alt="No results image" src="/caution.svg" width={"100px"} />
+                                            <p className="mb-2 has-text-centered fw-bold">Your search query returned no results</p>
                                         </div>
                                     </section> :
                                     <section className="empty-results">
-                                        <div className="has-text-centered">
-                                            <img alt="No results image" src="/times-square.svg" width={"150px"} />
-                                        </div>
-                                        <div className="notification is-app is-light">
-                                            <p className="mb-2 fw-bold">No Customers Found</p>
-                                            <a href={import.meta.env.VITE_DASHBOARD_URL + '/add-customer'} className="button is-app-primary">Add Customer</a>
-                                        </div>
-                                    </section>
+                                    <div className="notification is-app is-light has-text-centered">
+                                        <img alt="No results image" src="/times-square.svg" width={"100px"} className="mb-2" />
+                                        <p className="mb-2 fw-bold">No Customers Found</p>
+                                        <a href={import.meta.env.VITE_DASHBOARD_URL + '/add-customer'} className="button is-app-primary">Add Customer</a>
+                                    </div>
+                                </section>
                             }
                         </>
                     }

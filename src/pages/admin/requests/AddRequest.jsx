@@ -41,7 +41,7 @@ export default function AddRequest() {
                     console.log(res);
                     if (!res.success) {
                         //check if its a form error
-                        if (res?.formError) {
+                        if (res?.data?.formError) {
                             toast.error("A Validation error has occured")
                         } else {
                             toast.error(res.data.message)
@@ -130,7 +130,7 @@ export default function AddRequest() {
                         <div className="hero-body">
                             <div className="level">
                                 <div className="level-left">
-                                    <div className="level-item"><h1 className="title">
+                                    <div className="level-item"><h1 className="title is-4">
                                         Add A New Request
                                     </h1></div>
                                 </div>
@@ -145,7 +145,6 @@ export default function AddRequest() {
                         <div className="card">
                             <header className="card-header">
                                 <p className="card-header-title">
-                                    <span className="icon"><i className="mdi mdi-account"></i></span>
                                     <span>Add a new request for <span className="has-text-app-primary">{cusData?.name}</span> </span>
                                 </p>
                             </header>
@@ -196,7 +195,7 @@ export default function AddRequest() {
                                     <div className="field">
                                         <label className="label">Extra Note <span className="has-text-danger">*</span></label>
                                         <div className="control is-expanded has-icons-left">
-                                            <textarea octavalidate="TEXT" placeholder="I want a senator material with ..." name="extra_note" id="inp_cus_req" className="input textarea"></textarea>
+                                            <textarea octavalidate="R,TEXT" placeholder="I want a senator material with ..." name="extra_note" id="inp_cus_req" className="input textarea"></textarea>
                                             <span className="icon is-small is-left"><i className="mdi mdi-check-circle"></i></span>
                                         </div>
                                         <small>Briefly state what the customer wants</small>
@@ -204,7 +203,7 @@ export default function AddRequest() {
                                     <div className="field">
                                         <label className="label">Deadline <span className="has-text-danger">*</span></label>
                                         <div className="control is-expanded has-icons-left">
-                                            <input id="inp_date_due" className="input" type="date" name="deadline" placeholder="When will you be able to deliver?" />
+                                            <input id="inp_date_due" octavalidate="R" className="input" type="date" name="deadline" placeholder="When will you be able to deliver?" />
                                             <span className="icon is-small is-left"><i className="mdi mdi-calendar"></i></span>
                                         </div>
                                         <small>When will you be able to deliver this request?</small>

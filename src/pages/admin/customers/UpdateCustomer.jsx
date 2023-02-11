@@ -90,7 +90,7 @@ export default function AddCustomer() {
                     console.log(res);
                     if (!res.success) {
                         //check if its a form error
-                        if (res?.formError) {
+                        if (res?.data?.formError) {
                             toast.error("A Validation error has occured")
                         } else {
                             toast.error(res.data.message)
@@ -152,10 +152,7 @@ export default function AddCustomer() {
                                             target="_self"
                                             className="button is-app-primary"
                                         >
-                                            <span className="icon">
-                                                <i className="mdi mdi-eye"></i>
-                                            </span>
-                                            <span>View data</span>
+                                            <span>View profile</span>
                                         </a>
                                     </div>
                                 </div>
@@ -166,7 +163,7 @@ export default function AddCustomer() {
                         <div className="hero-body">
                             <div className="level">
                                 <div className="level-left">
-                                    <div className="level-item"><h1 className="title">
+                                    <div className="level-item"><h1 className="title is-4">
                                         Update Customer
                                     </h1></div>
                                 </div>
@@ -181,7 +178,6 @@ export default function AddCustomer() {
                         <div className="card">
                             <header className="card-header">
                                 <p className="card-header-title">
-                                    <span className="icon"><i className="mdi mdi-account"></i></span>
                                     Update Customer
                                 </p>
                             </header>

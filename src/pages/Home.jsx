@@ -7,16 +7,11 @@ function Home() {
         <>
             <Helmet>
                 <title>TailorsKit</title>
-                <meta name="title" content="TailorsKit" />
-                <meta name="description" content="The Largest Database & Best Productivity Software For Tailors In Nigeria" />
-                <meta name="keywords" content="tailorskit, database, software, productivity, tailors software, tailors" />
-                <meta name="robots" content="index, follow" />
-                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                <meta name="language" content="English" />
-                <meta name="revisit-after" content="7 days" />
-                <meta name="author" content="The Tekprenuers"></meta>
-                <meta property="og:title" content={"TailorsKit"} />
-                <meta property="og:description" content={"The Largest Database & Best Productivity Software For Tailors In Nigeria"} />
+                <meta name="title" content={"TailorsKit"} />
+                <meta name="description" content={"The Largest Database & Best Productivity Software For Tailors In Nigeria"} />
+                <meta property="og:image" content="https://tailorskit.com/banner.jpg"/>
+                <meta property="og:title" content="TailorsKit" />
+                <meta property="og:description" content="The Largest Database & Best Productivity Software For Tailors In Nigeria" />
             </Helmet>
             <section className="hero is-medium">
                 <div className="hero-body">

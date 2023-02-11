@@ -39,7 +39,7 @@ export default function Support() {
                     console.log(res);
                     if (!res.success) {
                         //check if its a form error
-                        if (res?.formError) {
+                        if (res?.data?.formError) {
                             toast.error("A Validation error has occured")
                         } else {
                             toast.error(res.data.message)

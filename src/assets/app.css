@@ -22,12 +22,28 @@ body {
     border-left: .3em solid #00d1b2;
 }
 
+.notification.is-success {
+    border-left: .3em solid #3ec46d;
+}
+
 .notification.is-app.is-light{
     border-left: .3em solid var(--primary);
     background-color: #ff95001a;
 }
-
-
+tr.step{
+    display: block;
+    /* border-radius: 10px;
+    border: 1px solid #e6e6e6 !important; */
+}
+tr.step:not(:last-child){
+    margin-bottom: 10px;
+}
+tr.step-completed{
+    background-color: #e0fef0;
+}
+tr.step-uncompleted{
+    background-color: #ffeaee;
+}
 .title {
     color: #000;
 }
@@ -345,11 +361,29 @@ button.is-cta:hover {
     right: 50%;
     transform: translate(50%, -50%);
 }
-
-footer strong {
+footer.home{
+    padding: 1.5rem 1.5rem !important;
+    background-color: #1d1b1b;
+    color: #fff;
+}
+footer.home:has(p, label){
+    color: #cacaca !important
+}
+footer.home strong {
     color: #fff !important;
 }
-
+footer.home input.newsletter{
+    background-color: #1c1c1c;
+    border: 1px solid #3a3a3a;
+    color: #fff;
+}
+footer.home input.newsletter:focus{
+    box-shadow: none !important;
+    border: 2px solid #3a3a3a;
+}
+footer.home input.newsletter::placeholder{
+    color: #bbbbbb;
+}
 .about-title {
     background: linear-gradient(140deg, rgb(29, 17, 218) 31%, rgb(120, 0, 184) 100%);
     background-clip: border-box;

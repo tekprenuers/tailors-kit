@@ -22,7 +22,7 @@ const TapeFields = ({ configData, tapeData }) => {
             <div className="field measure-field">
                 <label className="label">{currentConfig}</label>
                 <p className="control is-expanded">
-                    <input data-name={currentConfig} id={"inp_tape_" + i} autoComplete={"off"} className="input tape-inp" octavalidate="DIGITS" length="2" type="number" placeholder="Waist" defaultValue={tapeData?.[currentConfig]} />
+                    <input placeholder={currentConfig} data-name={currentConfig} id={"inp_tape_" + i} autoComplete={"off"} className="input tape-inp" octavalidate="DIGITS" length="2" type="number" defaultValue={tapeData?.[currentConfig]} />
                 </p>
             </div>
         )
@@ -231,9 +231,9 @@ export default function AddMeasurement() {
     return (
         <>
             <Helmet>
-                <title>{"Update Measurement for "+tapeData?.cus_name}</title>
-                <meta property="og:title" content={"Update Measurement for "+tapeData?.cus_name} />
-                <meta name="description" content={"Visit this page to update a customer's measurement"} />
+                <title>{"Add Measurement for " + tapeData?.cus_name}</title>
+                <meta property="og:title" content={"Add Measurement for " + tapeData?.cus_name} />
+                <meta name="description" content={"Visit this page to add a customer's measurement"} />
             </Helmet>
             {(status !== "loaded") ?
                 <>
@@ -248,14 +248,11 @@ export default function AddMeasurement() {
                                 <div className="level-item">
                                     <div className="buttons is-right">
                                         <a
-                                            href={import.meta.env.VITE_DASHBOARD_URL + '/settings/update-measurement'}
+                                            href={import.meta.env.VITE_DASHBOARD_URL + '/settings/configure-measurements'}
                                             target="_self"
                                             className="button is-app-primary"
                                         >
-                                            <span className="icon">
-                                                <i className="mdi mdi-ruler-square"></i>
-                                            </span>
-                                            <span>My Measurement data</span>
+                                            <span>Configure measurements</span>
                                         </a>
                                     </div>
                                 </div>
@@ -266,8 +263,8 @@ export default function AddMeasurement() {
                         <div className="hero-body">
                             <div className="level">
                                 <div className="level-left">
-                                    <div className="level-item"><h1 className="title">
-                                        Update Measurement
+                                    <div className="level-item"><h1 className="title is-4">
+                                        Add Measurement
                                     </h1></div>
                                 </div>
                                 <div className="level-right" style={{ display: "none" }}>
@@ -278,61 +275,76 @@ export default function AddMeasurement() {
                     </section>
 
                     <section className="section is-main-section">
-                        <div className="card">
-                            <header className="card-header">
-                                <p className="card-header-title">
-                                    <span className="icon"><i className="mdi mdi-account"></i></span>
-                                    <span>Updating measurement for <span className="has-text-app-primary">{tapeData?.cus_name}</span> </span>
-                                </p>
-                            </header>
-                            <div className="card-content">
-                                {
-                                    (configData && Object.keys(configData).length) ?
-                                        <>
+                        {
+                            (Object.keys(tapeData).length) ?
+                                <>
+                                    <div className="card">
+                                        <header className="card-header">
+                                            <p className="card-header-title">
+                                                <span>Adding measurement for <span className="has-text-app-primary fw-bold">{tapeData?.cus_name}</span> </span>
+                                            </p>
+                                        </header>
+                                        <div className="card-content">
                                             {
-                                                (tapeData?.gender) ?
-                                                    <div className="notification is-info is-light">
-                                                        <p className="m-0">This customer is a <b>{tapeData?.gender}</b> so we will show you measurement data for {tapeData?.gender + 's'}</p>
-                                                    </div>
-                                                    : null
-                                            }
-                                            <form method="post" id="form_upd_measurement" onSubmit={handleSubmit} noValidate>
-                                                <TapeFields configData={configData} tapeData={(tapeData?.gender == "male") ? tapeData?.tape_male : tapeData?.tape_female} />
-                                                <div className="field mt-5">
-                                                    <button data-target="modal_save_measurement" className="button is-app-primary is-fullwidth jb-modal" type="button" onClick={showModal}>Confirm Measurement</button>
-                                                </div>
-                                            </form>
-                                        </> :
-                                        <section>
-                                            <div className="has-text-centered">
-                                                <img alt="caution image" src="/caution.svg" width={"200px"} />
-                                            </div>
-                                            <div className="notification is-danger is-light">
-                                                <p className="mb-2">Measurement data has not been configured</p>
-                                                <a href={import.meta.env.VITE_DASHBOARD_URL + '/settings/update-measurement'} className="button is-danger">Configure Now</a>
-                                            </div>
-                                        </section>
-                                }
+                                                (configData && Object.keys(configData).length) ?
+                                                    <>
+                                                        {
+                                                            (tapeData?.gender) ?
+                                                                <div className="notification is-info is-light">
+                                                                    <p className="m-0">This customer is a <b>{tapeData?.gender}</b> so we will show you measurements for <b>{tapeData?.gender + 's'}</b></p>
+                                                                </div>
+                                                                : null
+                                                        }
+                                                        <form method="post" id="form_upd_measurement" onSubmit={handleSubmit} noValidate>
+                                                            <TapeFields configData={configData} tapeData={(tapeData?.gender == "male") ? tapeData?.tape_male : tapeData?.tape_female} />
+                                                            <div className="field mt-5">
+                                                                <button data-target="modal_save_measurement" className="button is-app-primary is-fullwidth jb-modal" type="button" onClick={showModal}>Confirm Measurement</button>
+                                                            </div>
+                                                        </form>
+                                                    </> :
+                                                    <section>
+                                                        <div className="notification is-danger is-light">
 
-                            </div>
-                        </div>
-                        <div id="modal_save_measurement" className="modal">
-                            <div className="modal-background jb-modal-close" onClick={closeModal}></div>
-                            <div className="modal-card">
-                                <header className="modal-card-head">
-                                    <p className="modal-card-title">Confirm Action</p>
-                                    <button className="delete jb-modal-close" aria-label="close" onClick={closeModal}></button>
-                                </header>
-                                <section className="modal-card-body">
-                                    <p className="has-text-centered">Are you sure that you want to save this measurement data for <b>{tapeData?.cus_name}</b></p>
+                                                            <div className="has-text-centered mb-3">
+                                                                <img alt="caution image" src="/caution.svg" width={"100px"} />
+                                                                <p className="fw-bold mb-2">You have not configured your measurements</p>
+
+                                                                <p className="mb-1">Click on the button below to configure</p>
+                                                                <p className="mb-0"><a href={import.meta.env.VITE_DASHBOARD_URL + '/settings/configure-measurements'} className="button is-danger">Configure</a></p>
+                                                            </div>
+
+                                                        </div>
+                                                    </section>
+                                            }
+
+                                        </div>
+                                    </div>
+                                    <div id="modal_save_measurement" className="modal">
+                                        <div className="modal-background jb-modal-close" onClick={closeModal}></div>
+                                        <div className="modal-card">
+                                            <header className="modal-card-head">
+                                                <p className="modal-card-title">Confirm Action</p>
+                                                <button className="delete jb-modal-close" aria-label="close" onClick={closeModal}></button>
+                                            </header>
+                                            <section className="modal-card-body">
+                                                <p className="has-text-centered">Are you sure that you want to save this measurement data for <b>{tapeData?.cus_name}</b></p>
+                                            </section>
+                                            <footer className="modal-card-foot is-justify-content-end">
+                                                <button className="button jb-modal-close" onClick={closeModal}>Cancel</button>
+                                                <button form="form_upd_measurement" type="submit" className="button is-app-primary jb-modal-close">Save</button>
+                                            </footer>
+                                        </div>
+                                        <button onClick={closeModal} className="modal-close is-large jb-modal-close" aria-label="close"></button>
+                                    </div>
+                                </> :
+                                //record does not exist
+                                <section className="empty-results">
+                                    <div className="notification is-app is-light has-text-centered">
+                                        <img alt="No results image" src="/caution.svg" width={"100px"} />
+                                        <p className="mb-2 has-text-centered fw-bold">This customer does not exist</p>
+                                    </div>
                                 </section>
-                                <footer className="modal-card-foot is-justify-content-end">
-                                    <button className="button jb-modal-close" onClick={closeModal}>Cancel</button>
-                                    <button form="form_upd_measurement" type="submit" className="button is-app-primary jb-modal-close">Save</button>
-                                </footer>
-                            </div>
-                            <button onClick={closeModal} className="modal-close is-large jb-modal-close" aria-label="close"></button>
-                        </div>
+                        }
                     </section>
                 </>
             }

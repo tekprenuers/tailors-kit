@@ -33,7 +33,7 @@ export default function UpdateProfile() {
                 setStatus("loaded");
                 if (!res.success) {
                     //check if its a form error
-                    if (res?.formError) {
+                    if (res?.data?.formError) {
                         toast.error("A Validation error has occured")
                     } else {
                         toast.error(res.data.message)
@@ -80,7 +80,7 @@ export default function UpdateProfile() {
                     console.log(res);
                     if (!res.success) {
                         //check if its a form error
-                        if (res?.formError) {
+                        if (res?.data?.formError) {
                             toast.error("A Validation error has occured")
                         } else {
                             toast.error(res.data.message)
@@ -119,7 +119,7 @@ export default function UpdateProfile() {
                         <div className="hero-body">
                             <div className="level">
                                 <div className="level-left">
-                                    <div className="level-item"><h1 className="title">
+                                    <div className="level-item"><h1 className="title is-4">
                                         Profile
                                     </h1></div>
                                 </div>

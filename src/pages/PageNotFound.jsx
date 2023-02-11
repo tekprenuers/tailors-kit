@@ -13,7 +13,7 @@ export default function PageNotFound() {
                 <meta property="og:title" content={"Page Not Found - TailorsKit"} />
                 <meta name="description" content={"The page or resource you're looking for cannot be found"} />
             </Helmet>
-            <section className="p-50 has-text-centered">
+            <section className="p-20 has-text-centered">
                 <div className="mw-500 m-auto">
                     <img src="/404-error.svg" alt="Page Not Found" width={"500px"} />
                 </div>

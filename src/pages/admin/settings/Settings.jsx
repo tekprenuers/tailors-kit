@@ -35,7 +35,7 @@ export default function Settings() {
                                     <h4 className="title is-5 mb-0">My Measurements</h4>
                                     <p className="has-text-app-primary"><i className="mdi mdi-ruler-square fa-3x"></i></p>
                                     <p>
-                                        <a href={import.meta.env.VITE_DASHBOARD_URL + '/settings/update-measurement'} className="button is-app-primary">Update</a>
+                                        <a href={import.meta.env.VITE_DASHBOARD_URL + '/settings/configure-measurements'} className="button is-app-primary">Update</a>
                                     </p>
                                 </div>
                             </div>

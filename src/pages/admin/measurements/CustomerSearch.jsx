@@ -137,7 +137,6 @@ export default function MeasurementCustomerSearch() {
                                             <table className="table is-fullwidth is-striped is-hoverable is-sortable is-fullwidth">
                                                 <thead>
                                                     <tr>
-                                                        <th></th>
                                                         <th>Name</th>
                                                         <th>Phone</th>
                                                         <th>Created</th>
@@ -149,19 +148,14 @@ export default function MeasurementCustomerSearch() {
                                                         clientsData.map((el, ind) => {
                                                             return (
                                                                 <tr key={ind}>
-                                                                    <td className="is-image-cell">
-                                                                        <div className="image">
-                                                                            <img src={(el?.image) ? el?.image : "https://avatars.dicebear.com/v2/initials/rebecca-bauch.svg"} className="is-rounded" />
-                                                                        </div>
-                                                                    </td>
                                                                     <td data-label="Name">{el?.name}</td>
                                                                     <td data-label="Phone">{el?.phone}</td>
                                                                     <td data-label="Created">
                                                                         <small className="has-text-grey is-abbr-like" title="Oct 25, 2020">{el?.date_added}</small>
                                                                     </td>
                                                                     <td className="is-actions-cell">
-                                                                        <a href={import.meta.env.VITE_DASHBOARD_URL + '/update-measurement/' + el?.cus_id} className="button is-app-primary is-small is-fullwidth" type="button">
-                                                                            <span className="icon"><i className="mdi mdi-plus"></i></span>&nbsp;Update
+                                                                        <a href={import.meta.env.VITE_DASHBOARD_URL + '/add-measurement/' + el?.cus_id} className="button is-app-primary is-small is-fullwidth" type="button">
+                                                                            <span className="icon"><i className="mdi mdi-plus"></i></span>&nbsp;Add measurement
                                                                         </a>
                                                                     </td>
                                                                 </tr>
@@ -180,18 +174,14 @@ export default function MeasurementCustomerSearch() {
                                 {
                                     (isSearch) ?
                                         <section className="empty-results">
-                                            <div className="has-text-centered">
-                                                <img alt="No results image" src="/caution.svg" width={"150px"} />
-                                            </div>
-                                            <div className="notification is-app is-light">
-                                                <p className="mb-2 has-text-centered fw-bold">Your search query returned <b>No results</b></p>
+                                            <div className="notification is-app is-light has-text-centered">
+                                                <img alt="No results image" src="/caution.svg" width={"100px"} />
+                                                <p className="mb-2 has-text-centered fw-bold">Your search query returned no results</p>
                                             </div>
                                         </section> :
                                         <section className="empty-results">
-                                            <div className="has-text-centered">
-                                                <img alt="No results image" src="/times-square.svg" width={"150px"} />
-                                            </div>
-                                            <div className="notification is-app is-light">
+                                            <div className="notification is-app is-light has-text-centered">
+                                                <img alt="No results image" src="/times-square.svg" width={"100px"} className="mb-2" />
                                                 <p className="mb-2 fw-bold">No Customers Found</p>
                                                 <a href={import.meta.env.VITE_DASHBOARD_URL + '/add-customer'} className="button is-app-primary">Add Customer</a>
                                             </div>

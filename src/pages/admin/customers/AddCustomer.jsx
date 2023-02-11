@@ -35,7 +35,7 @@ export default function AddCustomer() {
                     console.log(res);
                     if (!res.success) {
                         //check if its a form error
-                        if (res?.formError) {
+                        if (res?.data?.formError) {
                             toast.error("A Validation error has occured")
                         } else {
                             toast.error(res.data.message)
@@ -86,7 +86,7 @@ export default function AddCustomer() {
                 <div className="hero-body">
                     <div className="level">
                         <div className="level-left">
-                            <div className="level-item"><h1 className="title">
+                            <div className="level-item"><h1 className="title is-4">
                                 Add A Customer
                             </h1></div>
                         </div>
@@ -101,14 +101,15 @@ export default function AddCustomer() {
                 <div className="card">
                     <header className="card-header">
                         <p className="card-header-title">
-                            <span className="icon"><i className="mdi mdi-account"></i></span>
                             Add a customer
                         </p>
                     </header>
                     <div className="card-content">
-                        <div className="notification is-info is-light">
-                            <p className="m-0">Fields with an asterisk(<span className="has-text-danger">*</span>) are required!</p>
-                        </div>
+                    <div className="notification is-info is-light">
+                        <p className="mb-2"><span className="tag is-info"><b>YouTube video available</b></span></p>
+                        <p className="mb-1">Fields with an asterisk are required!</p>
+                        <p> <a href="https://youtu.be/J0Cn9Hnp0lY" target={"_blank"}>Learn how to add a customer</a></p>
+                                </div>
                         <form method="post" id="form_new_customer" onSubmit={handleSubmit}>
                             <div className="field">
                                 <label className="label">Customer Name <span className="has-text-danger">*</span></label>
