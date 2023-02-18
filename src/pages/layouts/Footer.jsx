@@ -10,20 +10,20 @@ export default function Footer() {
         >
           <div className="column is-5 mb-5">
             <a className="mb-4 is-inline-block" href="./">
-              <img className="image" src="/navbar-icon.png" alt="Tailors Kit" />
+              <img className="image" src="/Tailor3.png" alt="Tailors Kit" style={{width: "150px"}} />
             </a>
             <p className="mb-6">
             Tailor's kit is a large database & productivity software that helps Tailors to save, manage, access client's data, and track client's requests from anywhere and at anytime with ease.
             </p>
             <div>
               <a className="mr-3 is-inline-block" target={"_blank"} href="https://facebook.com/tailorskitsoftware">
-                <i className="mx-auto image is-fullwidth fab fa-facebook-f"></i>
+                <i className="mx-auto image is-fullwidth fab fa-facebook-f has-text-light"></i>
               </a>
               {/* <a className="mr-3 is-inline-block" href="#">
                 <i className="mx-auto image is-fullwidth fab fa-twitter"></i>
               </a> */}
               <a className="mr-3 is-inline-block" target={"_blank"} href="https://instagram.com/tailors_kit">
-                <i className="mx-auto image is-fullwidth fab fa-instagram"></i>
+                <i className="mx-auto image is-fullwidth fab fa-instagram has-text-light"></i>
               </a>
             </div>
           </div>
@@ -46,8 +46,23 @@ export default function Footer() {
                       Team
                     </a>
                   </li>*/}
-                  <li>
-                    <a className="" href="/privacy">
+                  <li className="mb-2">
+                    <a className="has-text-light" href="/">
+                      Home
+                    </a>
+                  </li>
+                  <li className="mb-2">
+                    <a className="has-text-light" href="/login">
+                      Login
+                    </a>
+                  </li>
+                  <li className="mb-2">
+                    <a className="has-text-light" href="/contact">
+                      Contact us
+                    </a>
+                  </li>
+                  <li className="mb-2">
+                    <a className="has-text-light" href="/privacy">
                       Privacy
                     </a>
                   </li>

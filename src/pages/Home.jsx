@@ -18,7 +18,7 @@ function Home() {
                     <div className="container m-0" style={{ top: '30%' }}>
                         <h1 className="title is-1 has-text-dark">Welcome To Tailors Kit</h1>
                         <p className="subtitle fonts-pacifico mb-3 has-text-white">The Largest Database & Best Productivity Software For Tailors In Nigeria</p>
-                        <a href={'https://forms.gle/K9Fd5yzo7m9hJW2D8'}  target={"_blank"} className='button is-dark has-text-app-primary is-medium fw-normal'>Join the waitlist</a>
+                        <a href={'/login'} className='button is-dark has-text-app-primary is-medium fw-normal'>Join us now</a>
                     </div>
                 </div>
             </section>
@@ -82,12 +82,12 @@ function Home() {
                     <img src='/high-five.svg' width={"300px"} />
                     </div>
                     <div className='column is-half is-align-self-center'>
-                        <h3 className='title is-3'>READY TO GET STARTED?</h3>
+                        <h3 className='title is-3'>ARE YOU READY TO JOIN US?</h3>
                         <h5 className='subtitle mb-3'>Become a member today!</h5>
                         <article className='is-bold'>
-                            {/* <p className='mb-3'>Signup on TailorsKit and get access to all features starting with a 14 days free trial.</p> */}
-                            <p className='mb-3'>Joing the waiting list today and get access to all features starting with a <span className='col-title'>21 days free trial.</span></p>
-                            <a  target={"_blank"} href={'https://forms.gle/K9Fd5yzo7m9hJW2D8'} className='button is-app-primary fw-normal'>Join the waitlist</a>
+                            <p className='mb-3'>Join us now and get access to all features starting with a <span className='col-title'>14 days</span> free trial.</p>
+                            {/* <p className='mb-3'>Joing the waiting list today and get access to all features starting with a <span className='col-title'>21 days free trial.</span></p> */}
+                            <a href={'/login'} className='button is-app-primary fw-normal'>Join us now</a>
                         </article>
                     </div>
                 </div>

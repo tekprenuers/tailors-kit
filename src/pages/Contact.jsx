@@ -50,7 +50,7 @@ export default function Contact(){
         }
     }
     return (
-        <section className="section mw-700 m-auto has-shadow mt-5 radius-20">
+        <section className="section mw-700 m-auto mb-5 has-shadow mt-5 radius-20">
             <h4 className="title is-3 has-text-centered">CONTACT US</h4>
             <h5 className="subtitle has-text-centered">SEND US A MESSAGE</h5>
             <p className="notification is-info is-light">

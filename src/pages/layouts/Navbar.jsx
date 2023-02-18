@@ -82,19 +82,18 @@ export default function Navbar() {
                         <Link onClick={unToggleMobileNav} to="/" className="navbar-item">
                             Home
                         </Link>
-                        <a onClick={unToggleMobileNav} href="https://forms.gle/K9Fd5yzo7m9hJW2D8" className="navbar-item" target={"_blank"}>
+                        {/* <a onClick={unToggleMobileNav} href="https://forms.gle/K9Fd5yzo7m9hJW2D8" className="navbar-item" target={"_blank"}>
                             Join the waitlist
-                        </a>
-                        {/* 
-                        <Link onClick={unToggleMobileNav} to="/contact" className="navbar-item">
-                            Contact us
-                        </Link>
+                        </a> */}
                         <Link onClick={unToggleMobileNav} to="/register" className="navbar-item">
-                            Signup
+                            Register
                         </Link>
                         <Link onClick={unToggleMobileNav} to="/login" className="navbar-item">
                             Login
-                        </Link> */}
+                        </Link>
+                        <Link onClick={unToggleMobileNav} to="/contact" className="navbar-item">
+                            Contact us
+                        </Link>
                     </div>
                 </div>
             </nav>
