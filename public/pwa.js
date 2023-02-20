@@ -2,7 +2,7 @@ let deferredPrompt = null;
 
 window.addEventListener('beforeinstallprompt', (e) => {
     document.querySelectorAll('.pwaAppInstallBtn').forEach(el => {
-        el.style.display = "block";
+        el.style.display = "initial";
     })
     deferredPrompt = e;
 });

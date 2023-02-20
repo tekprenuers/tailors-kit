@@ -82,8 +82,8 @@ function Home() {
                         <article className='is-bold'>
                             <p className='mb-3'>Join us now and get access to all features starting with a <span className='col-title'>14 days</span> free trial.</p>
                             {/* <p className='mb-3'>Joing the waiting list today and get access to all features starting with a <span className='col-title'>21 days free trial.</span></p> */}
-                            <div className='buttons-group'>
-                                <a href={'/login'} className='button is-dark fw-normal mr-3'>Join us now</a>
+                            <div className='buttons'>
+                                <a href={'/login'} className='button is-dark fw-normal'>Join us now</a>
                                 <button type='button' className='button is-dark is-outlined fw-normal pwaAppInstallBtn'>Install TailorsKit</button>
                             </div>
                         </article>
