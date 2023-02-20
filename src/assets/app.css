@@ -351,7 +351,9 @@ button.is-cta:hover {
 .hero-subtitle{
     color:#4c4c4c !important;
 }
-
+button.button.pwaAppInstallBtn{
+    display: none;
+}
 .centered-elem {
     max-width: 800px;
     padding: 20px;
