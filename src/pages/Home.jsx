@@ -7,11 +7,6 @@ function Home() {
         <>
             <Helmet>
                 <title>TailorsKit</title>
-                <meta name="title" content={"TailorsKit"} />
-                <meta name="description" content={"The Largest Database & Best Productivity Software For Tailors In Nigeria"} />
-                <meta property="og:image" content="https://tailorskit.com/banner.jpg"/>
-                <meta property="og:title" content="TailorsKit" />
-                <meta property="og:description" content="The Largest Database & Best Productivity Software For Tailors In Nigeria" />
             </Helmet>
             <section className="hero is-medium">
                 <div className="hero-body">
@@ -87,7 +82,10 @@ function Home() {
                         <article className='is-bold'>
                             <p className='mb-3'>Join us now and get access to all features starting with a <span className='col-title'>14 days</span> free trial.</p>
                             {/* <p className='mb-3'>Joing the waiting list today and get access to all features starting with a <span className='col-title'>21 days free trial.</span></p> */}
-                            <a href={'/login'} className='button is-app-primary fw-normal'>Join us now</a>
+                            <div className='buttons-group'>
+                                <a href={'/login'} className='button is-dark fw-normal mr-3'>Join us now</a>
+                                <button type='button' className='button is-dark is-outlined fw-normal pwaAppInstallBtn'>Install TailorsKit</button>
+                            </div>
                         </article>
                     </div>
                 </div>

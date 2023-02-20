@@ -360,21 +360,21 @@ export default function DashHome() {
                                                     <p><a href={import.meta.env.VITE_DASHBOARD_URL + '/settings/configure-measurements'}>Configure your measurements</a></p>
                                                 </td>
                                             </tr>
-                                            <tr className={(dashStats.total_customers) ? 'step step-completed' : 'step step-uncompleted'}>
+                                            <tr className={(dashStats?.total_customers != 0) ? 'step step-completed' : 'step step-uncompleted'}>
                                                 <td>
-                                                    <p className="mb-2"><span className={(dashStats.total_customers) ? 'tag is-success' : 'tag is-danger'}> {(dashStats.total_customers) ? 'Completed' : 'Uncompleted'}</span></p>
+                                                    <p className="mb-2"><span className={(dashStats?.total_customers != 0) ? 'tag is-success' : 'tag is-danger'}> {(dashStats?.total_customers != 0) ? 'Completed' : 'Uncompleted'}</span></p>
                                                     <p><a href={import.meta.env.VITE_DASHBOARD_URL + '/add-customer'}>Add your first customer</a></p>
                                                 </td>
                                             </tr>
-                                            <tr className={(dashStats.total_measurements) ? 'step step-completed' : 'step step-uncompleted'}>
+                                            <tr className={(dashStats?.total_measurements != 0) ? 'step step-completed' : 'step step-uncompleted'}>
                                                 <td>
-                                                    <p className="mb-2"><span className={(dashStats.total_measurements) ? 'tag is-success' : 'tag is-danger'}> {(dashStats.total_measurements) ? 'Completed' : 'Uncompleted'}</span></p>
+                                                    <p className="mb-2"><span className={(dashStats?.total_measurements != 0) ? 'tag is-success' : 'tag is-danger'}> {(dashStats?.total_measurements != 0) ? 'Completed' : 'Uncompleted'}</span></p>
                                                     <p><a href={import.meta.env.VITE_DASHBOARD_URL + '/add-measurement'}>Add your first measurement</a></p>
                                                 </td>
                                             </tr>
-                                            <tr className={(dashStats.total_requests) ? 'step step-completed' : 'step step-uncompleted'}>
+                                            <tr className={(dashStats?.total_requests != 0) ? 'step step-completed' : 'step step-uncompleted'}>
                                                 <td>
-                                                    <p className="mb-2"><span className={(dashStats.total_requests) ? 'tag is-success' : 'tag is-danger'}> {(dashStats.total_requests) ? 'Completed' : 'Uncompleted'}</span></p>
+                                                    <p className="mb-2"><span className={(dashStats?.total_requests != 0) ? 'tag is-success' : 'tag is-danger'}> {(dashStats?.total_requests != 0) ? 'Completed' : 'Uncompleted'}</span></p>
                                                     <p><a href={import.meta.env.VITE_DASHBOARD_URL + '/new-order'}>Create your first order</a></p>
                                                 </td>
                                             </tr>

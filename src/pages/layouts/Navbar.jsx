@@ -44,13 +44,6 @@ export default function Navbar() {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
 
-
-    //check and redirect user to update profile incase of dashboard
-    const handleLogin = () => {
-
-    }
-
-
     return (
         <>
             <ToastContainer
@@ -94,6 +87,11 @@ export default function Navbar() {
                         <Link onClick={unToggleMobileNav} to="/contact" className="navbar-item">
                             Contact us
                         </Link>
+                        <span className="navbar-item">
+                        <button className="button is-app-primary pwaAppInstallBtn">
+                            Install TailorsKit
+                        </button>
+                        </span>
                     </div>
                 </div>
             </nav>
